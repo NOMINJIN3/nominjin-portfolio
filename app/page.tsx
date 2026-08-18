@@ -86,7 +86,7 @@ const PROJECTS = [
   {
     title: "This Portfolio",
     tags: ["Next.js", "React", "TypeScript"],
-    desc: "A dark, terminal-inspired portfolio — custom CSS design system, zero UI libraries, orbital tech stack and all.",
+    desc: "A light, terminal-inspired portfolio — custom CSS design system, zero UI libraries, orbital tech stack and all.",
     link: "https://www.nominjin.io",
     linkLabel: "nominjin.io",
     thumb: "code",
@@ -144,7 +144,7 @@ function Thumb({ kind }: { kind: string }) {
           const intensity = ((i * 37) % 100) / 100;
           const green = intensity > 0.66;
           const blue = !green && intensity > 0.33;
-          const fill = green ? "#34d399" : blue ? "#22d3ee" : "#1e293b";
+          const fill = green ? "#34d399" : blue ? "#22d3ee" : "#cbd5e1";
           return (
             <rect
               key={i}
@@ -164,26 +164,26 @@ function Thumb({ kind }: { kind: string }) {
   if (kind === "terminal") {
     return (
       <div className="thumb-glyph">
-        <div style={{ color: "#34d399" }}>➜ <span style={{ color: "#22d3ee" }}>~/portfolio</span> git:(main)</div>
-        <div>➜ ~ <span style={{ color: "#22d3ee" }}>./help</span></div>
-        <div style={{ color: "#6b7688" }}>  try: about, projects, contact<span style={{ color: "#22d3ee" }}>▊</span></div>
+        <div className="t-green">➜ <span className="t-cyan">~/portfolio</span> git:(main)</div>
+        <div>➜ ~ <span className="t-cyan">./help</span></div>
+        <div className="t-muted">  try: about, projects, contact<span className="t-cyan">▊</span></div>
       </div>
     );
   }
   if (kind === "shell") {
     return (
       <div className="thumb-glyph">
-        <div><span style={{ color: "#f87171" }}>root@htb</span><span style={{ color: "#6b7688" }}>:/nexus#</span> nmap -sV target</div>
-        <div><span style={{ color: "#6b7688" }}>22/tcp ssh · 80/tcp http</span></div>
-        <div><span style={{ color: "#34d399" }}># whoami → root ✓</span></div>
+        <div><span className="t-red">root@htb</span><span className="t-muted">:/nexus#</span> nmap -sV target</div>
+        <div className="t-muted">22/tcp ssh · 80/tcp http</div>
+        <div className="t-green"># whoami → root ✓</div>
       </div>
     );
   }
   return (
     <div className="thumb-glyph">
-      <div style={{ color: "#a78bfa" }}>{"{"}" name": "nominjin", "role": "builder"{"}"}</div>
-      <div style={{ color: "#6b7688" }}>{"<Terminal />"} <span style={{ color: "#22d3ee" }}>{"<OrbitalStack />"}</span></div>
-      <div style={{ color: "#34d399" }}>✓ built with next.js</div>
+      <div className="t-violet">{"{"}" name": "nominjin", "role": "builder"{"}"}</div>
+      <div className="t-muted">{"<Terminal />"} <span className="t-cyan">{"<OrbitalStack />"}</span></div>
+      <div className="t-green">✓ built with next.js</div>
     </div>
   );
 }
@@ -222,7 +222,7 @@ export default function Home() {
             <Reveal delay={180}>
               <p className="hero-desc">
                 I&apos;m an IT student at MUST-SICT and an intern at erxes Mongolia. I build{" "}
-                <span className="mono" style={{ color: "#22d3ee" }}>LLM-powered agents</span>, ship full-stack apps,
+                <span className="mono" style={{ color: "var(--cyan)" }}>LLM-powered agents</span>, ship full-stack apps,
                 and spend my nights breaking machines on HackTheBox —{" "}
                 <span className="motto">&quot;Code w/ purpose, automate.&quot;</span>
               </p>
@@ -336,8 +336,8 @@ export default function Home() {
                   and LLM agents with LangChain. By night I&apos;m in the lab: HackTheBox machines, enumeration with
                   SecLists, privilege escalation with PEASS-ng, and the occasional custom payload.
                 </p>
-                <p className="mono" style={{ color: "#6b7688", fontSize: "14px" }}>
-                  <span style={{ color: "#34d399" }}>➜</span> <span style={{ color: "#22d3ee" }}>~/motto</span> — Code w/ purpose,
+                <p className="mono" style={{ color: "var(--text-muted)", fontSize: "14px" }}>
+                  <span style={{ color: "var(--green)" }}>➜</span> <span style={{ color: "var(--cyan)" }}>~/motto</span> — Code w/ purpose,
                   automate.
                 </p>
 

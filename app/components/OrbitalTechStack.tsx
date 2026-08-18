@@ -19,8 +19,8 @@ interface OrbitalItem {
 
 const categoryColors: Record<string, string> = {
   Languages: "#4F8EF7",
-  Framework: "#A78BFA",
-  Tools: "#34D399",
+  Framework: "#7C3AED",
+  Tools: "#059669",
   Runtime: "#F59E0B",
   Platform: "#F59E0B",
   "AI / ML": "#F472B6",
