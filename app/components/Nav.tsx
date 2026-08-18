@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
-  { href: "#home", label: "home" },
-  { href: "#about", label: "about" },
-  { href: "#stack", label: "stack" },
-  { href: "#projects", label: "projects" },
-  { href: "#contact", label: "contact" },
+  { href: "#about", label: "Skills." },
+  { href: "#projects", label: "Work." },
+  { href: "https://linkedin.com/in/nominjin", label: "LinkedIn." },
+  { href: "https://github.com/NOMINJIN3", label: "Github." },
 ];
 
 type Theme = "light" | "dark";
@@ -16,13 +15,15 @@ const THEME_COLORS = { light: "#f7f9fc", dark: "#05070d" };
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>(() =>
     typeof document !== "undefined" && document.documentElement.dataset.theme === "dark"
       ? "dark"
       : "light"
   );
   const glowRef = useRef<HTMLDivElement>(null);
+  const pillRef = useRef<HTMLDivElement>(null);
 
   const toggleTheme = () => {
     setTheme((prev) => {
@@ -33,9 +34,7 @@ export default function Nav() {
       if (meta) meta.setAttribute("content", THEME_COLORS[next]);
       el.setAttribute("data-theme-transition", "");
       window.setTimeout(() => el.removeAttribute("data-theme-transition"), 350);
-      try {
-        localStorage.setItem("theme", next);
-      } catch {}
+      try { localStorage.setItem("theme", next); } catch {}
       return next;
     });
   };
@@ -51,7 +50,6 @@ export default function Nav() {
     const glow = glowRef.current;
     if (!glow) return;
     if (window.matchMedia("(hover: none)").matches) return;
-
     let raf = 0;
     const onMove = (e: MouseEvent) => {
       cancelAnimationFrame(raf);
@@ -71,29 +69,60 @@ export default function Nav() {
     };
   }, []);
 
-  // lock body scroll while the mobile menu is open
   useEffect(() => {
-    document.body.style.overflow = open ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [open]);
-
-  const close = () => setOpen(false);
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   return (
     <>
       <div className="cursor-glow" ref={glowRef} aria-hidden="true" />
 
       <header className={`nav ${scrolled ? "scrolled" : ""}`}>
-        <div className="container nav-inner">
-          <nav className="nav-links" aria-label="Main navigation">
-            {LINKS.map((l) => (
-              <a key={l.href} href={l.href}>
-                {l.label}
-              </a>
-            ))}
-          </nav>
+        <div className="nav-pill-wrapper">
+          <div
+            className={`nav-pill ${expanded ? "expanded" : ""}`}
+            ref={pillRef}
+            onMouseEnter={() => setExpanded(true)}
+            onMouseLeave={() => setExpanded(false)}
+          >
+            <button
+              className="nav-pill-toggle"
+              aria-label={expanded ? "Collapse menu" : "Expand menu"}
+              aria-expanded={expanded}
+              onClick={() => setExpanded((v) => !v)}
+            >
+              {expanded ? (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              ) : (
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+              )}
+            </button>
+
+            <a href="#home" className="nav-pill-name">
+              Nominjin.
+            </a>
+
+            <nav className="nav-pill-links" aria-label="Main navigation">
+              {LINKS.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target={l.href.startsWith("http") ? "_blank" : undefined}
+                  rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+                >
+                  {l.label}
+                </a>
+              ))}
+            </nav>
+          </div>
 
           <div className="nav-right">
             <button
@@ -121,26 +150,40 @@ export default function Nav() {
               )}
             </button>
             <button
-              className={`nav-burger ${open ? "open" : ""}`}
-              aria-label={open ? "Close menu" : "Open menu"}
-              aria-expanded={open}
-              onClick={() => setOpen(!open)}
+              className="nav-burger"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+              onClick={() => setMobileOpen(!mobileOpen)}
             >
-              <span />
-              <span />
-              <span />
+              {mobileOpen ? (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
+              )}
             </button>
           </div>
         </div>
       </header>
 
-      <div className={`mobile-menu ${open ? "open" : ""}`} onClick={close}>
+      {/* mobile full-screen menu */}
+      <div className={`mobile-menu ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(false)}>
         {LINKS.map((l) => (
-          <a key={l.href} href={l.href}>
+          <a
+            key={l.href}
+            href={l.href}
+            target={l.href.startsWith("http") ? "_blank" : undefined}
+            rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+          >
             {l.label}
           </a>
         ))}
-        <div className="menu-foot">nominjin@github:~$ _</div>
       </div>
     </>
   );
