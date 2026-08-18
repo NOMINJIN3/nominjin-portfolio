@@ -658,9 +658,9 @@ section {
   height: 280px;
   border-radius: 16px;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: center;
   animation: avatar-bounce 4s ease-in-out infinite;
-  filter: drop-shadow(0 20px 40px rgba(11, 143, 168, 0.2));
+  filter: drop-shadow(0 20px 50px rgba(34, 180, 238, 0.35));
 }
 [data-theme="dark"] .hero-avatar {
   filter: drop-shadow(0 20px 40px rgba(34, 211, 238, 0.15));

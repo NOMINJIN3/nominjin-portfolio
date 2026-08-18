@@ -129,7 +129,7 @@ export default function Home() {
         <div className="container hero-inner">
           <Reveal>
             <div className="hero-avatar-wrap">
-              <img src="/nomi.png" alt="Nominjin" className="hero-avatar" />
+              <img src="/brain.png" alt="AI Brain" className="hero-avatar" />
             </div>
           </Reveal>
 
