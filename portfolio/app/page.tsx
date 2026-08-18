@@ -365,10 +365,10 @@ export default function Home() {
 
           <Reveal delay={80}>
             <div className="work-tabs">
-              <button className="work-tab active">Personal</button>
+              <button className="work-tab">Personal</button>
               <button className="work-tab">Projects</button>
               <button className="work-tab">Published</button>
-              <button className="work-tab">
+              <button className="work-tab active">
                 Terminal
                 <span className="work-tab-badge">NEW</span>
               </button>
