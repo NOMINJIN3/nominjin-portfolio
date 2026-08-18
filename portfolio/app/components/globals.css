@@ -1249,6 +1249,138 @@ section {
   letter-spacing: 0.06em;
 }
 
+/* ── Work / Find My Work ──────────────────────────────────── */
+.work-title {
+  font-family: var(--font-serif, Georgia, serif);
+  font-weight: 700;
+  font-size: clamp(1.8rem, 3.6vw, 2.6rem);
+  text-align: center;
+  margin-bottom: 28px;
+  color: var(--text);
+}
+
+/* tab bar */
+.work-tabs {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+.work-tabs {
+  display: inline-flex;
+  margin-inline: auto;
+  margin-bottom: 36px;
+  padding: 6px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+}
+.work-tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  font-size: 14.5px;
+  font-weight: 500;
+  color: var(--text-dim);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+.work-tab:hover {
+  color: var(--text);
+}
+.work-tab.active {
+  background: var(--surface);
+  color: var(--text);
+  box-shadow: 0 2px 8px var(--shadow-deep);
+  font-weight: 600;
+}
+.work-tab-badge {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  background: #ef4444;
+  padding: 2px 7px;
+  border-radius: 999px;
+  line-height: 1;
+  position: relative;
+  top: -1px;
+}
+
+/* terminal wrapper — always dark */
+.work-terminal {
+  width: min(780px, 100%);
+  margin-inline: auto;
+  margin-bottom: 52px;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.06);
+  background: #181d2e;
+}
+.work-terminal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  background: #1e2438;
+}
+.work-terminal-dots {
+  display: flex;
+  gap: 8px;
+}
+.work-terminal-dots span {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.work-terminal-dots span:nth-child(1) { background: #ff5f57; }
+.work-terminal-dots span:nth-child(2) { background: #febc2e; }
+.work-terminal-dots span:nth-child(3) { background: #28c840; }
+.work-terminal-title {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #64748b;
+}
+.work-terminal-body {
+  /* override terminal theme vars to always be dark */
+  --terminal-color: #94a3b8;
+  --terminal-bg: transparent;
+  --terminal-bar-bg: transparent;
+  --terminal-scroll: rgba(148, 163, 184, 0.25);
+}
+.work-terminal-body .terminal {
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+.work-terminal-body .terminal-bar {
+  display: none;
+}
+.work-terminal-body .terminal-body {
+  min-height: 280px;
+  max-height: 420px;
+  background: transparent;
+  color: var(--terminal-color);
+}
+/* force dark terminal colors inside */
+.work-terminal-body .term-prompt { color: #22c55e; }
+.work-terminal-body .term-prompt .host { color: #22c55e; }
+.work-terminal-body .term-cmd { color: #e2e8f0; }
+.work-terminal-body .term-out { color: #94a3b8; }
+.work-terminal-body .term-out .ok { color: #34d399; }
+.work-terminal-body .term-out .acc { color: #a78bfa; }
+.work-terminal-body .term-out .warn { color: #fbbf24; }
+.work-terminal-body .term-out .cyan { color: #22d3ee; }
+.work-terminal-body .term-out .dim { color: #64748b; }
+.work-terminal-body .term-cursor { background: #22c55e; }
+.work-terminal-body .term-input { color: #e2e8f0; caret-color: #22c55e; }
+
 /* ── Projects ──────────────────────────────────────────────── */
 .projects-grid {
   display: grid;
