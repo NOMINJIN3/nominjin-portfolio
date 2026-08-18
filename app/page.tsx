@@ -1,8 +1,8 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
-import Terminal from "./components/Terminal";
 import OrbitalTechStack from "./components/OrbitalTechStack";
 import RotatingText from "./components/RotatingText";
+import WorkSection from "./components/WorkSection";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -59,40 +59,7 @@ const STACK_GROUPS = [
   { group: "Tools", items: ["Git", "Docker", "VS Code", "Linux"] },
 ];
 
-const PROJECTS = [
-  {
-    title: "Profile Art Engine",
-    tags: ["Python", "GitHub Actions", "SVG"],
-    desc: "An automated GitHub profile artwork pipeline — monochrome ASCII portrait and a contribution heatmap that regenerates itself daily.",
-    link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
-    linkLabel: "github",
-    thumb: "heatmap",
-  },
-  {
-    title: "Live Terminal",
-    tags: ["Web", "Interactive"],
-    desc: "An interactive terminal-style home on the web — type help, explore the stack, and meet the agent.",
-    link: "https://nominjin3.github.io",
-    linkLabel: "live site",
-    thumb: "terminal",
-  },
-  {
-    title: "Offensive Security Labs",
-    tags: ["HackTheBox", "Recon", "Privesc"],
-    desc: "Hands-on machines (Nexus, Krayin) with PEASS-ng, SecLists and custom payloads — full enumeration-to-root chains.",
-    link: "https://app.hackthebox.com",
-    linkLabel: "hackthebox",
-    thumb: "shell",
-  },
-  {
-    title: "This Portfolio",
-    tags: ["Next.js", "React", "TypeScript"],
-    desc: "A light, terminal-inspired portfolio — custom CSS design system, zero UI libraries, orbital tech stack and all.",
-    link: "https://www.nominjin.io",
-    linkLabel: "nominjin.io",
-    thumb: "code",
-  },
-];
+
 
 const SOCIALS = [
   {
@@ -134,60 +101,7 @@ const SOCIALS = [
   },
 ];
 
-/* ── thumbnails ────────────────────────────────────────────── */
 
-function Thumb({ kind }: { kind: string }) {
-  if (kind === "heatmap") {
-    const cells = Array.from({ length: 70 }, (_, i) => i);
-    return (
-      <svg viewBox="0 0 200 60" width="200" height="60" aria-hidden="true">
-        {cells.map((i) => {
-          const intensity = ((i * 37) % 100) / 100;
-          const green = intensity > 0.66;
-          const blue = !green && intensity > 0.33;
-          const fill = green ? "#34d399" : blue ? "#22d3ee" : "#cbd5e1";
-          return (
-            <rect
-              key={i}
-              x={(i % 14) * 14 + 6}
-              y={Math.floor(i / 14) * 14 + 6}
-              width="10"
-              height="10"
-              rx="2.5"
-              fill={fill}
-              opacity={0.35 + intensity * 0.65}
-            />
-          );
-        })}
-      </svg>
-    );
-  }
-  if (kind === "terminal") {
-    return (
-      <div className="thumb-glyph">
-        <div className="t-green">➜ <span className="t-cyan">~/portfolio</span> git:(main)</div>
-        <div>➜ ~ <span className="t-cyan">./help</span></div>
-        <div className="t-muted">  try: about, projects, contact<span className="t-cyan">▊</span></div>
-      </div>
-    );
-  }
-  if (kind === "shell") {
-    return (
-      <div className="thumb-glyph">
-        <div><span className="t-red">root@htb</span><span className="t-muted">:/nexus#</span> nmap -sV target</div>
-        <div className="t-muted">22/tcp ssh · 80/tcp http</div>
-        <div className="t-green"># whoami → root ✓</div>
-      </div>
-    );
-  }
-  return (
-    <div className="thumb-glyph">
-      <div className="t-violet">{"{"}" name": "nominjin", "role": "builder"{"}"}</div>
-      <div className="t-muted">{"<Terminal />"} <span className="t-cyan">{"<OrbitalStack />"}</span></div>
-      <div className="t-green">✓ built with next.js</div>
-    </div>
-  );
-}
 
 /* ── page ──────────────────────────────────────────────────── */
 
@@ -362,67 +276,8 @@ export default function Home() {
           <Reveal>
             <h2 className="work-title">Find My Work</h2>
           </Reveal>
-
           <Reveal delay={80}>
-            <div className="work-tabs">
-              <button className="work-tab">Personal</button>
-              <button className="work-tab">Projects</button>
-              <button className="work-tab">Published</button>
-              <button className="work-tab active">
-                Terminal
-                <span className="work-tab-badge">NEW</span>
-              </button>
-            </div>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <div className="work-terminal">
-              <div className="work-terminal-bar">
-                <div className="work-terminal-dots">
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <span className="work-terminal-title">nominjin@portfolio:~</span>
-              </div>
-              <div className="work-terminal-body">
-                <Terminal />
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={220}>
-            <div className="projects-grid">
-              {PROJECTS.map((p, i) => (
-                <a
-                  key={p.title}
-                  className="project-card"
-                  href={p.link}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <div className="project-thumb">
-                    <div className="thumb-bg" />
-                    <Thumb kind={p.thumb} />
-                  </div>
-                  <div className="project-body">
-                    <div className="project-tags">
-                      {p.tags.map((t) => (
-                        <span key={t}>{t}</span>
-                      ))}
-                    </div>
-                    <h3>
-                      {p.title}
-                      <span className="arrow">→</span>
-                    </h3>
-                    <p>{p.desc}</p>
-                    <div className="project-links">
-                      <span className="mono">{p.linkLabel}</span>
-                    </div>
-                  </div>
-                </a>
-              ))}
-            </div>
+            <WorkSection />
           </Reveal>
         </div>
       </section>
