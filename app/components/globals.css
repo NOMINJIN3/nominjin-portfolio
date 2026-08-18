@@ -619,7 +619,7 @@ section {
 .hero-avatar {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
+  border-radius: 16px;
   object-fit: cover;
   object-position: center 20%;
   animation: avatar-bounce 4s ease-in-out infinite;
