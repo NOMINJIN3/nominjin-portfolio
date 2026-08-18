@@ -2,6 +2,7 @@ import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
 import Terminal from "./components/Terminal";
 import OrbitalTechStack from "./components/OrbitalTechStack";
+import RotatingText from "./components/RotatingText";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -220,7 +221,7 @@ export default function Home() {
 
           <Reveal delay={80}>
             <h1 className="hero-title">
-              <span className="hero-title-accent">Nominjin</span>
+              <RotatingText />
               <br />
               <span className="hero-title-main">Developer.</span>
             </h1>
