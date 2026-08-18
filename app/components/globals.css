@@ -1320,11 +1320,19 @@ section {
   background: #181d2e;
 }
 .work-terminal-bar {
+  position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   padding: 14px 18px;
   background: #1e2438;
+}
+.work-terminal-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: #64748b;
 }
 .work-terminal-dots {
   display: flex;
@@ -1338,11 +1346,7 @@ section {
 .work-terminal-dots span:nth-child(1) { background: #ff5f57; }
 .work-terminal-dots span:nth-child(2) { background: #febc2e; }
 .work-terminal-dots span:nth-child(3) { background: #28c840; }
-.work-terminal-title {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  color: #64748b;
-}
+
 .work-terminal-body {
   /* override terminal theme vars to always be dark */
   --terminal-color: #94a3b8;
