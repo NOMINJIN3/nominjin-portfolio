@@ -199,99 +199,67 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="home">
-        <div className="container hero-grid">
-          <div>
-            <Reveal>
-              <div className="hero-badge">
-                <span className="dot" />
-                open to internships &amp; security gigs
-              </div>
-            </Reveal>
-
-            <Reveal delay={90}>
-              <h1>
-                <span className="name-line">
-                  Nominjin<span className="gradient-text">.</span>
-                </span>
-                <span className="role-line">
-                  agentic tools · full-stack · <span className="gradient-text">cyber security</span>
-                </span>
-              </h1>
-            </Reveal>
-
-            <Reveal delay={180}>
-              <p className="hero-desc">
-                I&apos;m an IT student at MUST-SICT and an intern at erxes Mongolia. I build{" "}
-                <span className="mono" style={{ color: "var(--cyan)" }}>LLM-powered agents</span>, ship full-stack apps,
-                and spend my nights breaking machines on HackTheBox —{" "}
-                <span className="motto">&quot;Code w/ purpose, automate.&quot;</span>
-              </p>
-            </Reveal>
-
-            <Reveal delay={260}>
-              <div className="hero-cta">
-                <a href="#projects" className="btn btn-primary">
-                  View projects
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </a>
-                <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer" className="btn btn-ghost">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                    <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-                  </svg>
-                  GitHub
-                </a>
-              </div>
-            </Reveal>
-
-            <Reveal delay={340}>
-              <div className="hero-stats">
-                <div className="stat">
-                  <div className="num">15+</div>
-                  <div className="lbl">technologies</div>
-                </div>
-                <div className="stat">
-                  <div className="num">03</div>
-                  <div className="lbl">domains mastered</div>
-                </div>
-                <div className="stat">
-                  <div className="num">3rd</div>
-                  <div className="lbl">yr IT @ MUST-SICT</div>
-                </div>
-                <div className="stat">
-                  <div className="num">∞</div>
-                  <div className="lbl">curiosity mode</div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-
-          <Reveal delay={220} className="hero-visual">
-            <div className="photo-card">
-              <img src="/nomi-photo.jpg" alt="Portrait of Nominjin" />
-              <div className="photo-caption">
-                <span>
-                  <span className="green">●</span> nomi — online
-                </span>
-                <span>~/security &amp; agents</span>
-              </div>
-              <div className="float-chip float-chip-1">
-                <span>🛡️</span> HTB
-              </div>
-              <div className="float-chip float-chip-2">
-                <img
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
-                  alt=""
-                  style={{ background: "#fff", borderRadius: 4, padding: 3 }}
-                />{" "}
-                Next.js
-              </div>
-              <div className="float-chip float-chip-3">
-                <span>🤖</span> LangChain
-              </div>
+        <div className="hero-sky" aria-hidden="true">
+          <span className="petal p1" />
+          <span className="petal p2" />
+          <span className="petal p3" />
+          <span className="petal p4" />
+          <span className="petal p5" />
+          <span className="petal p6" />
+          <span className="petal p7" />
+          <span className="petal p8" />
+          <span className="petal p9" />
+          <span className="petal p10" />
+        </div>
+        <div className="container hero-inner">
+          <Reveal>
+            <div className="hero-avatar-wrap">
+              <img src="/nomi.png" alt="Nominjin" className="hero-avatar" />
             </div>
+          </Reveal>
+
+          <Reveal delay={80}>
+            <h1 className="hero-title">
+              <span className="hero-title-accent">Nominjin</span>
+              <br />
+              <span className="hero-title-main">Developer.</span>
+            </h1>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <p className="hero-desc-center">
+              Nominjin builds LLM-powered agents with LangChain, ships full-stack apps
+              with React &amp; Next.js, and breaks things ethically on HackTheBox —{" "}
+              <span className="motto">&quot;Code w/ purpose, automate.&quot;</span>
+            </p>
+          </Reveal>
+
+          <Reveal delay={240}>
+            <div className="hero-cta-center">
+              <a href="#contact" className="btn-hero-connect">
+                Connect
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
+                </svg>
+              </a>
+              <a href="#projects" className="btn-hero-work">
+                See Work
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
+          </Reveal>
+
+          <Reveal delay={320}>
+            <p className="hero-interests">
+              Nominjin also has interests in{' '}
+              <strong>Agentic Tools</strong>,{' '}
+              <strong>Cyber Security</strong> and{' '}
+              <strong>Context Engineering</strong>.
+            </p>
           </Reveal>
         </div>
 

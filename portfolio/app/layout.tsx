@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Hanken_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import { Hanken_Grotesk, Inter, JetBrains_Mono, Playfair_Display } from "next/font/google";
 import "./components/globals.css";
 
 const inter = Inter({
@@ -17,6 +17,12 @@ const jetbrainsMono = JetBrains_Mono({
 const hankenGrotesk = Hanken_Grotesk({
   subsets: ["latin"],
   variable: "--font-hanken-grotesk",
+  display: "swap",
+});
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  variable: "--font-playfair",
   display: "swap",
 });
 
@@ -69,9 +75,9 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${hankenGrotesk.variable} ${playfairDisplay.variable}`}
     >
-      <body>
+      <body className="light">
         <script dangerouslySetInnerHTML={{ __html: THEME_INIT }} />
         {children}
       </body>
