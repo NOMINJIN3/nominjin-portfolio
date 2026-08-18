@@ -1264,15 +1264,13 @@ section {
   display: flex;
   justify-content: center;
   margin-bottom: 36px;
-}
-.work-tabs {
-  display: inline-flex;
-  margin-inline: auto;
-  margin-bottom: 36px;
   padding: 6px;
   border-radius: 999px;
   background: var(--surface-2);
   border: 1px solid var(--border);
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 .work-tab {
   position: relative;
