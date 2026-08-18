@@ -920,52 +920,49 @@ section {
   50% { opacity: 0; }
 }
 
-/* ── Tech Icons Grid ──────────────────────────────────────── */
-.tech-icons {
-  padding: 40px 0;
+/* ── Marquee ───────────────────────────────────────────────── */
+.marquee {
+  position: relative;
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--marquee-bg);
   overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 10%, #000 90%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-.tech-icons-row {
-  overflow: hidden;
-  padding: 8px 0;
-}
-.tech-icons-track {
+.marquee-track {
   display: flex;
-  gap: 20px;
+  gap: 0;
   width: max-content;
-  animation: icon-scroll 40s linear infinite;
+  animation: scrollx 30s linear infinite;
 }
-.tech-icons-track.reverse {
-  animation: icon-scroll-reverse 40s linear infinite;
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
 }
-@keyframes icon-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-33.333%); }
-}
-@keyframes icon-scroll-reverse {
-  from { transform: translateX(-33.333%); }
-  to { transform: translateX(0); }
-}
-.tech-icon-tile {
-  flex-shrink: 0;
-  width: 80px;
-  height: 80px;
-  border-radius: 18px;
-  display: flex;
+.marquee-track span {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--text-dim);
+  padding: 0 26px;
+  white-space: nowrap;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  background: #1e293b;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  gap: 8px;
 }
-.tech-icon-tile svg {
-  width: 40px;
-  height: 40px;
+.marquee-track span svg {
+  flex-shrink: 0;
 }
-.tech-icon-tile:hover {
-  transform: scale(1.12);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+.marquee-track span::after {
+  content: "◆";
+  font-size: 9px;
+  color: var(--cyan);
+  opacity: 0.8;
+  margin-left: 12px;
+}
+@keyframes scrollx {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* ── About ─────────────────────────────────────────────────── */
@@ -1825,8 +1822,8 @@ section {
     opacity: 1;
     transform: none;
   }
-  .tech-icons-track {
-    animation-duration: 80s;
+  .marquee-track {
+    animation: none;
   }
   .orbital-stage,
   .center-core,
