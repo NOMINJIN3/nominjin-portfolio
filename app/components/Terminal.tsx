@@ -17,22 +17,8 @@ interface Line {
 
 const seg = (text: string, cls?: string): Seg => ({ text, cls });
 
-/* ── intro script (typed on load) ─────────────────────────── */
-
-const INTRO: { cmd: string; out?: string; outCls?: string }[] = [
-  { cmd: "whoami" },
-  { cmd: "ls ~/focus", out: "agentic-tools/  context-engineering/  cyber-security/", outCls: "acc" },
-  { cmd: "./skills --list", out: "react nextjs typescript python node docker linux [ ok ]", outCls: "ok" },
-  { cmd: "cat motto.txt", out: "Code w/ purpose, automate.", outCls: "warn" },
-  { cmd: "status", out: "open to internships & security gigs", outCls: "ok" },
-];
-
-const TYPE_SPEED = 26;
-const LINE_PAUSE = 300;
-const OUT_DELAY = 140;
-
 const PROMPT =
-  '<span class="term-prompt"><span class="host">nominjin@github</span>:~$ </span>';
+  '<span class="term-prompt"><span class="host">nominjin@portfolio</span>:~$ </span>';
 
 /* ── banner ───────────────────────────────────────────────── */
 
@@ -292,10 +278,8 @@ function runCommand(raw: string, history: string[]): Line[] {
 /* ── component ────────────────────────────────────────────── */
 
 export default function Terminal() {
-  const [lines, setLines] = useState<Line[]>([
-    { kind: "cmd", segs: [seg("")], typing: true },
-  ]);
-  const [phase, setPhase] = useState<"intro" | "ready">("intro");
+  const [lines, setLines] = useState<Line[]>([]);
+  const [phase, setPhase] = useState<"intro" | "ready">("ready");
   const [input, setInput] = useState("");
   const [history, setHistory] = useState<string[]>([]);
   const [histIdx, setHistIdx] = useState(-1);
@@ -303,91 +287,7 @@ export default function Terminal() {
   const bodyRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  /* typed intro */
-  useEffect(() => {
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const timers: number[] = [];
-    const t = (fn: () => void, ms: number) => {
-      timers.push(window.setTimeout(fn, ms));
-    };
 
-    const typeLine = (cmd: string, done: () => void) => {
-      if (reduced) {
-        setLines((p) => {
-          const next = [...p];
-          const last = next[next.length - 1];
-          if (last && last.kind === "cmd" && last.typing) {
-            next[next.length - 1] = { ...last, segs: [seg(cmd)], typing: false };
-          } else {
-            next.push({ kind: "cmd", segs: [seg(cmd)] });
-          }
-          return next;
-        });
-        done();
-        return;
-      }
-      let i = 1;
-      const step = () => {
-        if (i <= cmd.length) {
-          setLines((p) => {
-            const next = [...p];
-            const last = next[next.length - 1];
-            if (last && last.kind === "cmd" && last.typing) {
-              next[next.length - 1] = {
-                ...last,
-                segs: [seg(cmd.slice(0, i))],
-                typing: i < cmd.length,
-              };
-            } else {
-              next.push({
-                kind: "cmd",
-                segs: [seg(cmd.slice(0, i))],
-                typing: i < cmd.length,
-              });
-            }
-            return next;
-          });
-          i++;
-          t(step, TYPE_SPEED);
-        } else {
-          done();
-        }
-      };
-      step();
-    };
-
-    const run = () => {
-      let idx = 0;
-      const next = () => {
-        if (idx >= INTRO.length) {
-          setPhase("ready");
-          return;
-        }
-        const line = INTRO[idx];
-        typeLine(line.cmd, () => {
-          if (line.out) {
-            t(() => {
-              setLines((p) => [
-                ...p,
-                { kind: "out", segs: [seg(line.out!, line.outCls)] },
-              ]);
-              idx++;
-              t(next, LINE_PAUSE);
-            }, OUT_DELAY);
-          } else {
-            idx++;
-            t(next, LINE_PAUSE);
-          }
-        });
-      };
-      next();
-    };
-
-    t(run, 350);
-    return () => {
-      timers.forEach((id) => window.clearTimeout(id));
-    };
-  }, []);
 
   /* keep scrolled to the bottom */
   useEffect(() => {
