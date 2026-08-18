@@ -946,9 +946,13 @@ section {
   color: var(--text-dim);
   padding: 0 26px;
   white-space: nowrap;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
+}
+.marquee-track span svg {
+  flex-shrink: 0;
+  opacity: 0.7;
 }
 .marquee-track span::after {
   content: "◆";
