@@ -256,12 +256,6 @@ export default function Home() {
 
 
         </div>
-
-        <div className="container hero-terminal-wrap">
-          <Reveal delay={200}>
-            <Terminal />
-          </Reveal>
-        </div>
       </section>
 
       {/* MARQUEE */}
@@ -366,19 +360,42 @@ export default function Home() {
       <section id="projects">
         <div className="container">
           <Reveal>
-            <span className="section-label">projects</span>
-            <h2 className="section-title">
-              Selected <span className="gradient-text">work</span>
-            </h2>
-            <p className="section-sub">
-              A mix of automation pipelines, interactive experiments and offensive-security labs.
-            </p>
+            <h2 className="work-title">Find My Work</h2>
           </Reveal>
 
-          <div className="projects-grid">
-            {PROJECTS.map((p, i) => (
-              <Reveal key={p.title} delay={(i % 2) * 120}>
+          <Reveal delay={80}>
+            <div className="work-tabs">
+              <button className="work-tab active">Personal</button>
+              <button className="work-tab">Projects</button>
+              <button className="work-tab">Published</button>
+              <button className="work-tab">
+                Terminal
+                <span className="work-tab-badge">NEW</span>
+              </button>
+            </div>
+          </Reveal>
+
+          <Reveal delay={160}>
+            <div className="work-terminal">
+              <div className="work-terminal-bar">
+                <div className="work-terminal-dots">
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <span className="work-terminal-title">nominjin@portfolio:~</span>
+              </div>
+              <div className="work-terminal-body">
+                <Terminal />
+              </div>
+            </div>
+          </Reveal>
+
+          <Reveal delay={220}>
+            <div className="projects-grid">
+              {PROJECTS.map((p, i) => (
                 <a
+                  key={p.title}
                   className="project-card"
                   href={p.link}
                   target="_blank"
@@ -404,9 +421,9 @@ export default function Home() {
                     </div>
                   </div>
                 </a>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
