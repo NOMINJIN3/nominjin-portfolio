@@ -87,13 +87,6 @@ export default function Nav() {
 
       <header className={`nav ${scrolled ? "scrolled" : ""}`}>
         <div className="container nav-inner">
-          <a href="#home" className="nav-logo" onClick={close}>
-            <span className="prompt">➜</span>
-            <span>
-              <span className="tilde">~</span>/nominjin
-            </span>
-          </a>
-
           <nav className="nav-links" aria-label="Main navigation">
             {LINKS.map((l) => (
               <a key={l.href} href={l.href}>
@@ -103,10 +96,6 @@ export default function Nav() {
           </nav>
 
           <div className="nav-right">
-            <div className="nav-status">
-              <span className="dot" />
-              available for work
-            </div>
             <button
               className="theme-toggle"
               onClick={toggleTheme}
