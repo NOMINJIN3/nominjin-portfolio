@@ -78,7 +78,7 @@
 
   --radius: 16px;
   --radius-sm: 10px;
-  --nav-h: 68px;
+  --nav-h: 80px;
 }
 
 [data-theme="dark"] {
@@ -363,16 +363,16 @@ section {
 .nav-pill-wrapper {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 /* pill */
 .nav-pill {
   display: flex;
   align-items: center;
-  gap: 12px;
-  height: 44px;
-  padding: 0 16px;
+  gap: 14px;
+  height: 52px;
+  padding: 0 20px;
   border-radius: 999px;
   background: color-mix(in srgb, var(--surface) 72%, transparent);
   border: 1px solid var(--border-strong);
@@ -405,7 +405,7 @@ section {
 /* name */
 .nav-pill-name {
   font-family: var(--font-display);
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 700;
   color: var(--text);
   flex-shrink: 0;
@@ -423,7 +423,7 @@ section {
   transition: max-width 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 .nav-pill-links a {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 500;
   color: var(--text-dim);
   padding: 6px 10px;
@@ -462,12 +462,16 @@ section {
   gap: 8px;
 }
 .theme-toggle {
+  position: fixed;
+  top: 20px;
+  left: 24px;
+  z-index: 101;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   border: 1px solid var(--border-strong);
   background: color-mix(in srgb, var(--surface) 72%, transparent);
   backdrop-filter: blur(16px);
@@ -485,9 +489,9 @@ section {
   display: none;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
   border: 1px solid var(--border-strong);
   background: color-mix(in srgb, var(--surface) 72%, transparent);
   backdrop-filter: blur(16px);
@@ -535,6 +539,7 @@ section {
   .nav-pill-links { display: none; }
   .nav-burger { display: inline-flex; }
   .nav-pill { padding: 0 14px; }
+  .theme-toggle { top: 16px; left: 16px; width: 40px; height: 40px; }
 }
 
 /* ── Hero ──────────────────────────────────────────────────── */
@@ -644,13 +649,13 @@ section {
 /* floating avatar */
 .hero-avatar-wrap {
   position: relative;
-  width: 200px;
-  height: 200px;
-  margin-bottom: 32px;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 36px;
 }
 .hero-avatar {
-  width: 200px;
-  height: 200px;
+  width: 280px;
+  height: 280px;
   border-radius: 16px;
   object-fit: cover;
   object-position: center 20%;
