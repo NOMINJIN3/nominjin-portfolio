@@ -172,12 +172,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
-          {[...MARQUEE, ...MARQUEE].map((item, i) => (
-            <span key={i}>{item.icon}{item.name}</span>
-          ))}
+      {/* TECH ICONS */}
+      <div className="tech-icons" aria-hidden="true">
+        <div className="tech-icons-row">
+          <div className="tech-icons-track">
+            {[...MARQUEE.slice(0, 7), ...MARQUEE.slice(0, 7), ...MARQUEE.slice(0, 7)].map((item, i) => (
+              <div className="tech-icon-tile" key={i}>
+                {item.icon}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="tech-icons-row">
+          <div className="tech-icons-track reverse">
+            {[...MARQUEE.slice(7), ...MARQUEE.slice(7), ...MARQUEE.slice(7)].map((item, i) => (
+              <div className="tech-icon-tile" key={i}>
+                {item.icon}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
