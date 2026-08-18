@@ -254,14 +254,7 @@ export default function Home() {
             </div>
           </Reveal>
 
-          <Reveal delay={320}>
-            <p className="hero-interests">
-              Nominjin also has interests in{' '}
-              <strong>Agentic Tools</strong>,{' '}
-              <strong>Cyber Security</strong> and{' '}
-              <strong>Context Engineering</strong>.
-            </p>
-          </Reveal>
+
         </div>
 
         <div className="container hero-terminal-wrap">
