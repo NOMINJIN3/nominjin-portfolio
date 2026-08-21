@@ -1740,13 +1740,14 @@ section {
   gap: 6px;
   padding: 6px 14px;
   border-radius: 999px;
-  color: #ffffff;
+  color: #9ca3af;
   caret-color: #ffffff;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: color 0.2s, background 0.2s;
   white-space: nowrap;
 }
 .footer-pill-link:hover {
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.15);
 }
 [data-theme="dark"] .footer-pill-link:hover {
