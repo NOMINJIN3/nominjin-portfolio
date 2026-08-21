@@ -146,6 +146,14 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
       </svg>
     ),
   },
+  HTML: {
+    bg: "#e44d26",
+    icon: (
+      <svg viewBox="0 0 48 48" width="48" height="48">
+        <path fill="#fff" d="M8 4l3.5 38L24 46l12.5-4L40 4H8zm30.5 5.5H16.3l.5 5.5h19.8l-1.8 20-9.8 2.8-9.8-2.8-.6-7h5.4l.3 3.5 4.7 1.3 4.7-1.3.5-5.5H15l-1.5-16.5h20l-.5 5z"/>
+      </svg>
+    ),
+  },
   Linux: {
     bg: "#ffffff",
     icon: (
@@ -182,6 +190,7 @@ const POSITIONS: { x: number; y: number }[] = [
   { x: 92, y: 56 },  // lower-right
   { x: 15, y: 80 },  // bottom-left
   { x: 80, y: 80 },  // bottom-right
+  { x: 45, y: 82 },  // bottom-center
 ];
 
 export default function ScatteredStack() {
