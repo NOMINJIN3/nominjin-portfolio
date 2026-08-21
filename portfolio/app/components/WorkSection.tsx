@@ -103,7 +103,7 @@ function PersonalView() {
     <div className="work-personal">
       <div className="work-personal-card">
         <div className="work-personal-avatar">
-          <img src="/brain.jpeg" alt="AI Brain" />
+          <img src="/Brain3d.png" alt="AI Brain" />
         </div>
         <div className="work-personal-info">
           <h3>Nominjin (NOMI)</h3>
