@@ -554,29 +554,7 @@ section {
   overflow: hidden;
 }
 
-/* sky background — dark navy to match the brain image */
-.hero-sky {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 620px;
-  z-index: 0;
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(0, 40, 80, 0.35), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 10%, rgba(0, 80, 140, 0.2), transparent 55%),
-    radial-gradient(ellipse 50% 40% at 80% 20%, rgba(0, 60, 120, 0.15), transparent 50%),
-    linear-gradient(180deg, #060d1a 0%, #0b1425 35%, var(--bg) 100%);
-  mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, #000 45%, transparent 100%);
-  pointer-events: none;
-}
-[data-theme="dark"] .hero-sky {
-  background:
-    radial-gradient(ellipse 90% 70% at 50% 30%, rgba(0, 50, 100, 0.3), transparent 65%),
-    radial-gradient(ellipse 60% 50% at 20% 10%, rgba(0, 90, 160, 0.15), transparent 55%),
-    linear-gradient(180deg, #050b18 0%, #0a0e17 35%, var(--bg) 100%);
-}
+.hero-sky { display: none; }
 
 .hero-inner {
   position: relative;
