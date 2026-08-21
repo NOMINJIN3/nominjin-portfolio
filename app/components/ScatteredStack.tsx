@@ -234,14 +234,16 @@ export default function ScatteredStack() {
         const following = !scattered && isHovering;
         const x = following ? mousePos.x : homeX;
         const y = following ? mousePos.y : homeY;
+        const isFirst = i === 0;
 
         return (
           <div
             key={tool.name}
-            className="scattered-icon"
+            className={`scattered-icon${following ? " following" : ""}`}
             style={{
               left: `${x}%`,
               top: `${y}%`,
+              zIndex: following ? 20 : 1,
               animationDelay: `${i * 0.3}s`,
               transition: following
                 ? `left ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1), top ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1)`
@@ -261,9 +263,8 @@ export default function ScatteredStack() {
 
       {/* Central text */}
       <div className="scattered-center">
-        <span className="scattered-center-dot" />
         <p className="scattered-center-text">
-          {scattered ? (<>Always Building,<br />Always Growing.</>) : (<>Click to<br />scatter back.</>)}
+          Always Building,<br />Always Growing.
         </p>
       </div>
     </div>
