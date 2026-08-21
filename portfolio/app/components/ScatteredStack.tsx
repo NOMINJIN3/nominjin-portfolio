@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef, useState } from "react";
 import { techTools } from "../data/tech";
 
 /* SVG logo components for each tech */
@@ -180,23 +181,55 @@ const POSITIONS: { x: number; y: number }[] = [
 ];
 
 export default function ScatteredStack() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [scattered, setScattered] = useState(true);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    setMousePos({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top) / rect.height) * 100,
+    });
+  };
+
+  const toggleScatter = () => setScattered((s) => !s);
+
   return (
-    <div className="scattered-stack">
+    <div
+      className="scattered-stack"
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onClick={toggleScatter}
+      style={{ cursor: "pointer" }}
+    >
       {techTools.map((tool, i) => {
         const icon = ICONS[tool.name] || { icon: <span style={{color: "#94a3b8", fontSize: "20px", fontWeight: 700}}>{tool.name.slice(0,2)}</span>, bg: "#1a1a2e" };
         const pos = POSITIONS[i % POSITIONS.length];
-        // Slight offset per repeat cycle to avoid exact overlap
         const offsetX = i >= POSITIONS.length ? 3 : 0;
         const offsetY = i >= POSITIONS.length ? 5 : 0;
+        const homeX = pos.x + offsetX;
+        const homeY = pos.y + offsetY;
+
+        // In follow mode, icons move toward cursor with staggered delay
+        const x = scattered ? homeX : mousePos.x;
+        const y = scattered ? homeY : mousePos.y;
+        // Slight offset so they don't stack exactly on cursor
+        const spreadX = scattered ? 0 : (Math.sin(i * 1.3) * 8);
+        const spreadY = scattered ? 0 : (Math.cos(i * 1.7) * 6);
 
         return (
           <div
             key={tool.name}
             className="scattered-icon"
             style={{
-              left: `${pos.x + offsetX}%`,
-              top: `${pos.y + offsetY}%`,
+              left: `${x + spreadX}%`,
+              top: `${y + spreadY}%`,
               animationDelay: `${i * 0.3}s`,
+              transition: scattered
+                ? "left 0.8s cubic-bezier(0.34,1.56,0.64,1), top 0.8s cubic-bezier(0.34,1.56,0.64,1)"
+                : `left ${0.3 + i * 0.05}s ease-out, top ${0.3 + i * 0.05}s ease-out`,
             }}
             title={tool.name}
           >
@@ -215,8 +248,7 @@ export default function ScatteredStack() {
       <div className="scattered-center">
         <span className="scattered-center-dot" />
         <p className="scattered-center-text">
-          Always Building,<br />
-          Always Growing.
+          {scattered ? (<>Always Building,<br />Always Growing.</>) : (<>Click to<br />scatter back.</>)}
         </p>
       </div>
     </div>
