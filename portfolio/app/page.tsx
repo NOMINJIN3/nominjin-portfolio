@@ -271,7 +271,6 @@ export default function Home() {
             </a>
           </div>
           <div className="footer-copy">
-            <span className="footer-dot" />
             <span>© 2026 Nominjin Tsogtbayar <span className="heart">♥</span> Built in Ulaanbaatar</span>
           </div>
         </div>
