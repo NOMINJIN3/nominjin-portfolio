@@ -658,7 +658,7 @@ section {
   gap: 8px;
   padding: 14px 32px;
   border-radius: 999px;
-  background: linear-gradient(135deg, #00b0ff, #0080e0);
+  background: linear-gradient(135deg, #1a1a1a, #000000);
   color: #fff;
   font-weight: 600;
   font-size: 15px;
