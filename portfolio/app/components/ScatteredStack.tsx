@@ -165,23 +165,23 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
   },
 };
 
-/* Scattered positions matching the reference layout */
+/* Scattered positions — icons around the center text, no overlap */
 const POSITIONS: { x: number; y: number }[] = [
-  { x: 18, y: 8  },  // row1: Django
-  { x: 38, y: 5  },  // row1: Flutter
-  { x: 55, y: 6  },  // row1: MySQL
-  { x: 85, y: 5  },  // row1: Firebase
-  { x: 8,  y: 30 },  // row2: Django
-  { x: 28, y: 28 },  // row2: Postgres
-  { x: 45, y: 30 },  // row2: Next.js
-  { x: 65, y: 28 },  // row2: GitHub
-  { x: 88, y: 25 },  // row2: TS
-  { x: 5,  y: 55 },  // row3: Python
-  { x: 25, y: 58 },  // row3: React
-  { x: 50, y: 52 },  // row3: Git
-  { x: 75, y: 55 },  // row3: Cloud
-  { x: 95, y: 48 },  // row3: JS
-  { x: 15, y: 78 },  // row4: extra
+  { x: 5,  y: 5  },  // top-left
+  { x: 25, y: 3  },  // top-center-left
+  { x: 50, y: 5  },  // top-center
+  { x: 75, y: 3  },  // top-center-right
+  { x: 92, y: 6  },  // top-right
+  { x: 3,  y: 32 },  // mid-left
+  { x: 22, y: 30 },  // mid-left-center
+  { x: 72, y: 32 },  // mid-right-center
+  { x: 90, y: 30 },  // mid-right
+  { x: 5,  y: 58 },  // lower-left
+  { x: 25, y: 56 },  // lower-left-center
+  { x: 72, y: 58 },  // lower-right-center
+  { x: 92, y: 56 },  // lower-right
+  { x: 15, y: 80 },  // bottom-left
+  { x: 80, y: 80 },  // bottom-right
 ];
 
 export default function ScatteredStack() {
