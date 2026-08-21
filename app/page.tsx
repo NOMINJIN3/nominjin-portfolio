@@ -114,22 +114,11 @@ export default function Home() {
 
       {/* HERO */}
       <section className="hero" id="home">
-        <div className="hero-sky" aria-hidden="true">
-          <span className="petal p1" />
-          <span className="petal p2" />
-          <span className="petal p3" />
-          <span className="petal p4" />
-          <span className="petal p5" />
-          <span className="petal p6" />
-          <span className="petal p7" />
-          <span className="petal p8" />
-          <span className="petal p9" />
-          <span className="petal p10" />
-        </div>
+        <div className="hero-sky" aria-hidden="true" />
         <div className="container hero-inner">
           <Reveal>
             <div className="hero-avatar-wrap">
-              <img src="/Brain3d.png" alt="AI Brain" className="hero-avatar" />
+              <img src="/brain.jpeg" alt="AI Brain" className="hero-avatar" />
             </div>
           </Reveal>
 
