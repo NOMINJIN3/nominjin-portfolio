@@ -249,43 +249,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CONTACT */}
-      <section id="contact">
-        <div className="container">
-          <Reveal>
-            <div className="contact-wrap">
-              <h2>
-                Let&apos;s build something<span className="gradient-text">.</span>
-              </h2>
-              <p>
-                I&apos;m open to internships, security research collaborations, and agentic-tool experiments.
-                My inbox is always accepting packets.
-              </p>
-              <div className="social-row">
-                {SOCIALS.map((s) => (
-                  <a
-                    key={s.label}
-                    className="social-pill"
-                    href={s.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {s.icon}
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-              <div className="contact-mail">
-                <span className="cyan">➜</span> ping me on{" "}
-                <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer" className="cyan">
-                  github.com/NOMINJIN3
-                </a>
-              </div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footer-inner">
