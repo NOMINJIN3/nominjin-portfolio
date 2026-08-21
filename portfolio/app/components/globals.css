@@ -1732,15 +1732,7 @@ section {
   font-family: var(--font-mono);
   font-size: 14px;
 }
-.footer-pill--left {
-  align-self: flex-start;
-  margin-left: 40px;
-}
-@media (max-width: 640px) {
-  .footer-pill--left {
-    margin-left: 0;
-  }
-}
+
 .footer-pill-link {
   display: inline-flex;
   align-items: center;
