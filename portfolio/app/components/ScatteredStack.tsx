@@ -183,7 +183,8 @@ const POSITIONS: { x: number; y: number }[] = [
 export default function ScatteredStack() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scattered, setScattered] = useState(true);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [isHovering, setIsHovering] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
@@ -194,14 +195,24 @@ export default function ScatteredStack() {
     });
   };
 
-  const toggleScatter = () => setScattered((s) => !s);
+  const handleClick = () => {
+    setScattered(true);
+    setIsHovering(false);
+  };
+
+  const handleMouseEnter = () => {
+    setScattered(false);
+    setIsHovering(true);
+  };
 
   return (
     <div
       className="scattered-stack"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      onClick={toggleScatter}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => { setScattered(true); setIsHovering(false); }}
+      onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
       {techTools.map((tool, i) => {
@@ -212,24 +223,21 @@ export default function ScatteredStack() {
         const homeX = pos.x + offsetX;
         const homeY = pos.y + offsetY;
 
-        // In follow mode, icons move toward cursor with staggered delay
-        const x = scattered ? homeX : mousePos.x;
-        const y = scattered ? homeY : mousePos.y;
-        // Slight offset so they don't stack exactly on cursor
-        const spreadX = scattered ? 0 : (Math.sin(i * 1.3) * 8);
-        const spreadY = scattered ? 0 : (Math.cos(i * 1.7) * 6);
+        const following = !scattered && isHovering;
+        const x = following ? mousePos.x : homeX;
+        const y = following ? mousePos.y : homeY;
 
         return (
           <div
             key={tool.name}
             className="scattered-icon"
             style={{
-              left: `${x + spreadX}%`,
-              top: `${y + spreadY}%`,
+              left: `${x}%`,
+              top: `${y}%`,
               animationDelay: `${i * 0.3}s`,
-              transition: scattered
-                ? "left 0.8s cubic-bezier(0.34,1.56,0.64,1), top 0.8s cubic-bezier(0.34,1.56,0.64,1)"
-                : `left ${0.3 + i * 0.05}s ease-out, top ${0.3 + i * 0.05}s ease-out`,
+              transition: following
+                ? `left ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1), top ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1)`
+                : "left 0.7s cubic-bezier(0.34,1.56,0.64,1), top 0.7s cubic-bezier(0.34,1.56,0.64,1)",
             }}
             title={tool.name}
           >
