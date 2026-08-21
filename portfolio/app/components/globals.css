@@ -1763,7 +1763,13 @@ section {
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
-  color: var(--text-muted);
+  align-self: flex-start;
+  margin-left: 40px;
+}
+@media (max-width: 640px) {
+  .footer-copy {
+    margin-left: 0;
+  }
 }
 .footer-dot {
   width: 6px;
