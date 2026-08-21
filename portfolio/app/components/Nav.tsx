@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 const LINKS = [
-  { href: "#about", label: "Skills." },
+  { href: "#skills", label: "Skills." },
   { href: "#projects", label: "Work." },
   { href: "https://linkedin.com/in/nominjin", label: "LinkedIn." },
   { href: "https://github.com/NOMINJIN3", label: "Github." },

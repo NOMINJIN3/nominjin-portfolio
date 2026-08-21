@@ -161,8 +161,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STACK */}
-      <section id="stack" className="stack-section">
+      {/* SKILL */}
+      <section id="skills" className="stack-section">
         <Reveal>
           <ScatteredStack />
         </Reveal>
