@@ -20,5 +20,6 @@ export const techTools: TechTool[] = [
   { name: "Node.js", category: "Runtime" },
   { name: "VSCode", category: "Tools" },
   { name: "Linux", category: "Platform" },
+  { name: "HTML", category: "Languages" },
 
 ];
