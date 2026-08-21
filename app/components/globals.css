@@ -596,10 +596,10 @@ section {
 .hero-title {
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  font-size: clamp(2rem, 4.8vw, 3.6rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 .hero-title-accent {
   font-family: var(--font-serif, Georgia, "Times New Roman", serif);
@@ -607,8 +607,7 @@ section {
   font-weight: 700;
   color: var(--cyan);
   display: inline-block;
-  min-width: 220px;
-  font-size: clamp(1.4rem, 3.2vw, 2.2rem);
+  min-width: 280px;
 }
 [data-theme="dark"] .hero-title-accent {
   color: #f59e0b;
