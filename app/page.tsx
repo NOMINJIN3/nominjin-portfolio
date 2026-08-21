@@ -272,7 +272,7 @@ export default function Home() {
           </div>
           <div className="footer-copy">
             <span className="footer-dot" />
-            <span>© 2026 Nominjin · built with <span className="heart">♥</span> &amp; Next.js</span>
+            <span>© 2026 Nominjin Tsogtbayar <span className="heart">♥</span> Built in Ulaanbaatar</span>
           </div>
         </div>
       </footer>
