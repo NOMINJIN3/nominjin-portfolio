@@ -1763,6 +1763,36 @@ section {
 .footer-copy .heart {
   color: var(--red);
 }
+.footer-top-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(148, 163, 184, 0.3);
+  background: var(--surface-2);
+  color: var(--text);
+  cursor: pointer;
+  margin: 0 auto 16px;
+  transition: all 0.25s ease;
+}
+.footer-top-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+[data-theme="dark"] .footer-top-btn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+}
+[data-theme="dark"] .footer-top-btn:hover {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
 @media (max-width: 640px) {
   .footer-pill {
     flex-wrap: wrap;
