@@ -118,7 +118,7 @@ export default function Home() {
         <div className="container hero-inner">
           <Reveal>
             <div className="hero-avatar-wrap">
-              <img src="/Brain3d.png" alt="AI Brain" className="hero-avatar" />
+              <img src="/brain.png" alt="AI Brain" className="hero-avatar" />
             </div>
           </Reveal>
 
