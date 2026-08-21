@@ -165,28 +165,20 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
   },
 };
 
-/* Predefined positions (percentage-based) for a scattered look */
-const POSITIONS: { x: number; y: number }[] = [
-  { x: 4,  y: 5  },  // top-left
-  { x: 22, y: 2  },  // top-center-left
-  { x: 52, y: 4  },  // top-center
-  { x: 78, y: 3  },  // top-right
-  { x: 93, y: 8  },  // far-right top
-  { x: 1,  y: 28 },  // mid-left top
-  { x: 18, y: 22 },  // mid-left
-  { x: 38, y: 18 },  // center-left
-  { x: 65, y: 15 },  // center-right
-  { x: 88, y: 20 },  // right
-  { x: 3,  y: 50 },  // left
-  { x: 20, y: 48 },  // mid-left low
-  { x: 42, y: 55 },  // center-low
-  { x: 70, y: 50 },  // right-mid
-  { x: 92, y: 45 },  // far-right
-  { x: 10, y: 72 },  // bottom-left
-  { x: 35, y: 78 },  // bottom-center-left
-  { x: 60, y: 75 },  // bottom-center
-  { x: 82, y: 70 },  // bottom-right
-];
+/* Grid positions — 5 columns × 3 rows, centered */
+const COLS = 5;
+const ROWS = 3;
+const GRID_PAD_X = 10; // % from edges
+const GRID_PAD_Y = 10; // % from edges
+const COL_STEP = (100 - GRID_PAD_X * 2) / (COLS - 1);
+const ROW_STEP = (100 - GRID_PAD_Y * 2) / (ROWS - 1);
+const POSITIONS: { x: number; y: number }[] = Array.from(
+  { length: COLS * ROWS },
+  (_, i) => ({
+    x: GRID_PAD_X + (i % COLS) * COL_STEP,
+    y: GRID_PAD_Y + Math.floor(i / COLS) * ROW_STEP,
+  })
+);
 
 export default function ScatteredStack() {
   const containerRef = useRef<HTMLDivElement>(null);
