@@ -35,8 +35,16 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
   Java: {
     bg: "#1a1a2e",
     icon: (
-      <svg viewBox="0 0 24 24" width="48" height="48">
-        <path fill="#ed8b00" d="M8.806 9.973l-2.584 12.58h3.058l2.584-12.58zM6.89 1.12l-4.92 14.54h3.232l3.436-10.67L6.89 1.12zm6.045 2.954c-1.54 0-2.556.834-2.556.834l.022 1.406s1.12-.754 2.38-.754c2.234 0 2.208 2.084 2.208 2.084l-4.36 12.41h3.232l1.664-5.126s-.002-2.118 2.118-2.118h3.556V6.684S19.828 1.12 13.935 1.12c-1.078 0-1.64.29-1.64.29l.022 2.664s.722-.004 1.522-.004z"/>
+      <svg viewBox="0 0 48 48" width="48" height="48">
+        {/* Steam */}
+        <path d="M16 18c0-3 3-6 3-9" stroke="#f89820" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        <path d="M22 16c0-3 2-5 2-8" stroke="#f89820" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+        {/* Cup */}
+        <ellipse cx="22" cy="24" rx="12" ry="3" fill="#5382a1"/>
+        <path d="M10 24v6c0 3 5.4 5 12 5s12-2 12-5v-6" fill="none" stroke="#5382a1" strokeWidth="2.5" strokeLinecap="round"/>
+        <ellipse cx="22" cy="35" rx="12" ry="3" fill="#5382a1"/>
+        {/* Saucer */}
+        <ellipse cx="22" cy="40" rx="14" ry="3" fill="#5382a1"/>
       </svg>
     ),
   },
