@@ -1726,7 +1726,7 @@ section {
   padding: 10px 16px;
   border-radius: 999px;
   background: var(--text);
-  color: var(--bg);
+  color: #ffffff;
   font-family: var(--font-mono);
   font-size: 14px;
 }
@@ -1736,8 +1736,8 @@ section {
   gap: 6px;
   padding: 6px 14px;
   border-radius: 999px;
-  color: var(--bg);
-  transition: background 0.2s, color 0.2s;
+  color: #ffffff;
+  transition: background 0.2s;
   white-space: nowrap;
 }
 .footer-pill-link:hover {
