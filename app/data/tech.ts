@@ -12,8 +12,7 @@ export const techTools: TechTool[] = [
   { name: "C++", category: "Languages" },
   { name: "Next.js", category: "Framework" },
   { name: "React.js", category: "Framework" },
-  { name: "Django", category: "Framework" },
-  { name: "Vite.js", category: "Tools" },
+
   { name: "Tailwind CSS", category: "Tools" },
   { name: "Docker", category: "Tools" },
   { name: "Git", category: "Tools" },
@@ -21,5 +20,5 @@ export const techTools: TechTool[] = [
   { name: "Node.js", category: "Runtime" },
   { name: "VSCode", category: "Tools" },
   { name: "Linux", category: "Platform" },
-  { name: "LangChain", category: "AI / ML" },
+
 ];

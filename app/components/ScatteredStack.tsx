@@ -12,8 +12,7 @@ const ICONS: Record<string, { label: string; bg: string; color: string }> = {
   "C++":         { label: "C+", bg: "#1a1a2e", color: "#00599c" },
   "Next.js":     { label: "N",  bg: "#1a1a2e", color: "#ffffff" },
   "React.js":    { label: "⚛",  bg: "#1a1a2e", color: "#61dafb" },
-  Django:        { label: "dj", bg: "#1a1a2e", color: "#092e20" },
-  "Vite.js":     { label: "Vi", bg: "#1a1a2e", color: "#bd34fe" },
+
   "Tailwind CSS":{ label: "Tw", bg: "#1a1a2e", color: "#38bdf8" },
   Docker:        { label: "Dk", bg: "#1a1a2e", color: "#2496ed" },
   Git:           { label: "Gi", bg: "#1a1a2e", color: "#f05032" },
@@ -21,7 +20,7 @@ const ICONS: Record<string, { label: string; bg: string; color: string }> = {
   "Node.js":     { label: "No", bg: "#1a1a2e", color: "#68a063" },
   VSCode:        { label: "VS", bg: "#1a1a2e", color: "#007acc" },
   Linux:         { label: "Li", bg: "#1a1a2e", color: "#fcc624" },
-  LangChain:     { label: "LC", bg: "#1a1a2e", color: "#ff6b6b" },
+
 };
 
 /* Predefined positions (percentage-based) for a scattered look */
