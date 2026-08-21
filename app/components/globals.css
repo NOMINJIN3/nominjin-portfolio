@@ -1760,16 +1760,11 @@ section {
 .footer-copy {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 12px;
-  align-self: flex-start;
-  margin-left: 40px;
-}
-@media (max-width: 640px) {
-  .footer-copy {
-    margin-left: 0;
-  }
+  width: 100%;
 }
 .footer-dot {
   width: 6px;
