@@ -165,20 +165,24 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
   },
 };
 
-/* Grid positions — 5 columns × 3 rows, centered */
-const COLS = 5;
-const ROWS = 3;
-const GRID_PAD_X = 10; // % from edges
-const GRID_PAD_Y = 10; // % from edges
-const COL_STEP = (100 - GRID_PAD_X * 2) / (COLS - 1);
-const ROW_STEP = (100 - GRID_PAD_Y * 2) / (ROWS - 1);
-const POSITIONS: { x: number; y: number }[] = Array.from(
-  { length: COLS * ROWS },
-  (_, i) => ({
-    x: GRID_PAD_X + (i % COLS) * COL_STEP,
-    y: GRID_PAD_Y + Math.floor(i / COLS) * ROW_STEP,
-  })
-);
+/* Scattered positions matching the reference layout */
+const POSITIONS: { x: number; y: number }[] = [
+  { x: 18, y: 8  },  // row1: Django
+  { x: 38, y: 5  },  // row1: Flutter
+  { x: 55, y: 6  },  // row1: MySQL
+  { x: 85, y: 5  },  // row1: Firebase
+  { x: 8,  y: 30 },  // row2: Django
+  { x: 28, y: 28 },  // row2: Postgres
+  { x: 45, y: 30 },  // row2: Next.js
+  { x: 65, y: 28 },  // row2: GitHub
+  { x: 88, y: 25 },  // row2: TS
+  { x: 5,  y: 55 },  // row3: Python
+  { x: 25, y: 58 },  // row3: React
+  { x: 50, y: 52 },  // row3: Git
+  { x: 75, y: 55 },  // row3: Cloud
+  { x: 95, y: 48 },  // row3: JS
+  { x: 15, y: 78 },  // row4: extra
+];
 
 export default function ScatteredStack() {
   const containerRef = useRef<HTMLDivElement>(null);
