@@ -3,7 +3,6 @@ import Reveal from "./components/Reveal";
 import ScatteredStack from "./components/ScatteredStack";
 import RotatingText from "./components/RotatingText";
 import WorkSection from "./components/WorkSection";
-import ScrollToTop from "./components/ScrollToTop";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -267,7 +266,6 @@ export default function Home() {
               llms.txt
             </a>
           </div>
-          <ScrollToTop />
           <div className="footer-copy">
             <span>© 2026 Nominjin Tsogtbayar <span className="heart">♥</span> Built in Ulaanbaatar</span>
           </div>
