@@ -1,6 +1,6 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
-import OrbitalTechStack from "./components/OrbitalTechStack";
+import ScatteredStack from "./components/ScatteredStack";
 import RotatingText from "./components/RotatingText";
 import WorkSection from "./components/WorkSection";
 
@@ -172,31 +172,9 @@ export default function Home() {
 
       {/* STACK */}
       <section id="stack" className="stack-section">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">stack</span>
-            <h2 className="section-title">My arsenal</h2>
-            <p className="section-sub">
-              Hover the orbit — every node is a tool I use daily, from languages to platforms.
-            </p>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <OrbitalTechStack />
-          </Reveal>
-
-          <Reveal delay={200}>
-            <div className="stack-chips">
-              {STACK_GROUPS.map((g) => (
-                <div className="stack-chip" key={g.group} title={g.items.join(", ")}>
-                  <span className="chip-group">{g.group}</span>
-                  <span>·</span>
-                  <span>{g.items.join(" · ")}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
+        <Reveal>
+          <ScatteredStack />
+        </Reveal>
       </section>
 
       {/* PROJECTS */}
