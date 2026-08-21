@@ -40,32 +40,32 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
     ),
   },
   "C Language": {
-    bg: "#1a1a2e",
+    bg: "#4B5B9E",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
-        <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="#555" stroke="#333" strokeWidth="1"/>
-        <circle cx="24" cy="24" r="11" fill="none" stroke="#fff" strokeWidth="3"/>
+        <polygon points="24,2 46,13 46,35 24,46 2,35 2,13" fill="#4B5B9E"/>
+        <circle cx="24" cy="24" r="11" fill="none" stroke="#fff" strokeWidth="3.5"/>
         <circle cx="24" cy="24" r="4" fill="#fff"/>
       </svg>
     ),
   },
   "C++": {
-    bg: "#1a1a2e",
+    bg: "#00599c",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
-        <polygon points="24,4 44,14 44,34 24,44 4,34 4,14" fill="#00599c" stroke="#004080" strokeWidth="1"/>
-        <circle cx="20" cy="24" r="10" fill="none" stroke="#fff" strokeWidth="3"/>
-        <circle cx="20" cy="24" r="3.5" fill="#fff"/>
-        <text x="34" y="28" fill="#fff" fontSize="11" fontWeight="bold" fontFamily="monospace">++</text>
+        <polygon points="24,2 46,13 46,35 24,46 2,35 2,13" fill="#00599c"/>
+        <circle cx="20" cy="24" r="11" fill="none" stroke="#fff" strokeWidth="3.5"/>
+        <circle cx="20" cy="24" r="4" fill="#fff"/>
+        <text x="35" y="30" fill="#fff" fontSize="12" fontWeight="bold" fontFamily="monospace">++</text>
       </svg>
     ),
   },
   "Next.js": {
-    bg: "#ffffff",
+    bg: "#000000",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
         <rect width="48" height="48" rx="12" fill="#000"/>
-        <path fill="#fff" d="M18 34V14h4.5l4 12.5L30.5 14H35v20h-3.5V19.5L28 31h-3L21.5 19.5V34z"/>
+        <path fill="#fff" d="M22 12h4.5l4 11.5L34.5 12H39v24h-4V21l-4 11h-4l-4-11v15h-4V12z"/>
       </svg>
     ),
   },
@@ -118,18 +118,22 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
     bg: "#68a063",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
-        <polygon points="24,2 44,14 44,34 24,46 4,34 4,14" fill="#3C873A"/>
-        <text x="50%" y="45%" dominantBaseline="middle" textAnchor="middle" fill="#fff" fontSize="8" fontWeight="bold" fontFamily="sans-serif">node</text>
-        <text x="50%" y="68%" dominantBaseline="middle" textAnchor="middle" fill="#fff" fontSize="12" fontWeight="bold" fontFamily="sans-serif">js</text>
+        <polygon points="24,2 46,14 46,34 24,46 2,34 2,14" fill="#3C873A"/>
+        <polygon points="24,8 40,17 40,31 24,40 8,31 8,17" fill="#3C873A" stroke="#fff" strokeWidth="0.5"/>
+        <text x="50%" y="38%" dominantBaseline="middle" textAnchor="middle" fill="#fff" fontSize="9" fontWeight="bold" fontFamily="sans-serif">node</text>
+        <text x="50%" y="65%" dominantBaseline="middle" textAnchor="middle" fill="#fff" fontSize="14" fontWeight="bold" fontFamily="sans-serif">js</text>
       </svg>
     ),
   },
   VSCode: {
-    bg: "#1a1a2e",
+    bg: "#007acc",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
-        <path fill="#2196F3" d="M36 6L18 24l18 18v-36zm-4 2.48V39.52L22 30l10-10L22 10l10-10z"/>
-        <path fill="#1565C0" d="M22 10l10 10L22 30 18 24l4-14z"/>
+        <path fill="#007ACC" d="M38.5 3.5L17 24l21.5 20.5V3.5z"/>
+        <path fill="#1F9CF0" d="M38.5 3.5L28 13l10.5 11L38.5 3.5z"/>
+        <path fill="#0065A9" d="M10.5 24L3 20.5v7L10.5 24z"/>
+        <path fill="#007ACC" d="M38.5 44.5L28 35l10.5-11L38.5 44.5z"/>
+        <path fill="#0065A9" d="M17 24l-6.5 3.5v-7L17 24z"/>
       </svg>
     ),
   },
@@ -137,16 +141,16 @@ const ICONS: Record<string, { icon: React.ReactNode; bg: string }> = {
     bg: "#ffffff",
     icon: (
       <svg viewBox="0 0 48 48" width="48" height="48">
-        <ellipse cx="24" cy="12" rx="8" ry="7" fill="#333"/>
-        <ellipse cx="24" cy="30" rx="12" ry="14" fill="#333"/>
-        <ellipse cx="24" cy="32" rx="8" ry="10" fill="#fff"/>
-        <circle cx="21" cy="11" r="2" fill="#fff"/>
-        <circle cx="27" cy="11" r="2" fill="#fff"/>
-        <circle cx="21" cy="11" r="1" fill="#333"/>
-        <circle cx="27" cy="11" r="1" fill="#333"/>
-        <ellipse cx="24" cy="15" rx="3" ry="2" fill="#fcc624"/>
-        <ellipse cx="16" cy="38" rx="5" ry="4" fill="#fcc624"/>
-        <ellipse cx="32" cy="38" rx="5" ry="4" fill="#fcc624"/>
+        <ellipse cx="24" cy="11" rx="7" ry="6" fill="#333"/>
+        <ellipse cx="24" cy="32" rx="11" ry="13" fill="#333"/>
+        <ellipse cx="24" cy="34" rx="7" ry="9" fill="#fff"/>
+        <circle cx="21.5" cy="10" r="1.8" fill="#fff"/>
+        <circle cx="26.5" cy="10" r="1.8" fill="#fff"/>
+        <circle cx="21.5" cy="10" r="0.9" fill="#333"/>
+        <circle cx="26.5" cy="10" r="0.9" fill="#333"/>
+        <ellipse cx="24" cy="14" rx="2.5" ry="1.8" fill="#fcc624"/>
+        <ellipse cx="16" cy="40" rx="5" ry="3.5" fill="#fcc624"/>
+        <ellipse cx="32" cy="40" rx="5" ry="3.5" fill="#fcc624"/>
       </svg>
     ),
   },
