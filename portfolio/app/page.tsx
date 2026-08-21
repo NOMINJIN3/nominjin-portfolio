@@ -161,15 +161,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* MARQUEE */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
-          {[...MARQUEE, ...MARQUEE].map((item, i) => (
-            <span key={i}>{item.icon}{item.name}</span>
-          ))}
-        </div>
-      </div>
-
       {/* STACK */}
       <section id="stack" className="stack-section">
         <Reveal>
@@ -188,6 +179,15 @@ export default function Home() {
           </Reveal>
         </div>
       </section>
+
+      {/* MARQUEE */}
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          {[...MARQUEE, ...MARQUEE].map((item, i) => (
+            <span key={i}>{item.icon}{item.name}</span>
+          ))}
+        </div>
+      </div>
 
       {/* ABOUT */}
       <section id="about">
