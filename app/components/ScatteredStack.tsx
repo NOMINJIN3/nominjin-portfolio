@@ -255,7 +255,6 @@ export default function ScatteredStack() {
             >
               {icon.icon}
             </div>
-            <span className="scattered-icon-label">{tool.name}</span>
           </div>
         );
       })}
