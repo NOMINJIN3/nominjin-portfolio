@@ -226,7 +226,6 @@ export default function WorkSection() {
             onClick={() => setActiveTab(tab)}
           >
             {tab}
-            {tab === "Terminal" && <span className="work-tab-badge">NEW</span>}
           </button>
         ))}
       </div>
