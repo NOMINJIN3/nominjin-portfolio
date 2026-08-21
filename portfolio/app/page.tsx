@@ -170,6 +170,47 @@ export default function Home() {
         </div>
       </div>
 
+      {/* STACK */}
+      <section id="stack" className="stack-section">
+        <div className="container">
+          <Reveal>
+            <span className="section-label">stack</span>
+            <h2 className="section-title">My arsenal</h2>
+            <p className="section-sub">
+              Hover the orbit — every node is a tool I use daily, from languages to platforms.
+            </p>
+          </Reveal>
+
+          <Reveal delay={150}>
+            <OrbitalTechStack />
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="stack-chips">
+              {STACK_GROUPS.map((g) => (
+                <div className="stack-chip" key={g.group} title={g.items.join(", ")}>
+                  <span className="chip-group">{g.group}</span>
+                  <span>·</span>
+                  <span>{g.items.join(" · ")}</span>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* PROJECTS */}
+      <section id="projects">
+        <div className="container">
+          <Reveal>
+            <h2 className="work-title">Find My Work</h2>
+          </Reveal>
+          <Reveal delay={80}>
+            <WorkSection />
+          </Reveal>
+        </div>
+      </section>
+
       {/* ABOUT */}
       <section id="about">
         <div className="container">
@@ -227,47 +268,6 @@ export default function Home() {
               </div>
             </Reveal>
           </div>
-        </div>
-      </section>
-
-      {/* STACK */}
-      <section id="stack" className="stack-section">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">stack</span>
-            <h2 className="section-title">My arsenal</h2>
-            <p className="section-sub">
-              Hover the orbit — every node is a tool I use daily, from languages to platforms.
-            </p>
-          </Reveal>
-
-          <Reveal delay={150}>
-            <OrbitalTechStack />
-          </Reveal>
-
-          <Reveal delay={200}>
-            <div className="stack-chips">
-              {STACK_GROUPS.map((g) => (
-                <div className="stack-chip" key={g.group} title={g.items.join(", ")}>
-                  <span className="chip-group">{g.group}</span>
-                  <span>·</span>
-                  <span>{g.items.join(" · ")}</span>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* PROJECTS */}
-      <section id="projects">
-        <div className="container">
-          <Reveal>
-            <h2 className="work-title">Find My Work</h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <WorkSection />
-          </Reveal>
         </div>
       </section>
 
