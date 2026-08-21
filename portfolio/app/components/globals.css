@@ -1708,6 +1708,7 @@ section {
 
 /* ── Footer ────────────────────────────────────────────────── */
 .footer {
+  border-top: 1px solid var(--border);
   padding: 48px 0 40px;
   display: flex;
   justify-content: center;
