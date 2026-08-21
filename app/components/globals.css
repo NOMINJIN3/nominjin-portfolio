@@ -1726,7 +1726,7 @@ section {
   padding: 10px 16px;
   border-radius: 999px;
   background: var(--text);
-  color: #ffffff;
+  color: #58a6ff;
   font-family: var(--font-mono);
   font-size: 14px;
 }
@@ -1736,7 +1736,7 @@ section {
   gap: 6px;
   padding: 6px 14px;
   border-radius: 999px;
-  color: #ffffff;
+  color: #58a6ff;
   transition: background 0.2s;
   white-space: nowrap;
 }
