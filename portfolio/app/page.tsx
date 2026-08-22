@@ -199,7 +199,7 @@ export default function Home() {
             </h2>
           </Reveal>
 
-          <div className="about-grid">
+          <div className="about-grid about-grid--single">
             <Reveal delay={100}>
               <div className="about-copy">
                 <p>
@@ -228,21 +228,6 @@ export default function Home() {
                     </div>
                   ))}
                 </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <div className="facts">
-                <div className="facts-head">
-                  <span className="prompt">➜</span>
-                  <span>nominjin — profile --json</span>
-                </div>
-                {FACTS.map((row) => (
-                  <div className="facts-row" key={row.k}>
-                    <span className="k">{row.k}</span>
-                    <span className="v">{row.v}</span>
-                  </div>
-                ))}
               </div>
             </Reveal>
           </div>
