@@ -31,16 +31,16 @@ const FOCUS = [
     desc: "Designing LLM-powered agents with LangChain — tool calling, context engineering and automation that actually ships.",
   },
   {
-    icon: "⚡",
-    cls: "ic-fullstack",
-    title: "Full-Stack Dev",
-    desc: "React, Next.js, TypeScript and Node on the front; Django and REST APIs on the back. Clean, typed, testable code.",
-  },
-  {
     icon: "🛡️",
     cls: "ic-security",
     title: "Cyber Security",
     desc: "Hands-on with HackTheBox — PEASS-ng, SecLists and custom payloads. Enumeration, privesc and responsible disclosure.",
+  },
+  {
+    icon: "⚡",
+    cls: "ic-fullstack",
+    title: "Full-Stack Dev",
+    desc: "React, Next.js, TypeScript and Node on the front; Django and REST APIs on the back. Clean, typed, testable code.",
   },
 ];
 
