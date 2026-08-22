@@ -894,10 +894,7 @@ section {
   gap: 64px;
   align-items: start;
 }
-.about-grid--single {
-  grid-template-columns: 1fr;
-  max-width: 720px;
-}
+
 .about-copy p {
   color: var(--text-dim);
   font-size: 17px;
