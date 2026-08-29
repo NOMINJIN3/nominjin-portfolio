@@ -86,7 +86,7 @@ export default function AboutSection() {
         <Reveal>
           <span className="section-label">about</span>
           <h2 className="section-title">
-            The person behind the <span className="gradient-text">terminal</span>.
+            Who am I?
           </h2>
         </Reveal>
 
