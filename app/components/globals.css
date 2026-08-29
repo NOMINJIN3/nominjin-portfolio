@@ -592,6 +592,64 @@ section {
   z-index: 5;
 }
 
+/* ── 3D Parallax + Depth ──────────────────────────────── */
+.parallax-root {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+section {
+  transform-style: preserve-3d;
+}
+
+.hero {
+  transform: translateZ(20px);
+}
+
+.hero-inner {
+  transform: translateZ(30px);
+}
+
+.hero-title {
+  transform: translateZ(40px);
+}
+
+.hero-desc-center,
+.hero-btns {
+  transform: translateZ(25px);
+}
+
+/* 3D section depth on scroll via CSS */
+section:not(.hero) {
+  perspective: 1000px;
+}
+
+.focus-card {
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.focus-card:hover {
+  transform: translateZ(12px) translateY(-4px);
+}
+
+.facts {
+  transform: translateZ(8px);
+  transition: transform 0.4s ease;
+}
+
+.facts:hover {
+  transform: translateZ(20px);
+}
+
+.footer-pill {
+  transform-style: preserve-3d;
+}
+
+.footer-pill:hover {
+  transform: translateZ(10px);
+}
+
 /* title */
 .hero-title {
   font-family: var(--font-display);
@@ -1413,6 +1471,12 @@ section {
   background: var(--card-bg);
   max-width: 680px;
   margin-inline: auto;
+  transform-style: preserve-3d;
+  perspective: 800px;
+  transition: transform 0.3s ease;
+}
+.work-personal-card:hover {
+  transform: translateZ(6px);
 }
 .work-personal-avatar {
   flex-shrink: 0;
@@ -1526,6 +1590,11 @@ section {
   transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.project-card:hover {
+  transform: translateZ(8px) translateY(-3px);
 }
 .project-card:hover {
   transform: translateY(-6px);

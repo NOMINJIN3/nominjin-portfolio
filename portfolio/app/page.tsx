@@ -5,6 +5,7 @@ import RotatingText from "./components/RotatingText";
 import WorkSection from "./components/WorkSection";
 import Scene3D from "./components/Scene3D";
 import TiltCard from "./components/TiltCard";
+import ParallaxProvider from "./components/ParallaxProvider";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -113,6 +114,7 @@ export default function Home() {
       <div className="bg-stage" aria-hidden="true" />
       <div className="bg-grid" aria-hidden="true" />
       <Nav />
+      <ParallaxProvider>
 
       {/* HERO */}
       <section className="hero" id="home">
@@ -273,6 +275,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </ParallaxProvider>
     </>
   );
 }
