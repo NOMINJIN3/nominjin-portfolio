@@ -567,29 +567,29 @@ section {
 }
 
 /* floating avatar */
-.hero-avatar-wrap {
+.hero-3d-wrap {
   position: relative;
-  width: 300px;
-  height: 250px;
-  margin-bottom: 28px;
+  width: 100%;
+  height: 380px;
+  margin-bottom: 20px;
 }
-/* no glow ring */
-.hero-avatar-wrap::before,
-.hero-avatar-wrap::after {
-  display: none;
+.scene-3d-wrap {
+  width: 100%;
+  height: 100%;
 }
-.hero-avatar {
-  width: 300px;
-  height: 250px;
-  border-radius: 0;
-  object-fit: contain;
-  object-position: center;
-  filter: none;
+
+/* ── Tilt Card ─────────────────────────────────────────── */
+.tilt-card {
   position: relative;
-  z-index: 1;
+  transform-style: preserve-3d;
+  will-change: transform;
 }
-[data-theme="dark"] .hero-avatar {
-  filter: none;
+.tilt-card-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 5;
 }
 
 /* title */
@@ -1838,26 +1838,16 @@ section {
 }
 
 @media (max-width: 980px) {
-  .hero-avatar-wrap {
-    width: 260px;
-    height: 216px;
-  }
-  .hero-avatar {
-    width: 260px;
-    height: 216px;
+  .hero-3d-wrap {
+    height: 300px;
   }
 }
 @media (max-width: 640px) {
   section {
     padding: 80px 0;
   }
-  .hero-avatar-wrap {
-    width: 220px;
-    height: 183px;
-  }
-  .hero-avatar {
-    width: 220px;
-    height: 183px;
+  .hero-3d-wrap {
+    height: 240px;
   }
   .cards-2 {
     grid-template-columns: 1fr;

@@ -1,30 +1,6 @@
-declare module "react" {
-  export function useEffect(...args: any[]): any;
-  export function useRef<T>(initialValue: T): { current: T };
-  export function useRef<T>(initialValue: T | null): { current: T | null };
-  export function useState<S>(initial: S | (() => S)): [S, (value: S | ((prev: S) => S)) => void];
-  export const Fragment: any;
-  export type ReactNode = any;
-  export type CSSProperties = any;
-  const React: any;
-  export default React;
-}
-
-declare module "react/jsx-runtime" {
-  export function jsx(type: any, props?: any, key?: any): any;
-  export function jsxs(type: any, props?: any, key?: any): any;
-  export function jsxDEV(type: any, props?: any, key?: any): any;
-}
-
-declare namespace JSX {
-  interface IntrinsicElements {
-    [elemName: string]: any;
-  }
-}
-
 declare module "next/image" {
-  import * as React from "react";
-  type ImageProps = React.ImgHTMLAttributes<HTMLImageElement> & {
+  import type { ImgHTMLAttributes } from "react";
+  type ImageProps = ImgHTMLAttributes<HTMLImageElement> & {
     width?: number | string;
     height?: number | string;
     src: string;
@@ -32,4 +8,42 @@ declare module "next/image" {
   };
   const Image: React.FC<ImageProps>;
   export default Image;
+}
+
+declare module "three" {
+  export class Clock {
+    elapsedTime: number;
+  }
+  export class BufferGeometry {
+    setAttribute(name: string, attribute: any): void;
+  }
+  export class Float32Array extends globalThis.Float32Array {}
+  export class Object3D {
+    rotation: { x: number; y: number; z: number };
+    scale: { set(x: number, y: number, z: number): void };
+  }
+  export class Mesh extends Object3D {}
+  export class Points extends Object3D {}
+}
+
+declare module "@react-three/fiber" {
+  import { ReactNode } from "react";
+  export function Canvas(props: {
+    children?: ReactNode;
+    camera?: any;
+    gl?: any;
+    style?: any;
+  }): JSX.Element;
+  export function useFrame(callback: (state: any) => void): void;
+}
+
+declare module "@react-three/drei" {
+  import { ReactNode } from "react";
+  export function Float(props: {
+    children?: ReactNode;
+    speed?: number;
+    rotationIntensity?: number;
+    floatIntensity?: number;
+  }): JSX.Element;
+  export function MeshDistortMaterial(props: any): JSX.Element;
 }

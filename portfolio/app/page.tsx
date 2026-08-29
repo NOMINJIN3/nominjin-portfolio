@@ -3,6 +3,8 @@ import Reveal from "./components/Reveal";
 import ScatteredStack from "./components/ScatteredStack";
 import RotatingText from "./components/RotatingText";
 import WorkSection from "./components/WorkSection";
+import Scene3D from "./components/Scene3D";
+import TiltCard from "./components/TiltCard";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -117,8 +119,8 @@ export default function Home() {
         <div className="hero-sky" aria-hidden="true" />
         <div className="container hero-inner">
           <Reveal>
-            <div className="hero-avatar-wrap">
-              <img src="/brain.png" alt="AI Brain" className="hero-avatar" />
+            <div className="hero-3d-wrap">
+              <Scene3D />
             </div>
           </Reveal>
 
@@ -217,15 +219,15 @@ export default function Home() {
                 <p className="mono" style={{ color: "var(--text-muted)", fontSize: "14px" }}>
                   <span style={{ color: "var(--green)" }}>➜</span> <span style={{ color: "var(--cyan)" }}>~/motto</span> — Code w/ purpose,
                   automate.
-                </p>
-
-                <div className="cards-2">
+                </p>                  <div className="cards-2">
                   {FOCUS.map((f) => (
-                    <div key={f.title} className="focus-card">
-                      <div className={`icon ${f.cls}`}>{f.icon}</div>
-                      <h3>{f.title}</h3>
-                      <p>{f.desc}</p>
-                    </div>
+                    <TiltCard key={f.title}>
+                      <div className="focus-card">
+                        <div className={`icon ${f.cls}`}>{f.icon}</div>
+                        <h3>{f.title}</h3>
+                        <p>{f.desc}</p>
+                      </div>
+                    </TiltCard>
                   ))}
                 </div>
               </div>
