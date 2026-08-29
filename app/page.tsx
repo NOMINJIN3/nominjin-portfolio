@@ -7,6 +7,7 @@ import Scene3D from "./components/Scene3D";
 import TiltCard from "./components/TiltCard";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
+import Scroll3D, { ScrollReveal3D } from "./components/Scroll3D";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -167,23 +168,27 @@ export default function Home() {
       </section>
 
       {/* SKILL */}
-      <section id="skills" className="stack-section">
-        <Reveal>
-          <ScatteredStack />
-        </Reveal>
-      </section>
+      <Scroll3D rotation={4} translateZ={40} speed={0.02}>
+        <section id="skills" className="stack-section">
+          <Reveal>
+            <ScatteredStack />
+          </Reveal>
+        </section>
+      </Scroll3D>
 
       {/* PROJECTS */}
-      <section id="projects">
-        <div className="container">
-          <Reveal>
-            <h2 className="work-title">Find My Work</h2>
-          </Reveal>
-          <Reveal delay={80}>
-            <WorkSection />
-          </Reveal>
-        </div>
-      </section>
+      <Scroll3D rotation={5} translateZ={50} speed={0.025}>
+        <section id="projects">
+          <div className="container">
+            <Reveal>
+              <h2 className="work-title">Find My Work</h2>
+            </Reveal>
+            <Reveal delay={80}>
+              <WorkSection />
+            </Reveal>
+          </div>
+        </section>
+      </Scroll3D>
 
       {/* MARQUEE */}
       <div className="marquee" aria-hidden="true">
