@@ -6,6 +6,7 @@ import WorkSection from "./components/WorkSection";
 import Scene3D from "./components/Scene3D";
 import TiltCard from "./components/TiltCard";
 import ParallaxProvider from "./components/ParallaxProvider";
+import AboutSection from "./components/AboutSection";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -194,64 +195,7 @@ export default function Home() {
       </div>
 
       {/* ABOUT */}
-      <section id="about">
-        <div className="container">
-          <Reveal>
-            <span className="section-label">about</span>
-            <h2 className="section-title">
-              Automation is the art of doing <span className="gradient-text">more with less</span>.
-            </h2>
-          </Reveal>
-
-          <div className="about-grid">
-            <Reveal delay={100}>
-              <div className="about-copy">
-                <p>
-                  Hi — I&apos;m <strong>Nominjin (NOMI)</strong>, an Information Technology student in my 3rd year at{" "}
-                  <strong>MUST-SICT</strong> and an intern at <span className="highlight">erxes Mongolia</span>.
-                  I live at the intersection of <span className="highlight">agentic tooling</span>,{" "}
-                  <span className="highlight">full-stack engineering</span> and{" "}
-                  <span className="highlight">cyber security</span>.
-                </p>
-                <p>
-                  By day I build tools that make teams faster — typed React/Next.js frontends, Node &amp; Django APIs,
-                  and LLM agents with LangChain. By night I&apos;m in the lab: HackTheBox machines, enumeration with
-                  SecLists, privilege escalation with PEASS-ng, and the occasional custom payload.
-                </p>
-                <p className="mono" style={{ color: "var(--text-muted)", fontSize: "14px" }}>
-                  <span style={{ color: "var(--green)" }}>➜</span> <span style={{ color: "var(--cyan)" }}>~/motto</span> — Code w/ purpose,
-                  automate.
-                </p>                  <div className="cards-2">
-                  {FOCUS.map((f) => (
-                    <TiltCard key={f.title}>
-                      <div className="focus-card">
-                        <div className={`icon ${f.cls}`}>{f.icon}</div>
-                        <h3>{f.title}</h3>
-                        <p>{f.desc}</p>
-                      </div>
-                    </TiltCard>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <div className="facts">
-                <div className="facts-head">
-                  <span className="prompt">➜</span>
-                  <span>nominjin — profile --json</span>
-                </div>
-                {FACTS.map((row) => (
-                  <div className="facts-row" key={row.k}>
-                    <span className="k">{row.k}</span>
-                    <span className="v">{row.v}</span>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+      <AboutSection />
 
       {/* FOOTER */}
       <footer className="footer">
