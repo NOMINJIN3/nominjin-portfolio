@@ -642,13 +642,7 @@ section:not(.hero) {
   transform: translateZ(20px);
 }
 
-.footer-pill {
-  transform-style: preserve-3d;
-}
 
-.footer-pill:hover {
-  transform: translateZ(10px);
-}
 
 /* ── Scroll3D Effects ─────────────────────────────────── */
 .scroll-3d {
