@@ -1180,7 +1180,6 @@ section:not(.hero) {
 .stack-section {
   text-align: center;
   padding: 60px 0 80px;
-  overflow: hidden;
 }
 .scattered-stack {
   position: relative;
@@ -1188,6 +1187,7 @@ section:not(.hero) {
   max-width: 1200px;
   height: 600px;
   margin: 0 auto;
+  overflow: visible;
 }
 .scattered-icon {
   position: absolute;
