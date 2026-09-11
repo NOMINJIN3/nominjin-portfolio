@@ -15,15 +15,15 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
   },
   Python: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   Java: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   "C Language": {
     /* Official C logo (ISO-style hexagon, Wikimedia Commons) */
-    bg: "#1e2a3a",
+    bg: "#ffffff",
     icon: (
       <svg viewBox="0 0 38 42" width="48" height="48" aria-hidden="true">
         <path
@@ -55,7 +55,7 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
   },
   "C++": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   "Next.js": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
@@ -63,19 +63,19 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
   },
   "React.js": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   "Tailwind CSS": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   Docker: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   Git: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   GitHub: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
@@ -83,11 +83,11 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
   },
   "Node.js": {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   VSCode: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
   Linux: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
@@ -95,7 +95,7 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
   },
   HTML: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
-    bg: "#1e2a3a",
+    bg: "#ffffff",
   },
 };
 
