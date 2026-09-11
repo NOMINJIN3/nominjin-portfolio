@@ -567,15 +567,21 @@ section {
 }
 
 /* floating avatar */
-.hero-3d-wrap {
+.hero-avatar-wrap {
   position: relative;
-  width: 100%;
-  height: 380px;
-  margin-bottom: 20px;
+  width: 280px;
+  height: 280px;
+  margin: 20px auto 28px;
 }
-.scene-3d-wrap {
+
+.hero-avatar-img {
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25), 0 0 40px rgba(88, 166, 255, 0.25);
+  display: block;
 }
 
 /* ── Tilt Card ─────────────────────────────────────────── */
@@ -2029,16 +2035,18 @@ section:not(.hero) {
 }
 
 @media (max-width: 980px) {
-  .hero-3d-wrap {
-    height: 300px;
+  .hero-avatar-wrap {
+    width: 240px;
+    height: 240px;
   }
 }
 @media (max-width: 640px) {
   section {
     padding: 80px 0;
   }
-  .hero-3d-wrap {
-    height: 240px;
+  .hero-avatar-wrap {
+    width: 200px;
+    height: 200px;
   }
   .about-new {
     grid-template-columns: 1fr;

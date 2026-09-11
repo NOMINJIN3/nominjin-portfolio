@@ -3,7 +3,6 @@ import Reveal from "./components/Reveal";
 import ScatteredStack from "./components/ScatteredStack";
 import RotatingText from "./components/RotatingText";
 import WorkSection from "./components/WorkSection";
-import Scene3D from "./components/Scene3D";
 import TiltCard from "./components/TiltCard";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
@@ -123,8 +122,12 @@ export default function Home() {
         <div className="hero-sky" aria-hidden="true" />
         <div className="container hero-inner">
           <Reveal>
-            <div className="hero-3d-wrap">
-              <Scene3D />
+            <div className="hero-avatar-wrap">
+              <img
+                src="/nomi-photo.jpg"
+                alt="Nominjin Tsogtbayar"
+                className="hero-avatar-img"
+              />
             </div>
           </Reveal>
 
