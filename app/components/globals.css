@@ -1318,14 +1318,7 @@ a.aboutv-github {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  z-index: 30;
-  pointer-events: none;
-}
-.scattered-center-text {
-  text-shadow:
-    0 0 18px var(--bg),
-    0 0 34px var(--bg),
-    0 2px 12px var(--bg);
+  z-index: 10;
 }
 .scattered-center-dot {
   display: block;
