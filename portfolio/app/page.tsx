@@ -6,6 +6,7 @@ import WorkSection from "./components/WorkSection";
 import TiltCard from "./components/TiltCard";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
 import Scroll3D, { ScrollReveal3D } from "./components/Scroll3D";
 
 /* ── data ──────────────────────────────────────────────────── */
@@ -204,6 +205,9 @@ export default function Home() {
 
       {/* ABOUT */}
       <AboutSection />
+
+      {/* CONTACT */}
+      <ContactSection />
 
       {/* FOOTER */}
       <footer className="footer">
