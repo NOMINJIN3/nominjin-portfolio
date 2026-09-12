@@ -1330,7 +1330,7 @@ a.aboutv-github {
 }
 .scattered-center-text {
   font-family: var(--font-display);
-  font-size: clamp(1.4rem, 3vw, 2rem);
+  font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 700;
   color: var(--text);
   line-height: 1.3;
