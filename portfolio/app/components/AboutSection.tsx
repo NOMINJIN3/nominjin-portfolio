@@ -2,10 +2,9 @@
 
 import { useRef, useEffect, useState } from "react";
 import Reveal from "./Reveal";
-import TiltCard from "./TiltCard";
 
 /* ── Animated Counter ───────────────────────────────────── */
-function Counter({ target, suffix = "", duration = 2000 }: { target: number; suffix?: string; duration?: number }) {
+function Counter({ target, suffix = "", duration = 1600 }: { target: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
   const started = useRef(false);
@@ -19,7 +18,7 @@ function Counter({ target, suffix = "", duration = 2000 }: { target: number; suf
           const tick = () => {
             const elapsed = Date.now() - start;
             const progress = Math.min(elapsed / duration, 1);
-            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            const eased = 1 - Math.pow(1 - progress, 3);
             setCount(Math.round(target * eased));
             if (progress < 1) requestAnimationFrame(tick);
           };
@@ -33,194 +32,196 @@ function Counter({ target, suffix = "", duration = 2000 }: { target: number; suf
   }, [target, duration]);
 
   return (
-    <span ref={ref} className="about-stat-num">
+    <span ref={ref}>
       {count}{suffix}
     </span>
   );
 }
 
-/* ── Typing Effect ──────────────────────────────────────── */
-function TypingLine({ text, delay = 0 }: { text: string; delay?: number }) {
-  const [displayed, setDisplayed] = useState("");
-  const [cursor, setCursor] = useState(true);
-  const started = useRef(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !started.current) {
-          started.current = true;
-          setTimeout(() => {
-            let i = 0;
-            const interval = setInterval(() => {
-              setDisplayed(text.slice(0, i + 1));
-              i++;
-              if (i >= text.length) {
-                clearInterval(interval);
-                setInterval(() => setCursor((c) => !c), 530);
-              }
-            }, 35);
-          }, delay);
-        }
-      },
-      { threshold: 0.5 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [text, delay]);
-
+/* ── Small label icons ──────────────────────────────────── */
+function BriefcaseIcon() {
   return (
-    <div ref={ref} className="about-typing-line">
-      <span className="about-typing-prompt">➜</span>
-      <span className="about-typing-cmd">{displayed}</span>
-      <span className={`about-typing-cursor ${cursor ? "visible" : ""}`}>█</span>
-    </div>
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="7" width="20" height="14" rx="2" />
+      <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+    </svg>
+  );
+}
+function GradIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M22 10 12 5 2 10l10 5 10-5v6" />
+      <path d="M6 12v5c3 3 9 3 12 0v-5" />
+    </svg>
+  );
+}
+function GithubIcon() {
+  return (
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
+    </svg>
+  );
+}
+function PinIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
   );
 }
 
-/* ── Main Component ─────────────────────────────────────── */
-const FOCUS = [
-  {
-    icon: "🤖",
-    title: "Agentic Tools",
-    desc: "LLM agents with LangChain — tool calling, RAG pipelines, context engineering and automation that actually ships.",
-    color: "var(--cyan)",
-  },
-  {
-    icon: "🛡️",
-    title: "Cyber Security",
-    desc: "Hands-on with HackTheBox — PEASS-ng, SecLists, custom payloads. Enumeration, privesc, exploit, root.",
-    color: "var(--green)",
-  },
-  {
-    icon: "⚡",
-    title: "Full-Stack Dev",
-    desc: "React, Next.js, TypeScript on the front; Node & Django on the back. Typed, tested, fast.",
-    color: "var(--blue)",
-  },
+/* ── Data ───────────────────────────────────────────────── */
+const CURRENTLY = [
+  { k: "Shipped", v: "Profile Art Engine — automated GitHub artwork" },
+  { k: "Building", v: "LLM agents with LangChain and custom tools" },
+  { k: "Studying", v: "Cybersecurity at MUST-SICT" },
+  { k: "Exploring", v: "MCP servers and agentic developer loops" },
 ];
 
-const FACTS = [
-  { k: "now", v: "Intern @ erxes Mongolia", accent: true },
-  { k: "edu", v: "3rd Yr IT, MUST-SICT" },
-  { k: "based in", v: "Ulaanbaatar, Mongolia 🇲🇳" },
-  { k: "focus", v: "Agentic Tools · Context Eng. · Security", accent: true },
-  { k: "motto", v: '"Code w/ purpose, automate."' },
-];
-
+/* ── Component ──────────────────────────────────────────── */
 export default function AboutSection() {
   return (
     <section id="about">
       <div className="container">
+        {/* ── Header ── */}
         <Reveal>
           <span className="section-label">about</span>
-          <h2 className="section-title">Who am I?</h2>
+          <div className="about-head">
+            <h2 className="section-title">The short version.</h2>
+            <p className="about-head-sub">
+              Developer building LLM-powered agents, full-stack products, and secure systems.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="about-new">
-          {/* ── Left: Bio + Terminal + Facts ── */}
-          <div className="about-left">
+        <div className="aboutv-grid">
+          {/* ── Left column ── */}
+          <div className="aboutv-col">
             <Reveal delay={100}>
-              <div className="about-bio-block">
-                <p className="about-intro">
-                  I&apos;m <strong>Nominjin Tsogtbayar</strong>, a developer who believes
-                  the best code is the code you <em>don&apos;t</em> write —
-                  because you automated it.
-                </p>
-                <p className="about-desc">
-                  3rd year IT student @ <span className="highlight">MUST-SICT</span>,
-                  intern @ <span className="highlight">erxes Mongolia</span>, based in
-                  Ulaanbaatar. I ship full-stack apps by day and break HTB machines by night.
-                </p>
-              </div>
-            </Reveal>
-
-            <Reveal delay={200}>
-              <TiltCard className="about-terminal-tilt">
-                <div className="about-terminal-block">
-                  <div className="about-terminal-bar">
-                    <span className="about-dot red" />
-                    <span className="about-dot yellow" />
-                    <span className="about-dot green" />
-                    <span className="about-terminal-title">nominjin@about</span>
-                  </div>
-                  <div className="about-terminal-body">
-                    <TypingLine text="whoami" delay={400} />
-                    <div className="about-typing-output">Nominjin Tsogtbayar — Full-Stack + Security</div>
-                    <TypingLine text="cat ~/motto.txt" delay={1800} />
-                    <div className="about-typing-output">Code w/ purpose, automate everything.</div>
-                    <TypingLine text="cat ~/stack.txt" delay={3200} />
-                    <div className="about-typing-output">
-                      React · Next.js · TypeScript · Python · Django<br />
-                      LangChain · Docker · Linux · HackTheBox
+              <div className="aboutv-card">
+                <div className="aboutv-id">
+                  <img src="/nomi-photo.jpg" alt="Nominjin Tsogtbayar" className="aboutv-avatar" />
+                  <div>
+                    <h3 className="aboutv-name">Nominjin Tsogtbayar</h3>
+                    <div className="aboutv-meta">
+                      <span className="aboutv-loc">
+                        <PinIcon />
+                        Ulaanbaatar, Mongolia
+                      </span>
+                      <span className="aboutv-avail">
+                        <span className="dot" />
+                        Available for work
+                      </span>
                     </div>
                   </div>
                 </div>
-              </TiltCard>
+                <div className="aboutv-bio">
+                  <p>
+                    I&apos;m a 3rd-year IT student at <strong>MUST-SICT</strong> and an intern
+                    at <strong>erxes Mongolia</strong> — building LLM-powered agents, shipping
+                    full-stack apps, and learning how software gets built in production.
+                  </p>
+                  <p>
+                    Outside work, I break <strong>HackTheBox</strong> machines at night —
+                    enumeration, privesc, custom payloads. I automate everything I can with
+                    Python, the kind of leverage that lets one developer move at the pace of
+                    an entire team.
+                  </p>
+                  <p>
+                    I started writing code before the current AI era. I use AI not to replace
+                    the fundamentals, but to sharpen them.
+                  </p>
+                </div>
+              </div>
             </Reveal>
 
-            <Reveal delay={300}>
-              <div className="about-facts-card">
-                <div className="about-facts-head">
-                  <span className="about-facts-prompt">➜</span>
-                  nominjin — profile --json
+            <Reveal delay={220}>
+              <div className="aboutv-card">
+                <div className="aboutv-current-head">
+                  <span className="aboutv-label">Currently</span>
+                  <span className="aboutv-live-dot" />
                 </div>
-                {FACTS.map((f) => (
-                  <div key={f.k} className="about-facts-row">
-                    <span className="about-facts-key">{f.k}</span>
-                    <span className={`about-facts-val${f.accent ? " accent" : ""}`}>{f.v}</span>
+                {CURRENTLY.map((row) => (
+                  <div key={row.k} className="aboutv-row">
+                    <span className="aboutv-row-key">{row.k}</span>
+                    <span className="aboutv-row-val">{row.v}</span>
                   </div>
                 ))}
               </div>
             </Reveal>
           </div>
 
-          {/* ── Right: Stats + 3D Focus Cards ── */}
-          <div className="about-right">
-            <Reveal delay={150}>
-              <div className="about-stats-grid">
-                <TiltCard className="about-stat-tilt">
-                  <div className="about-stat">
-                    <Counter target={15} suffix="+" />
-                    <span className="about-stat-label">Projects</span>
-                  </div>
-                </TiltCard>
-                <TiltCard className="about-stat-tilt">
-                  <div className="about-stat">
-                    <Counter target={3} />
-                    <span className="about-stat-label">Years Coding</span>
-                  </div>
-                </TiltCard>
-                <TiltCard className="about-stat-tilt">
-                  <div className="about-stat">
-                    <Counter target={50} suffix="+" />
-                    <span className="about-stat-label">HTB Machines</span>
-                  </div>
-                </TiltCard>
-                <TiltCard className="about-stat-tilt">
-                  <div className="about-stat">
-                    <Counter target={100} suffix="%" />
-                    <span className="about-stat-label">Motivation</span>
-                  </div>
-                </TiltCard>
+          {/* ── Right column ── */}
+          <div className="aboutv-col">
+            <Reveal delay={160}>
+              <div className="aboutv-card">
+                <div className="aboutv-card-head">
+                  <span className="aboutv-label">
+                    <BriefcaseIcon />
+                    Work
+                  </span>
+                  <span className="aboutv-tag">2025 — Present</span>
+                </div>
+                <h3 className="aboutv-item-title">Software Engineering Intern</h3>
+                <a
+                  className="aboutv-item-org"
+                  href="https://erxes.io"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  erxes Mongolia <span className="arr">↗</span>
+                </a>
+                <p className="aboutv-item-desc">
+                  Full-stack and automation work on a source-available Experience OS —
+                  shipping features, fixing bugs, and automating workflows across the
+                  monorepo.
+                </p>
               </div>
             </Reveal>
 
-            <Reveal delay={250}>
-              <div className="about-focus-stack">
-                {FOCUS.map((f) => (
-                  <TiltCard key={f.title}>
-                    <div className="about-focus-item" style={{ "--accent": f.color } as React.CSSProperties}>
-                      <div className="about-focus-icon">{f.icon}</div>
-                      <div>
-                        <h3>{f.title}</h3>
-                        <p>{f.desc}</p>
-                      </div>
-                    </div>
-                  </TiltCard>
-                ))}
+            <Reveal delay={240}>
+              <div className="aboutv-card">
+                <div className="aboutv-card-head">
+                  <span className="aboutv-label">
+                    <GradIcon />
+                    Education
+                  </span>
+                  <span className="aboutv-tag">In progress</span>
+                </div>
+                <h3 className="aboutv-item-title">BSc in Information Technology</h3>
+                <span className="aboutv-item-org">
+                  Mongolian University of Science and Technology
+                </span>
+                <p className="aboutv-item-desc">
+                  School of Information and Communication Technology (SICT)
+                </p>
               </div>
+            </Reveal>
+
+            <Reveal delay={320}>
+              <a
+                className="aboutv-card aboutv-github"
+                href="https://github.com/NOMINJIN3"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <div className="aboutv-card-head">
+                  <span className="aboutv-label">
+                    <GithubIcon />
+                    Github
+                  </span>
+                  <span className="aboutv-arrow">↗</span>
+                </div>
+                <div className="aboutv-gh-num">
+                  <Counter target={10} />
+                  <span>public repos</span>
+                </div>
+                <p className="aboutv-gh-desc">
+                  Open-sourcing tools, security skills, and agentic experiments.
+                </p>
+                <span className="aboutv-gh-handle">@NOMINJIN3</span>
+              </a>
             </Reveal>
           </div>
         </div>
