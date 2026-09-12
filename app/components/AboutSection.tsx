@@ -87,7 +87,7 @@ export default function AboutSection() {
         {/* ── Header ── */}
         <Reveal>
           <div className="about-head">
-            <h2 className="work-title">Who am i</h2>
+            <h2 className="work-title">Who is Nominjin?</h2>
           </div>
         </Reveal>
 
