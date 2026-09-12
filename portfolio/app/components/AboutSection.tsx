@@ -114,7 +114,7 @@ export default function AboutSection() {
                 </div>
                 <div className="aboutv-bio">
                   <p>
-                    I&apos;m a 3rd-year IT student at <strong>MUST-SICT</strong> and an intern
+                    I&apos;m a 3rd-year IT student at <strong className="aboutv-blue">MUST-SICT</strong> and an intern
                     at <strong className="aboutv-blue">erxes Mongolia</strong> — building LLM-powered agents, shipping
                     full-stack apps, and learning how software gets built in production.
                   </p>

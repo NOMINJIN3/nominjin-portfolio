@@ -1093,7 +1093,7 @@ section:not(.hero) {
 }
 
 .aboutv-blue {
-  color: var(--blue, #3b82f6);
+  color: var(--cyan);
 }
 
 /* Card head / labels */
