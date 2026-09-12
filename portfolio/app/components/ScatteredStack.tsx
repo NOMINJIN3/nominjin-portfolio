@@ -100,29 +100,23 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
 };
 
 /* Scattered positions — icons around the center text, no overlap */
-/* Organized layout: 4 clean rows flanking the center text,
-   columns aligned within each side (like a loose grid). */
 const POSITIONS: { x: number; y: number }[] = [
-  // Row 1 (top) — 5 icons
-  { x: 16, y: 13 },  // JS
-  { x: 30, y: 13 },  // TS
-  { x: 48, y: 13 },  // Python
-  { x: 66, y: 13 },  // Java
-  { x: 77, y: 13 },  // C
-  // Row 2 — 4 icons
-  { x: 15, y: 35 },  // C++
-  { x: 29, y: 35 },  // Next.js
-  { x: 64, y: 35 },  // React
-  { x: 77, y: 35 },  // Tailwind
-  // Row 3 — 4 icons
-  { x: 16, y: 55 },  // Docker
-  { x: 30, y: 55 },  // Git
-  { x: 64, y: 55 },  // GitHub
-  { x: 77, y: 55 },  // Node.js
-  // Row 4 (bottom) — 3 icons
-  { x: 23, y: 72 },  // VS Code
-  { x: 45, y: 72 },  // HTML
-  { x: 69, y: 72 },  // Linux
+  { x: 5,  y: 5  },  // top-left
+  { x: 25, y: 3  },  // top-center-left
+  { x: 50, y: 5  },  // top-center
+  { x: 75, y: 3  },  // top-center-right
+  { x: 92, y: 6  },  // top-right
+  { x: 3,  y: 32 },  // mid-left
+  { x: 22, y: 30 },  // mid-left-center
+  { x: 72, y: 32 },  // mid-right-center
+  { x: 90, y: 30 },  // mid-right
+  { x: 5,  y: 58 },  // lower-left
+  { x: 25, y: 56 },  // lower-left-center
+  { x: 72, y: 58 },  // lower-right-center
+  { x: 92, y: 56 },  // lower-right
+  { x: 15, y: 80 },  // bottom-left
+  { x: 80, y: 80 },  // bottom-right
+  { x: 45, y: 82 },  // bottom-center
 ];
 
 export default function ScatteredStack() {
