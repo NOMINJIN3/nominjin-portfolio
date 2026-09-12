@@ -75,7 +75,7 @@ function PinIcon() {
 const CURRENTLY = [
   { k: "Shipped", v: "Profile Art Engine — automated GitHub artwork" },
   { k: "Building", v: "LLM agents with LangChain and custom tools" },
-  { k: "Studying", v: "Information Technology at MUST-SICT" },
+  { k: "Studying", v: (<>Information Technology at <span className="aboutv-blue">MUST-SICT</span></>) },
   { k: "Exploring", v: "MCP servers and agentic developer loops" },
 ];
 
@@ -114,12 +114,12 @@ export default function AboutSection() {
                 </div>
                 <div className="aboutv-bio">
                   <p>
-                    I&apos;m a 3rd-year IT student at <strong>MUST-SICT</strong> and an intern
-                    at <strong>erxes Mongolia</strong> — building LLM-powered agents, shipping
+                    I&apos;m a 3rd-year IT student at <strong className="aboutv-blue">MUST-SICT</strong> and an intern
+                    at <strong className="aboutv-blue">erxes Mongolia</strong> — building LLM-powered agents, shipping
                     full-stack apps, and learning how software gets built in production.
                   </p>
                   <p>
-                    Outside work, I break <strong>HackTheBox</strong> machines at night —
+                    Outside work, I break <strong className="aboutv-blue">HackTheBox</strong> machines at night —
                     enumeration, privesc, custom payloads. I automate everything I can with
                     Python, the kind of leverage that lets one developer move at the pace of
                     an entire team.
@@ -166,7 +166,7 @@ export default function AboutSection() {
                   target="_blank"
                   rel="noreferrer"
                 >
-                  erxes Mongolia <span className="arr">↗</span>
+                  <span className="aboutv-blue">erxes Mongolia</span> <span className="arr">↗</span>
                 </a>
                 <p className="aboutv-item-desc">
                   Full-stack and automation work on a source-available Experience OS —

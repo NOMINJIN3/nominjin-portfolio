@@ -1092,6 +1092,10 @@ section:not(.hero) {
   font-weight: 600;
 }
 
+.aboutv-blue {
+  color: var(--blue, #3b82f6);
+}
+
 /* Card head / labels */
 .aboutv-card-head {
   display: flex;
