@@ -86,16 +86,17 @@ export default function Nav() {
           title={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
         >
           {theme === "dark" ? (
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <circle cx="12" cy="12" r="4" />
-              <line x1="12" y1="2" x2="12" y2="4" />
-              <line x1="12" y1="20" x2="12" y2="22" />
-              <line x1="4.93" y1="4.93" x2="6.34" y2="6.34" />
-              <line x1="17.66" y1="17.66" x2="19.07" y2="19.07" />
-              <line x1="2" y1="12" x2="4" y2="12" />
-              <line x1="20" y1="12" x2="22" y2="12" />
-              <line x1="4.93" y1="19.07" x2="6.34" y2="17.66" />
-              <line x1="17.66" y1="6.34" x2="19.07" y2="4.93" />
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="3.6" />
+              <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+              <line x1="12" y1="3.5" x2="12" y2="5.8" />
+              <line x1="12" y1="18.2" x2="12" y2="20.5" />
+              <line x1="3.5" y1="12" x2="5.8" y2="12" />
+              <line x1="18.2" y1="12" x2="20.5" y2="12" />
+              <line x1="6.01" y1="6.01" x2="7.6" y2="7.6" />
+              <line x1="16.4" y1="16.4" x2="17.99" y2="17.99" />
+              <line x1="6.01" y1="17.99" x2="7.6" y2="16.4" />
+              <line x1="16.4" y1="7.6" x2="17.99" y2="6.01" />
             </svg>
           ) : (
             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
