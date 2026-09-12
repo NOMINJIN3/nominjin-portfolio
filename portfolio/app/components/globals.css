@@ -985,17 +985,8 @@ section:not(.hero) {
 /* ── About (short version cards) ─────────────────────────── */
 .about-head {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 32px;
-}
-.about-head-sub {
-  font-size: 15px;
-  color: var(--text-muted);
-  max-width: 440px;
-  text-align: right;
-  line-height: 1.6;
-  margin: 0;
+  justify-content: center;
+  text-align: center;
 }
 .aboutv-grid {
   display: grid;
@@ -1244,17 +1235,6 @@ a.aboutv-github {
   }
   .aboutv-col {
     height: auto;
-  }
-  .aboutv-col > .reveal {
-    flex: none;
-  }
-  .about-head {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .about-head-sub {
-    text-align: left;
   }
 }
 @media (max-width: 640px) {

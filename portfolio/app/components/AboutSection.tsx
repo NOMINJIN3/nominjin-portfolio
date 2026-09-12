@@ -86,7 +86,6 @@ export default function AboutSection() {
       <div className="container">
         {/* ── Header ── */}
         <Reveal>
-          <span className="section-label">about</span>
           <div className="about-head">
             <h2 className="section-title">Who am i</h2>
           </div>
