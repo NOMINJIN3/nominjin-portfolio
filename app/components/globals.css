@@ -1338,6 +1338,13 @@ a.aboutv-github {
 [data-theme="dark"] .scattered-icon-inner {
   border-color: rgba(255, 255, 255, 0.08);
 }
+/* Dark mode: tiles go black; dark logos keep a light tile */
+[data-theme="dark"] .scattered-icon-inner {
+  background: #000000 !important;
+}
+[data-theme="dark"] .scattered-icon.icon-keep-light .scattered-icon-inner {
+  background: #ffffff !important;
+}
 .stack-section .section-label,
 .stack-section .section-sub {
   margin-inline: auto;

@@ -159,6 +159,8 @@ export default function ScatteredStack() {
         const pos = POSITIONS[i % POSITIONS.length];
         const homeX = pos.x;
         const homeY = pos.y;
+        /* these logos are dark — keep them on a light tile in dark mode */
+        const keepLight = ["Next.js", "GitHub", "Linux"].includes(tool.name);
 
         const following = !scattered && isHovering;
         const x = following ? mousePos.x : homeX;
@@ -167,7 +169,7 @@ export default function ScatteredStack() {
         return (
           <div
             key={tool.name}
-            className={`scattered-icon${following ? " following" : ""}`}
+            className={`scattered-icon${following ? " following" : ""}${keepLight ? " icon-keep-light" : ""}`}
             style={{
               left: `${x}%`,
               top: `${y}%`,
