@@ -209,6 +209,18 @@ export default function Home() {
       {/* CONTACT */}
       <ContactSection />
 
+      {/* WORDMARK BANNER */}
+      <div className="wordmark" aria-hidden="false">
+        <span className="wordmark-name">NOMINJIN</span>
+        <div className="wordmark-meta">
+          <span>© 2026 Nominjin. All Rights Reserved.</span>
+          <span className="wordmark-meta-links">
+            <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer">GitHub</a>
+            <a href="https://linkedin.com/in/nominjin" target="_blank" rel="noreferrer">LinkedIn</a>
+          </span>
+        </div>
+      </div>
+
       {/* FOOTER */}
       <footer className="footer">
         <div className="container footer-inner">

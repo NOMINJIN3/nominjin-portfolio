@@ -2070,6 +2070,82 @@ a.contactv-value:hover {
   }
 }
 
+/* ── Wordmark banner ─────────────────────────────────────── */
+.wordmark {
+  position: relative;
+  min-height: 460px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 50% 118%, rgba(37, 99, 235, 0.85) 0%, rgba(29, 78, 216, 0.45) 34%, rgba(10, 25, 60, 0.25) 62%, transparent 80%),
+    radial-gradient(70% 45% at 50% 112%, rgba(96, 165, 250, 0.5) 0%, transparent 60%),
+    #04070f;
+}
+.wordmark::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -40%;
+  width: 140%;
+  height: 75%;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(147, 197, 253, 0.28) 0%, transparent 55%),
+    conic-gradient(from 180deg at 50% 0%, transparent 42%, rgba(59, 130, 246, 0.22) 50%, transparent 58%);
+  filter: blur(18px);
+  pointer-events: none;
+}
+.wordmark-name {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 12vw, 10rem);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #ffffff;
+  line-height: 1;
+  text-shadow:
+    0 0 60px rgba(59, 130, 246, 0.45),
+    0 4px 24px rgba(0, 0, 0, 0.55);
+}
+.wordmark-meta {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  font-size: 11.5px;
+  color: rgba(226, 232, 240, 0.55);
+}
+.wordmark-meta a {
+  color: rgba(226, 232, 240, 0.55);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.wordmark-meta a:hover {
+  color: #93c5fd;
+}
+.wordmark-meta-links {
+  display: flex;
+  gap: 20px;
+}
+@media (max-width: 640px) {
+  .wordmark {
+    min-height: 300px;
+  }
+  .wordmark-meta {
+    flex-direction: column;
+    gap: 6px;
+    padding: 0 16px;
+  }
+}
+
 /* ── Footer ────────────────────────────────────────────────── */
 .footer {
   border-top: 1px solid var(--border);
