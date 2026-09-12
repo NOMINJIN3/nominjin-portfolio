@@ -89,9 +89,6 @@ export default function AboutSection() {
           <span className="section-label">about</span>
           <div className="about-head">
             <h2 className="section-title">Who am i</h2>
-            <p className="about-head-sub">
-              Developer building LLM-powered agents, full-stack products, and secure systems.
-            </p>
           </div>
         </Reveal>
 
