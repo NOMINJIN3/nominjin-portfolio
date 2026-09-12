@@ -30,6 +30,19 @@ const BANNER = [
   "|_| \\_| \\___/ |_|  |_|___| (_)",
 ];
 
+/* ── boot sequence ────────────────────────────────────────── */
+
+const BOOT: Line[] = [
+  { kind: "out", segs: [seg("Portfolio OS v2.0.26 [Nominjin Edition]", "")] },
+  { kind: "out", segs: [seg("Loading modules... done.", "dim")] },
+  { kind: "out", segs: [seg("Initializing file system... done.", "dim")] },
+  { kind: "out", segs: [seg("AI assistant ready.", "ok")] },
+  { kind: "out", segs: [seg("", "")] },
+  { kind: "out", segs: [seg('Type "help" to see available commands.', "")] },
+  { kind: "out", segs: [seg('Type "whoami" to know more about Nominjin.', "")] },
+  { kind: "out", segs: [seg("", "")] },
+];
+
 /* ── command engine ───────────────────────────────────────── */
 
 const COMMAND_NAMES = [
@@ -294,6 +307,14 @@ export default function Terminal() {
     const body = bodyRef.current;
     if (body) body.scrollTop = body.scrollHeight;
   }, [lines, phase]);
+
+  /* boot sequence plays line by line on mount */
+  useEffect(() => {
+    const timers = BOOT.map((line, idx) =>
+      setTimeout(() => setLines((p) => [...p, line]), 140 * idx)
+    );
+    return () => timers.forEach(clearTimeout);
+  }, []);
 
   /* bash-style tab completion */
   const complete = () => {
