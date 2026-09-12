@@ -877,10 +877,10 @@ section:not(.hero) {
   color: var(--text-muted);
 }
 .terminal-body {
-  padding: 22px 24px;
+  padding: 20px 22px;
   font-family: var(--font-mono);
-  font-size: 14.5px;
-  line-height: 1.85;
+  font-size: 12.5px;
+  line-height: 1.8;
   min-height: 230px;
   max-height: 360px;
   overflow-y: auto;
@@ -1598,7 +1598,7 @@ a.aboutv-github {
   left: 50%;
   transform: translateX(-50%);
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 11.5px;
   color: #64748b;
 }
 .work-terminal-dots {
