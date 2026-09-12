@@ -127,25 +127,36 @@ const POSITIONS: { x: number; y: number }[] = [
 
 export default function ScatteredStack() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [origin, setOrigin] = useState({ x: 50, y: 50 });
-  const [distributed, setDistributed] = useState(false);
+  const [scattered, setScattered] = useState(true);
+  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
+  const [isHovering, setIsHovering] = useState(false);
 
-  /* Click (only) → distribute all icons around the click point.
-     Click again → gather back to the organized layout. */
-  const handleClick = (e: React.MouseEvent) => {
+  const handleMouseMove = (e: React.MouseEvent) => {
     if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
-    setOrigin({
+    setMousePos({
       x: ((e.clientX - rect.left) / rect.width) * 100,
       y: ((e.clientY - rect.top) / rect.height) * 100,
     });
-    setDistributed((d) => !d);
+  };
+
+  const handleClick = () => {
+    setScattered(true);
+    setIsHovering(false);
+  };
+
+  const handleMouseEnter = () => {
+    setScattered(false);
+    setIsHovering(true);
   };
 
   return (
     <div
       className="scattered-stack"
       ref={containerRef}
+      onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={() => { setScattered(true); setIsHovering(false); }}
       onClick={handleClick}
       style={{ cursor: "pointer" }}
     >
@@ -155,26 +166,22 @@ export default function ScatteredStack() {
         const homeX = pos.x;
         const homeY = pos.y;
 
-        /* Golden-angle spiral so distributed icons spread evenly */
-        const angle = i * 2.39996;
-        const radius = 9 + (i % 5) * 4;
-        const dx = Math.cos(angle) * radius;
-        const dy = Math.sin(angle) * radius * 0.75;
-
-        const x = distributed ? Math.min(97, Math.max(3, origin.x + dx)) : homeX;
-        const y = distributed ? Math.min(95, Math.max(5, origin.y + dy)) : homeY;
-        const delay = (distributed ? i * 0.035 : i * 0.045).toFixed(3);
+        const following = !scattered && isHovering;
+        const x = following ? mousePos.x : homeX;
+        const y = following ? mousePos.y : homeY;
 
         return (
           <div
             key={tool.name}
-            className="scattered-icon"
+            className={`scattered-icon${following ? " following" : ""}`}
             style={{
               left: `${x}%`,
               top: `${y}%`,
-              zIndex: distributed ? 20 : 1,
+              zIndex: following ? 20 : 1,
               animationDelay: `${i * 0.3}s`,
-              transition: `left 0.7s ${delay}s cubic-bezier(0.34,1.56,0.64,1), top 0.7s ${delay}s cubic-bezier(0.34,1.56,0.64,1)`,
+              transition: following
+                ? `left ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1), top ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1)`
+                : "left 0.7s cubic-bezier(0.34,1.56,0.64,1), top 0.7s cubic-bezier(0.34,1.56,0.64,1)",
             }}
             title={tool.name}
           >
