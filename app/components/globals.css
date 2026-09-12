@@ -957,25 +957,67 @@ section:not(.hero) {
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
-.marquee-track span {
-  font-family: var(--font-mono);
-  font-size: 15px;
-  color: var(--text-dim);
-  padding: 0 26px;
-  white-space: nowrap;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
+.marquee2 {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 34px 0;
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
 }
-.marquee-track span svg {
+.marquee2-row {
+  overflow: hidden;
+}
+.marquee2-track {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  animation: scrollx 32s linear infinite;
+}
+.marquee2-track.rev {
+  animation-direction: reverse;
+}
+.marquee2:hover .marquee2-track {
+  animation-play-state: paused;
+}
+.marquee2-tile {
+  width: 84px;
+  height: 84px;
+  border-radius: 20px;
+  display: grid;
+  place-items: center;
   flex-shrink: 0;
+  box-shadow:
+    0 10px 24px rgba(2, 8, 20, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  transition: transform 0.25s ease;
 }
-.marquee-track span::after {
-  content: "◆";
-  font-size: 9px;
-  color: var(--cyan);
-  opacity: 0.8;
-  margin-left: 12px;
+.marquee2-tile:hover {
+  transform: translateY(-4px) scale(1.04);
+}
+.marquee2-tile img {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+@media (max-width: 640px) {
+  .marquee2 {
+    gap: 12px;
+    padding: 24px 0;
+  }
+  .marquee2-track {
+    gap: 12px;
+  }
+  .marquee2-tile {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+  }
+  .marquee2-tile img {
+    width: 38px;
+    height: 38px;
+  }
 }
 @keyframes scrollx {
   from { transform: translateX(0); }
@@ -2321,7 +2363,7 @@ a.contactv-value:hover {
     opacity: 1;
     transform: none;
   }
-  .marquee-track {
+  .marquee2-track {
     animation: none;
   }
   .orbital-stage,
