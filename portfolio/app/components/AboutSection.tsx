@@ -157,7 +157,7 @@ export default function AboutSection() {
                     <BriefcaseIcon />
                     Intern
                   </span>
-                  <span className="aboutv-tag">2025 — Present</span>
+                  <span className="aboutv-tag">2026 — Present</span>
                 </div>
                 <h3 className="aboutv-item-title">Software Engineering Intern</h3>
                 <a
