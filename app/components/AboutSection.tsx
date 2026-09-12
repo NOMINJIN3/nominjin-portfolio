@@ -75,7 +75,7 @@ function PinIcon() {
 const CURRENTLY = [
   { k: "Shipped", v: "Profile Art Engine — automated GitHub artwork" },
   { k: "Building", v: "LLM agents with LangChain and custom tools" },
-  { k: "Studying", v: "Cybersecurity at MUST-SICT" },
+  { k: "Studying", v: "Information Technology at MUST-SICT" },
   { k: "Exploring", v: "MCP servers and agentic developer loops" },
 ];
 
@@ -159,7 +159,7 @@ export default function AboutSection() {
                 <div className="aboutv-card-head">
                   <span className="aboutv-label">
                     <BriefcaseIcon />
-                    Work
+                    Intern
                   </span>
                   <span className="aboutv-tag">2025 — Present</span>
                 </div>
