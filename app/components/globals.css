@@ -1867,6 +1867,36 @@ a.aboutv-github {
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
+/* Screenshot thumbnails: a window peeking up from the bottom of the card */
+.thumb-shot {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 26px;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: var(--surface-2);
+  box-shadow: 0 -2px 30px color-mix(in srgb, var(--text) 14%, transparent);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+.thumb-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.project-card:hover .thumb-shot {
+  transform: translateY(-8px);
+  box-shadow: 0 -6px 40px color-mix(in srgb, var(--text) 20%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .thumb-shot, .project-card:hover .thumb-shot { transition: none; transform: none; }
+}
+@media (max-width: 640px) {
+  .thumb-shot { left: 6%; right: 6%; top: 18px; }
+}
 .thumb-glyph {
   position: relative;
   font-family: var(--font-mono);

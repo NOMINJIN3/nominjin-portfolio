@@ -3,7 +3,18 @@
 import { useState } from "react";
 import Terminal from "./Terminal";
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  tags: string[];
+  desc: string;
+  link: string;
+  linkLabel: string;
+  thumb: string;
+  image?: string;
+  imageAlt?: string;
+};
+
+const PROJECTS: Project[] = [
   {
     title: "Profile Art Engine",
     tags: ["Python", "GitHub Actions", "SVG"],
@@ -19,6 +30,8 @@ const PROJECTS = [
     link: "https://nominjin3.github.io",
     linkLabel: "live site",
     thumb: "terminal",
+    image: "/projects/live-terminal.webp",
+    imageAlt: "Live Terminal: terminal-style GitHub home with contribution stats and a whoami prompt",
   },
   {
     title: "Offensive Security Labs",
@@ -27,6 +40,8 @@ const PROJECTS = [
     link: "https://app.hackthebox.com",
     linkLabel: "hackthebox",
     thumb: "shell",
+    image: "/projects/offensive-security.webp",
+    imageAlt: "HackTheBox profile page showing level and season progress",
   },
   {
     title: "This Portfolio",
@@ -35,6 +50,8 @@ const PROJECTS = [
     link: "https://www.nominjin.io",
     linkLabel: "nominjin.io",
     thumb: "code",
+    image: "/projects/this-portfolio.webp",
+    imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
   },
 ];
 
@@ -145,7 +162,13 @@ function ProjectsView() {
         >
           <div className="project-thumb">
             <div className="thumb-bg" />
-            <Thumb kind={p.thumb} />
+            {p.image ? (
+              <div className="thumb-shot">
+                <img src={p.image} alt={p.imageAlt ?? p.title} width={960} height={620} loading="lazy" decoding="async" />
+              </div>
+            ) : (
+              <Thumb kind={p.thumb} />
+            )}
           </div>
           <div className="project-body">
             <div className="project-tags">
