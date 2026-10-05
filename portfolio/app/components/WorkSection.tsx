@@ -24,7 +24,8 @@ const PROJECTS: Project[] = [
     link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
     linkLabel: "github",
     thumb: "heatmap",
-    image: "/projects/profile-art-engine.webp",
+    image: "/projects/profile-art-engine-light.webp",
+    imageDark: "/projects/profile-art-engine.webp",
     imagePosition: "center bottom",
     imageAlt: "3D isometric GitHub contribution graph with a language donut chart and an activity radar",
   },
@@ -185,6 +186,7 @@ function ProjectsView() {
                   <img
                     className="thumb-img-dark"
                     src={p.imageDark}
+                    style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
                     alt={p.imageAlt ?? p.title}
                     width={1120}
                     height={700}
