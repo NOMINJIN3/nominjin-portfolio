@@ -1850,7 +1850,7 @@ a.aboutv-github {
 }
 .project-thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
+  height: 200px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1863,12 +1863,6 @@ a.aboutv-github {
 }
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
-}
-/* Cards without a screenshot: enlarge the glyph to fill the preview */
-.project-thumb > svg {
-  position: relative;
-  width: 62%;
-  height: auto;
 }
 /* Screenshot thumbnails: the image fills the whole preview area */
 .thumb-shot {
