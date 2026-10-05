@@ -6,12 +6,32 @@ import { techTools } from "../data/tech";
 /* Official logos (devicon CDN) — tile bg only shows through transparent areas */
 const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }> = {
   JavaScript: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    bg: "#f7df1e",
+    /* shield-style JS logo */
+    bg: "#ffffff",
+    icon: (
+      <svg viewBox="0 0 100 100" width="76" height="76" aria-hidden="true">
+        <path fill="#d4b830" d="M16.4 11.7h67.2L77.9 80 50 87.9 22.1 80z" />
+        <path fill="#f9db23" d="M50 17.9h27.6l-4.7 59.2L50 82.9z" />
+        <path fill="#eef1f2" d="M41.1 26.4h6.5v45L27.9 66.4v-8.1l13.2 2.8z" />
+        <path fill="#eef1f2" d="M53.1 26.4h21.2l-.4 7.9H59.6l-.3 12.1 13.6-1.4-1.9 21.4-18.1 5v-7.8l13.1-2.9v-7.1l-12.9 2.1z" />
+      </svg>
+    ),
   },
   TypeScript: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    bg: "#3178c6",
+    /* rounded-square TS logo */
+    bg: "#ffffff",
+    icon: (
+      <svg viewBox="0 0 100 100" width="60" height="60" aria-hidden="true">
+        <rect x="0" y="0" width="100" height="100" rx="7" fill="#3178c6" />
+        <path fill="#ffffff" d="M16 42.5h40.5v10.4H41.6V93H30.9V52.9H16z" />
+        <path
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="10.5"
+          d="M86.5 52.5C83.5 48.8 79.3 47.6 75.2 47.6 68.8 47.6 64.1 50.6 64.1 55.8 64.1 61.2 69.4 62.8 75.1 64.6 81.7 66.7 87.2 69.2 87.2 76.1 87.2 83.1 81.3 86.8 74.6 86.8 69.6 86.8 64.9 85 61.6 81.2"
+        />
+      </svg>
+    ),
   },
   Python: {
     src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
@@ -323,8 +343,8 @@ export default function ScatteredStack() {
           ["Next.js", "GitHub"].includes(tool.name) ? " icon-invert-dark" : "";
         /* these icon files have extra padding, so the logo looks small */
         const boost = ["Linux", "Docker"].includes(tool.name) ? " icon-boost" : "";
-        /* light mode: only JS and TS keep their colored tile; the rest float without a tile */
-        const bare = ["JavaScript", "TypeScript"].includes(tool.name) ? "" : " icon-bare";
+        /* light mode: no tile behind any logo */
+        const bare = " icon-bare";
 
         return (
           <div
