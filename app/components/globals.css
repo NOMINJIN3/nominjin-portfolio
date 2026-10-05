@@ -1363,6 +1363,9 @@ a.aboutv-github {
 .scattered-icon.icon-boost .scattered-icon-inner img {
   transform: scale(1.4);
 }
+.scattered-icon.icon-boost-sm .scattered-icon-inner img {
+  transform: scale(1.1);
+}
 /* Light mode: no tile behind the logos (except JS / TS, which keep their colored tile) */
 :root:not([data-theme="dark"]) .scattered-icon.icon-bare .scattered-icon-inner {
   background: transparent !important;

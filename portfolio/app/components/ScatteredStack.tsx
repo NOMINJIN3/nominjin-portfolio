@@ -9,7 +9,7 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
     /* shield-style JS logo */
     bg: "#ffffff",
     icon: (
-      <svg viewBox="0 0 100 100" width="76" height="76" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="58" height="58" aria-hidden="true">
         <path fill="#d4b830" d="M16.4 11.7h67.2L77.9 80 50 87.9 22.1 80z" />
         <path fill="#f9db23" d="M50 17.9h27.6l-4.7 59.2L50 82.9z" />
         <path fill="#eef1f2" d="M41.1 26.4h6.5v45L27.9 66.4v-8.1l13.2 2.8z" />
@@ -21,7 +21,7 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
     /* rounded-square TS logo */
     bg: "#ffffff",
     icon: (
-      <svg viewBox="0 0 100 100" width="60" height="60" aria-hidden="true">
+      <svg viewBox="0 0 100 100" width="46" height="46" aria-hidden="true">
         <rect x="0" y="0" width="100" height="100" rx="7" fill="#3178c6" />
         <path fill="#ffffff" d="M16 42.5h40.5v10.4H41.6V93H30.9V52.9H16z" />
         <path
@@ -342,7 +342,7 @@ export default function ScatteredStack() {
           tool.name === "Linux" ? " icon-outline-dark" :
           ["Next.js", "GitHub"].includes(tool.name) ? " icon-invert-dark" : "";
         /* these icon files have extra padding, so the logo looks small */
-        const boost = ["Linux", "Docker"].includes(tool.name) ? " icon-boost" : "";
+        const boost = tool.name === "Docker" ? " icon-boost" : tool.name === "Linux" ? " icon-boost-sm" : "";
         /* light mode: no tile behind any logo */
         const bare = " icon-bare";
 
