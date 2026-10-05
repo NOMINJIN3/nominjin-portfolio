@@ -13,8 +13,6 @@ type Project = {
   image?: string;
   imageAlt?: string;
   url: string;                       // shown in the browser-bar
-  status: "LIVE" | "DONE" | "ONGOING";
-  meta: string[];                    // small uppercase categories
 };
 
 const PROJECTS: Project[] = [
@@ -26,8 +24,6 @@ const PROJECTS: Project[] = [
     linkLabel: "github",
     thumb: "heatmap",
     url: "github.com/NOMINJIN3/nominjin-profile-repo",
-    status: "LIVE",
-    meta: ["Automation", "GitHub Actions"],
   },
   {
     title: "Live Terminal",
@@ -37,8 +33,6 @@ const PROJECTS: Project[] = [
     linkLabel: "live site",
     thumb: "terminal",
     url: "nominjin3.github.io",
-    status: "LIVE",
-    meta: ["Web", "Interactive"],
     image: "/projects/live-terminal.webp",
     imageAlt: "Live Terminal: terminal-style GitHub home with contribution stats and a whoami prompt",
   },
@@ -50,8 +44,6 @@ const PROJECTS: Project[] = [
     linkLabel: "hackthebox",
     thumb: "shell",
     url: "app.hackthebox.com",
-    status: "ONGOING",
-    meta: ["Security", "HackTheBox"],
     image: "/projects/offensive-security.webp",
     imageAlt: "HackTheBox profile page showing level and season progress",
   },
@@ -63,8 +55,6 @@ const PROJECTS: Project[] = [
     linkLabel: "nominjin.io",
     thumb: "code",
     url: "nominjin.io",
-    status: "LIVE",
-    meta: ["Web", "Portfolio"],
     image: "/projects/this-portfolio.webp",
     imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
   },
@@ -164,23 +154,6 @@ function PersonalView() {
   );
 }
 
-function StatusIcon({ status }: { status: Project["status"] }) {
-  if (status === "ONGOING") {
-    return (
-      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" aria-hidden="true">
-        <circle cx="12" cy="12" r="9" />
-        <path d="M12 7v5l3 2" />
-      </svg>
-    );
-  }
-  return (
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <circle cx="12" cy="12" r="9" />
-      <path d="m8 12 3 3 5-6" />
-    </svg>
-  );
-}
-
 function ProjectsView() {
   return (
     <div className="projects-grid">
@@ -222,22 +195,18 @@ function ProjectsView() {
           </div>
 
           <div className="project-body">
-            <div className="pc-head">
-              <span className={`pc-status pc-status-${p.status.toLowerCase()}`}>
-                <StatusIcon status={p.status} />
-                {p.status}
-              </span>
-              <span className="pc-meta">{p.meta.join(" · ")}</span>
-            </div>
-            <h3>
-              {p.title}
-              <span className="arrow" aria-hidden="true">↗</span>
-            </h3>
-            <p>{p.desc}</p>
             <div className="project-tags">
               {p.tags.map((t) => (
                 <span key={t}>{t}</span>
               ))}
+            </div>
+            <h3>
+              {p.title}
+              <span className="arrow">→</span>
+            </h3>
+            <p>{p.desc}</p>
+            <div className="project-links">
+              <span className="mono">{p.linkLabel}</span>
             </div>
           </div>
         </a>
