@@ -1359,6 +1359,10 @@ a.aboutv-github {
 [data-theme="dark"] .scattered-icon-inner {
   border-color: rgba(255, 255, 255, 0.08);
 }
+/* Logos whose icon files have extra padding: scale up to match the others */
+.scattered-icon.icon-boost .scattered-icon-inner img {
+  transform: scale(1.4);
+}
 /* Dark mode: every tile is black; dark logos are recolored to stay visible */
 [data-theme="dark"] .scattered-icon-inner {
   background: #000000 !important;
