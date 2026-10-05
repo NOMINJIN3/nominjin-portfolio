@@ -27,6 +27,8 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.nominjin.io"),
+  alternates: { canonical: "/" },
   title: "Nominjin — Agentic Tools Developer & Security Researcher",
   description:
     "Portfolio of Nominjin (NOMI) — Information Technology student at MUST-SICT, intern at erxes Mongolia. Building agentic tools, full-stack apps and breaking things ethically in cyber security.",
@@ -41,12 +43,21 @@ export const metadata: Metadata = {
     "React",
     "Mongolia",
   ],
-  authors: [{ name: "Nominjin" }],
+  authors: [{ name: "Nominjin Tsogtbayar", url: "https://www.nominjin.io" }],
   openGraph: {
     title: "Nominjin — Agentic Tools Developer & Security Researcher",
     description:
       "Code w/ purpose, automate. Agentic tools · full-stack · cyber security.",
     type: "website",
+    url: "https://www.nominjin.io",
+    siteName: "Nominjin",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nominjin — Agentic Tools Developer & Security Researcher",
+    description:
+      "Code w/ purpose, automate. Agentic tools · full-stack · cyber security.",
   },
 };
 

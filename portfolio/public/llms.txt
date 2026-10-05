@@ -1,0 +1,23 @@
+# Nominjin Tsogtbayar (NOMI)
+
+> 3rd-year Information Technology student at MUST-SICT (Mongolian University of Science and Technology) and Software Engineering Intern at erxes Mongolia. Builds LLM-powered agents, full-stack web apps, and practices offensive security on HackTheBox. Based in Ulaanbaatar, Mongolia. Available for work.
+
+## Focus
+- Agentic tools: LLM agents with LangChain and custom tools; exploring MCP servers and agentic developer loops
+- Full-stack: TypeScript, React, Next.js, Node.js, Python, Django, Docker, Linux
+- Security: HackTheBox machines — enumeration, privilege escalation, custom payloads
+
+## Experience
+- Software Engineering Intern, erxes Mongolia (2026 – present): full-stack and automation work on a source-available Experience OS — https://erxes.io
+- BSc Information Technology (in progress), MUST, School of Information and Communication Technology
+
+## Projects
+- [Profile Art Engine](https://github.com/NOMINJIN3/nominjin-profile-repo): automated GitHub profile artwork — ASCII portrait and contribution heatmap regenerated daily via GitHub Actions
+- [Live Terminal](https://nominjin3.github.io): interactive terminal-style home page
+- [This portfolio](https://www.nominjin.io): Next.js + React + TypeScript, custom CSS design system, no UI libraries
+
+## Contact
+- Website: https://www.nominjin.io
+- GitHub: https://github.com/NOMINJIN3
+- LinkedIn: https://linkedin.com/in/nominjin
+- Email: nominjin@gmail.com

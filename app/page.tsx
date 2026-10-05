@@ -6,6 +6,7 @@ import WorkSection from "./components/WorkSection";
 import TiltCard from "./components/TiltCard";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
+import ContactSection from "./components/ContactSection";
 import Scroll3D, { ScrollReveal3D } from "./components/Scroll3D";
 
 /* ── data ──────────────────────────────────────────────────── */
@@ -109,9 +110,45 @@ const SOCIALS = [
 
 /* ── page ──────────────────────────────────────────────────── */
 
-export default function Home() {
+/* Live public repo count, refreshed daily at build/revalidate time.
+   Falls back to a sane number if the GitHub API is rate-limited or down. */
+async function getRepoCount(): Promise<number> {
+  try {
+    const res = await fetch("https://api.github.com/users/NOMINJIN3", {
+      headers: { Accept: "application/vnd.github+json" },
+      next: { revalidate: 86400 },
+    });
+    if (!res.ok) return 10;
+    const data = (await res.json()) as { public_repos?: number };
+    return typeof data.public_repos === "number" && data.public_repos > 0 ? data.public_repos : 10;
+  } catch {
+    return 10;
+  }
+}
+
+const PERSON_JSON_LD = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Nominjin Tsogtbayar",
+  alternateName: "NOMI",
+  url: "https://www.nominjin.io",
+  image: "https://www.nominjin.io/nomi-photo.jpg",
+  jobTitle: "Software Engineering Intern",
+  worksFor: { "@type": "Organization", name: "erxes Mongolia", url: "https://erxes.io" },
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Mongolian University of Science and Technology" },
+  address: { "@type": "PostalAddress", addressLocality: "Ulaanbaatar", addressCountry: "MN" },
+  sameAs: ["https://github.com/NOMINJIN3", "https://linkedin.com/in/nominjin"],
+  knowsAbout: ["LLM agents", "LangChain", "Next.js", "React", "TypeScript", "Python", "Cyber security"],
+};
+
+export default async function Home() {
+  const repoCount = await getRepoCount();
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PERSON_JSON_LD) }}
+      />
       <div className="bg-stage" aria-hidden="true" />
       <div className="bg-grid" aria-hidden="true" />
       <Nav />
@@ -203,7 +240,10 @@ export default function Home() {
       </div>
 
       {/* ABOUT */}
-      <AboutSection />
+      <AboutSection repoCount={repoCount} />
+
+      {/* CONTACT — target of the hero "Connect" button */}
+      <ContactSection />
 
       {/* FOOTER */}
       <footer className="footer">
