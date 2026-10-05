@@ -12,6 +12,7 @@ type Project = {
   thumb: string;
   image?: string;
   imageDark?: string;               // optional screenshot shown in dark mode
+  imagePosition?: string;           // which part of the image to show (CSS object-position)
   imageAlt?: string;
 };
 
@@ -23,6 +24,9 @@ const PROJECTS: Project[] = [
     link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
     linkLabel: "github",
     thumb: "heatmap",
+    image: "/projects/profile-art-engine.webp",
+    imagePosition: "center bottom",
+    imageAlt: "3D isometric GitHub contribution graph with a language donut chart and an activity radar",
   },
   {
     title: "Live Terminal",
@@ -170,6 +174,7 @@ function ProjectsView() {
                 <img
                   className={p.imageDark ? "thumb-img-light" : undefined}
                   src={p.image}
+                  style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
                   alt={p.imageAlt ?? p.title}
                   width={1120}
                   height={700}
