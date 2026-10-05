@@ -600,8 +600,7 @@ section {
 
 /* ── 3D Parallax + Depth ──────────────────────────────── */
 .parallax-root {
-  transform-style: preserve-3d;
-  will-change: transform;
+  /* plain wrapper (no page-wide 3D layer; see ParallaxProvider.tsx) */
 }
 
 section {

@@ -219,8 +219,9 @@ export default async function Home() {
         </section>
       </Scroll3D>
 
-      {/* PROJECTS */}
-      <Scroll3D rotation={5} translateZ={50} speed={0.025}>
+      {/* PROJECTS — no 3D tilt here: Chrome drew hairline tile seams across the
+          terminal when this section was transformed in 3D */}
+      <div>
         <section id="projects">
           <div className="container">
             <Reveal>
@@ -231,7 +232,7 @@ export default async function Home() {
             </Reveal>
           </div>
         </section>
-      </Scroll3D>
+      </div>
 
       {/* MARQUEE */}
       <div className="marquee" aria-hidden="true">
