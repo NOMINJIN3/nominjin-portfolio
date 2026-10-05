@@ -11,6 +11,7 @@ type Project = {
   linkLabel: string;
   thumb: string;
   image?: string;
+  imageDark?: string;               // optional screenshot shown in dark mode
   imageAlt?: string;
 };
 
@@ -51,6 +52,7 @@ const PROJECTS: Project[] = [
     linkLabel: "nominjin.io",
     thumb: "code",
     image: "/projects/this-portfolio.webp",
+    imageDark: "/projects/this-portfolio-dark.webp",
     imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
   },
 ];
@@ -165,7 +167,26 @@ function ProjectsView() {
             <div className="thumb-bg" />
             {p.image ? (
               <div className="thumb-shot">
-                <img src={p.image} alt={p.imageAlt ?? p.title} width={1120} height={700} loading="lazy" decoding="async" />
+                <img
+                  className={p.imageDark ? "thumb-img-light" : undefined}
+                  src={p.image}
+                  alt={p.imageAlt ?? p.title}
+                  width={1120}
+                  height={700}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {p.imageDark && (
+                  <img
+                    className="thumb-img-dark"
+                    src={p.imageDark}
+                    alt={p.imageAlt ?? p.title}
+                    width={1120}
+                    height={700}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
               </div>
             ) : (
               <Thumb kind={p.thumb} />

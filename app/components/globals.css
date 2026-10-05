@@ -1893,6 +1893,10 @@ a.aboutv-github {
 @media (prefers-reduced-motion: reduce) {
   .thumb-shot img, .project-card:hover .thumb-shot img { transition: none; transform: none; }
 }
+/* Theme-matched screenshots: light image by default, dark image in dark mode */
+.thumb-shot .thumb-img-dark { display: none; }
+[data-theme="dark"] .thumb-shot .thumb-img-light { display: none; }
+[data-theme="dark"] .thumb-shot .thumb-img-dark { display: block; }
 .thumb-glyph {
   position: relative;
   font-family: var(--font-mono);
