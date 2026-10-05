@@ -12,7 +12,6 @@ type Project = {
   thumb: string;
   image?: string;
   imageAlt?: string;
-  url: string;                       // shown in the browser-bar
 };
 
 const PROJECTS: Project[] = [
@@ -23,7 +22,6 @@ const PROJECTS: Project[] = [
     link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
     linkLabel: "github",
     thumb: "heatmap",
-    url: "github.com/NOMINJIN3/nominjin-profile-repo",
   },
   {
     title: "Live Terminal",
@@ -32,7 +30,6 @@ const PROJECTS: Project[] = [
     link: "https://nominjin3.github.io",
     linkLabel: "live site",
     thumb: "terminal",
-    url: "nominjin3.github.io",
     image: "/projects/live-terminal.webp",
     imageAlt: "Live Terminal: terminal-style GitHub home with contribution stats and a whoami prompt",
   },
@@ -43,7 +40,6 @@ const PROJECTS: Project[] = [
     link: "https://app.hackthebox.com",
     linkLabel: "hackthebox",
     thumb: "shell",
-    url: "app.hackthebox.com",
     image: "/projects/offensive-security.webp",
     imageAlt: "HackTheBox profile page showing level and season progress",
   },
@@ -54,7 +50,6 @@ const PROJECTS: Project[] = [
     link: "https://www.nominjin.io",
     linkLabel: "nominjin.io",
     thumb: "code",
-    url: "nominjin.io",
     image: "/projects/this-portfolio.webp",
     imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
   },
@@ -165,35 +160,16 @@ function ProjectsView() {
           target="_blank"
           rel="noreferrer"
         >
-          {/* browser window bar */}
-          <div className="pc-chrome" aria-hidden="true">
-            <span className="pc-dots"><i /><i /><i /></span>
-            <span className="pc-url">
-              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true">
-                <circle cx="12" cy="12" r="9" />
-                <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" />
-              </svg>
-              <span className="pc-url-text">{p.url}</span>
-            </span>
-          </div>
-
-          <div className={`project-thumb${p.image ? " has-shot" : ""}`}>
+          <div className="project-thumb">
             <div className="thumb-bg" />
             {p.image ? (
-              <img
-                className="pc-shot"
-                src={p.image}
-                alt={p.imageAlt ?? p.title}
-                width={960}
-                height={620}
-                loading="lazy"
-                decoding="async"
-              />
+              <div className="thumb-shot">
+                <img src={p.image} alt={p.imageAlt ?? p.title} width={960} height={620} loading="lazy" decoding="async" />
+              </div>
             ) : (
               <Thumb kind={p.thumb} />
             )}
           </div>
-
           <div className="project-body">
             <div className="project-tags">
               {p.tags.map((t) => (

@@ -1848,56 +1848,12 @@ a.aboutv-github {
   opacity: 1;
   transform: translate(0, 0);
 }
-/* Browser-window bar on top of each project card */
-.pc-chrome {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 16px;
-  border-bottom: 1px solid var(--border);
-  background: var(--surface);
-}
-.pc-dots {
-  display: inline-flex;
-  gap: 7px;
-  flex-shrink: 0;
-}
-.pc-dots i {
-  width: 11px;
-  height: 11px;
-  border-radius: 50%;
-  background: #ff5f57;
-}
-.pc-dots i:nth-child(2) { background: #febc2e; }
-.pc-dots i:nth-child(3) { background: #28c840; }
-.pc-url {
-  flex: 1;
-  min-width: 0;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border);
-  background: var(--surface-2);
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-}
-.pc-url svg { flex-shrink: 0; opacity: 0.7; }
-.pc-url-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
 .project-thumb {
   position: relative;
-  aspect-ratio: 16 / 10;
+  height: 200px;
   display: grid;
   place-items: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--border);
 }
 .project-thumb .thumb-bg {
   position: absolute;
@@ -1911,27 +1867,35 @@ a.aboutv-github {
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
-/* Cards without a screenshot: scale the glyph up to fill the bigger window */
-.project-thumb:not(.has-shot) > svg {
-  position: relative;
-  width: 72%;
+/* Screenshot thumbnails: a window peeking up from the bottom of the card */
+.thumb-shot {
+  position: absolute;
+  left: 9%;
+  right: 9%;
+  top: 26px;
+  bottom: 0;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  border: 1px solid var(--border);
+  border-bottom: none;
+  background: var(--surface-2);
+  box-shadow: 0 -2px 30px color-mix(in srgb, var(--text) 14%, transparent);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+}
+.thumb-shot img {
+  display: block;
+  width: 100%;
   height: auto;
 }
-/* Screenshot fills the window, anchored to the top like a real page */
-.pc-shot {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-}
-.project-card:hover .pc-shot {
-  transform: scale(1.03);
+.project-card:hover .thumb-shot {
+  transform: translateY(-8px);
+  box-shadow: 0 -6px 40px color-mix(in srgb, var(--text) 20%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
-  .pc-shot, .project-card:hover .pc-shot { transition: none; transform: none; }
+  .thumb-shot, .project-card:hover .thumb-shot { transition: none; transform: none; }
+}
+@media (max-width: 640px) {
+  .thumb-shot { left: 6%; right: 6%; top: 18px; }
 }
 .thumb-glyph {
   position: relative;
@@ -2009,10 +1973,6 @@ a.aboutv-github {
 }
 .project-links a:hover {
   color: var(--cyan);
-}
-@media (max-width: 640px) {
-  .pc-chrome { padding: 10px 12px; gap: 10px; }
-  .pc-url { font-size: 11.5px; padding: 5px 10px; }
 }
 
 /* ── Contact (Get in touch) ───────────────────────────────── */
