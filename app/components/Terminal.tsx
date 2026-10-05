@@ -203,7 +203,7 @@ function runCommand(raw: string, history: string[]): Line[] {
 
     case "projects":
       return [
-        { kind: "out", segs: [seg("1  profile art engine   ", "acc"), seg("github.com/NOMINJIN3/NOMINJIN3", "")] },
+        { kind: "out", segs: [seg("1  profile art engine   ", "acc"), seg("github.com/NOMINJIN3", "")] },
         { kind: "out", segs: [seg("2  live terminal        ", "acc"), seg("nominjin3.github.io", "")] },
         { kind: "out", segs: [seg("3  offensive sec labs   ", "acc"), seg("app.hackthebox.com", "")] },
         { kind: "out", segs: [seg("4  this portfolio       ", "acc"), seg("nominjin.io", "")] },

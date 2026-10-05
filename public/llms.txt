@@ -12,7 +12,7 @@
 - BSc Information Technology (in progress), MUST, School of Information and Communication Technology
 
 ## Projects
-- [Profile Art Engine](https://github.com/NOMINJIN3/NOMINJIN3): automated GitHub profile artwork — ASCII portrait and contribution heatmap regenerated daily via GitHub Actions
+- [Profile Art Engine](https://github.com/NOMINJIN3): automated GitHub profile artwork — ASCII portrait and contribution heatmap regenerated daily via GitHub Actions
 - [Live Terminal](https://nominjin3.github.io): interactive terminal-style home page
 - [This portfolio](https://www.nominjin.io): Next.js + React + TypeScript, custom CSS design system, no UI libraries
 
