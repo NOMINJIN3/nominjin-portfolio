@@ -1864,6 +1864,15 @@ a.aboutv-github {
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
+/* Profile Art Engine heatmap: bigger and brighter */
+.thumb-heatmap {
+  position: relative;
+  width: min(66%, 420px);
+  height: auto;
+  filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--green) 18%, transparent));
+}
+.thumb-heatmap .heat-empty { fill: #dbe3ee; }
+[data-theme="dark"] .thumb-heatmap .heat-empty { fill: #263248; }
 /* Screenshot thumbnails: the image fills the whole preview area */
 .thumb-shot {
   position: absolute;

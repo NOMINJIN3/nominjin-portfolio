@@ -61,12 +61,12 @@ function Thumb({ kind }: { kind: string }) {
   if (kind === "heatmap") {
     const cells = Array.from({ length: 70 }, (_, i) => i);
     return (
-      <svg viewBox="0 0 200 60" width="200" height="60" aria-hidden="true">
+      <svg className="thumb-heatmap" viewBox="0 0 202 76" width="202" height="76" aria-hidden="true">
         {cells.map((i) => {
           const intensity = ((i * 37) % 100) / 100;
           const green = intensity > 0.66;
           const blue = !green && intensity > 0.33;
-          const fill = green ? "#34d399" : blue ? "#22d3ee" : "#cbd5e1";
+          const fill = green ? "#34d399" : blue ? "#22d3ee" : undefined; // empty cells styled in CSS
           return (
             <rect
               key={i}
@@ -76,7 +76,8 @@ function Thumb({ kind }: { kind: string }) {
               height="10"
               rx="2.5"
               fill={fill}
-              opacity={0.35 + intensity * 0.65}
+              className={fill ? undefined : "heat-empty"}
+              opacity={fill ? 0.7 + intensity * 0.3 : 1}
             />
           );
         })}
