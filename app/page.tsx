@@ -137,7 +137,7 @@ const PERSON_JSON_LD = {
   worksFor: { "@type": "Organization", name: "erxes Mongolia", url: "https://erxes.io" },
   alumniOf: { "@type": "CollegeOrUniversity", name: "Mongolian University of Science and Technology" },
   address: { "@type": "PostalAddress", addressLocality: "Ulaanbaatar", addressCountry: "MN" },
-  sameAs: ["https://github.com/NOMINJIN3", "https://linkedin.com/in/nominjin"],
+  sameAs: ["https://github.com/NOMINJIN3", "https://linkedin.com/in/nominjin", "https://x.com/nomin1433"],
   knowsAbout: ["LLM agents", "LangChain", "Next.js", "React", "TypeScript", "Python", "Cyber security"],
 };
 
@@ -258,7 +258,7 @@ export default async function Home() {
             <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer" className="footer-pill-link">
               GitHub.
             </a>
-            <a href="mailto:nominjin@gmail.com" className="footer-pill-link">
+            <a href="mailto:ts.nominjin2006@gmail.com" className="footer-pill-link">
               Email.
             </a>
             <a href="/nomi.txt" className="footer-pill-link">
