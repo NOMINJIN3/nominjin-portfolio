@@ -18,11 +18,12 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>(() =>
-    typeof document !== "undefined" && document.documentElement.dataset.theme === "dark"
-      ? "dark"
-      : "light"
-  );
+  // Start as "dark" on both server and client (matches the site default) so hydration
+  // never mismatches; then sync to whatever the theme script in <head> actually applied.
+  const [theme, setTheme] = useState<Theme>("dark");
+  useEffect(() => {
+    if (document.documentElement.dataset.theme === "light") setTheme("light");
+  }, []);
   const glowRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
 
