@@ -317,14 +317,16 @@ export default function ScatteredStack() {
     <div className="scattered-stack" ref={containerRef} role="list" aria-label="Tech stack">
       {techTools.map((tool, i) => {
         const icon = ICONS[tool.name];
-        /* these logos are dark — keep them on a light tile in dark mode */
-        const keepLight = ["Next.js", "GitHub", "Linux"].includes(tool.name);
+        /* dark logos: in dark mode, recolor them so they show on the black tile */
+        const darkLogo =
+          tool.name === "Linux" ? " icon-outline-dark" :
+          ["Next.js", "GitHub"].includes(tool.name) ? " icon-invert-dark" : "";
 
         return (
           <div
             key={tool.name}
             ref={(el) => { iconRefs.current[i] = el; }}
-            className={`scattered-icon${keepLight ? " icon-keep-light" : ""}`}
+            className={`scattered-icon${darkLogo}`}
             role="listitem"
             aria-label={tool.name}
           >

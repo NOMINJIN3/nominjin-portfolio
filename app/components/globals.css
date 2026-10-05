@@ -1359,12 +1359,17 @@ a.aboutv-github {
 [data-theme="dark"] .scattered-icon-inner {
   border-color: rgba(255, 255, 255, 0.08);
 }
-/* Dark mode: tiles go black; dark logos keep a light tile */
+/* Dark mode: every tile is black; dark logos are recolored to stay visible */
 [data-theme="dark"] .scattered-icon-inner {
   background: #000000 !important;
 }
-[data-theme="dark"] .scattered-icon.icon-keep-light .scattered-icon-inner {
-  background: #ffffff !important;
+/* Next.js, GitHub: black-on-white marks → white-on-black */
+[data-theme="dark"] .scattered-icon.icon-invert-dark .scattered-icon-inner img {
+  filter: invert(1);
+}
+/* Linux: keep Tux's colors, add a light outline so his black body shows */
+[data-theme="dark"] .scattered-icon.icon-outline-dark .scattered-icon-inner img {
+  filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
 }
 .stack-section .section-label,
 .stack-section .section-sub {
