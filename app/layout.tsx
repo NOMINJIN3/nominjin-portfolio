@@ -62,15 +62,15 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#05070d",
+  themeColor: "#f7f9fc",
 };
 
 const THEME_INIT = `(function () {
   try {
     var stored = null;
     try { stored = localStorage.getItem("theme"); } catch (e) {}
-    // dark by default; only a visitor who picked light with the toggle gets light
-    var dark = stored !== "light";
+    // light by default; only a visitor who picked dark with the toggle gets dark
+    var dark = stored === "dark";
     var el = document.documentElement;
     el.dataset.theme = dark ? "dark" : "light";
     var meta = document.querySelector('meta[name="theme-color"]');
