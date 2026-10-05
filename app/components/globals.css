@@ -1263,18 +1263,23 @@ a.aboutv-github {
   height: 600px;
   margin: 0 auto;
   overflow: visible;
+  touch-action: pan-y; /* taps ripple the icons; vertical scrolling still works */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
+/* Icons start tucked behind the center text; JS springs them out with transforms */
 .scattered-icon {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  animation: scattered-float 6s ease-in-out infinite alternate;
+  left: calc(50% - var(--tile) / 2);
+  top: calc(50% - var(--tile) / 2);
+  width: var(--tile);
+  transform: scale(0.35);
+  will-change: transform;
+  z-index: 1;
 }
-@keyframes scattered-float {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
+.scattered-icon.is-focused {
+  z-index: 20;
 }
 .scattered-icon-inner {
   width: 88px;
@@ -1287,15 +1292,29 @@ a.aboutv-github {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.scattered-icon:hover .scattered-icon-inner {
-  transform: scale(1.15);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+.scattered-icon.is-focused .scattered-icon-inner {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 .scattered-icon-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px);
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
-  color: var(--text-dim);
+  font-weight: 600;
   white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.scattered-icon.is-focused .scattered-icon-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 .scattered-center {
   position: absolute;
@@ -1322,6 +1341,7 @@ a.aboutv-github {
 }
 @media (max-width: 768px) {
   .scattered-stack {
+    --tile: 68px;
     height: 450px;
   }
   .scattered-icon-inner {
