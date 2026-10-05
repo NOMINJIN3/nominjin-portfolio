@@ -1850,7 +1850,7 @@ a.aboutv-github {
 }
 .project-thumb {
   position: relative;
-  height: 200px;
+  aspect-ratio: 16 / 10;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1858,44 +1858,37 @@ a.aboutv-github {
 .project-thumb .thumb-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(420px 240px at 20% 0%, color-mix(in srgb, var(--cyan) 16%, transparent), transparent 60%),
-    radial-gradient(420px 260px at 90% 100%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 60%),
-    var(--thumb-base);
+  background: var(--surface-2);
   transition: transform 0.6s ease;
 }
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
-/* Screenshot thumbnails: a window peeking up from the bottom of the card */
+/* Cards without a screenshot: enlarge the glyph to fill the preview */
+.project-thumb > svg {
+  position: relative;
+  width: 62%;
+  height: auto;
+}
+/* Screenshot thumbnails: the image fills the whole preview area */
 .thumb-shot {
   position: absolute;
-  left: 9%;
-  right: 9%;
-  top: 26px;
-  bottom: 0;
+  inset: 0;
   overflow: hidden;
-  border-radius: 10px 10px 0 0;
-  border: 1px solid var(--border);
-  border-bottom: none;
-  background: var(--surface-2);
-  box-shadow: 0 -2px 30px color-mix(in srgb, var(--text) 14%, transparent);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
 .thumb-shot img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.project-card:hover .thumb-shot {
-  transform: translateY(-8px);
-  box-shadow: 0 -6px 40px color-mix(in srgb, var(--text) 20%, transparent);
+.project-card:hover .thumb-shot img {
+  transform: scale(1.03);
 }
 @media (prefers-reduced-motion: reduce) {
-  .thumb-shot, .project-card:hover .thumb-shot { transition: none; transform: none; }
-}
-@media (max-width: 640px) {
-  .thumb-shot { left: 6%; right: 6%; top: 18px; }
+  .thumb-shot img, .project-card:hover .thumb-shot img { transition: none; transform: none; }
 }
 .thumb-glyph {
   position: relative;

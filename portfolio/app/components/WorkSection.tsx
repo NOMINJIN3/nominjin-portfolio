@@ -164,7 +164,7 @@ function ProjectsView() {
             <div className="thumb-bg" />
             {p.image ? (
               <div className="thumb-shot">
-                <img src={p.image} alt={p.imageAlt ?? p.title} width={960} height={620} loading="lazy" decoding="async" />
+                <img src={p.image} alt={p.imageAlt ?? p.title} width={1120} height={700} loading="lazy" decoding="async" />
               </div>
             ) : (
               <Thumb kind={p.thumb} />
