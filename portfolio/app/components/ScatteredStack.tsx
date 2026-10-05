@@ -323,12 +323,14 @@ export default function ScatteredStack() {
           ["Next.js", "GitHub"].includes(tool.name) ? " icon-invert-dark" : "";
         /* these icon files have extra padding, so the logo looks small */
         const boost = ["Linux", "Docker"].includes(tool.name) ? " icon-boost" : "";
+        /* light mode: only JS and TS keep their colored tile; the rest float without a tile */
+        const bare = ["JavaScript", "TypeScript"].includes(tool.name) ? "" : " icon-bare";
 
         return (
           <div
             key={tool.name}
             ref={(el) => { iconRefs.current[i] = el; }}
-            className={`scattered-icon${darkLogo}${boost}`}
+            className={`scattered-icon${darkLogo}${boost}${bare}`}
             role="listitem"
             aria-label={tool.name}
           >
