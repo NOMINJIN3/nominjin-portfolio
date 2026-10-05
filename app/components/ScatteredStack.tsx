@@ -108,11 +108,11 @@ const POSITIONS: { x: number; y: number }[] = [
   { x: 92, y: 6  },  // top-right
   { x: 3,  y: 32 },  // mid-left
   { x: 22, y: 30 },  // mid-left-center
-  { x: 72, y: 32 },  // mid-right-center
+  { x: 76, y: 32 },  // mid-right-center
   { x: 90, y: 30 },  // mid-right
   { x: 5,  y: 58 },  // lower-left
   { x: 25, y: 56 },  // lower-left-center
-  { x: 72, y: 58 },  // lower-right-center
+  { x: 76, y: 58 },  // lower-right-center
   { x: 92, y: 56 },  // lower-right
   { x: 15, y: 80 },  // bottom-left
   { x: 80, y: 80 },  // bottom-right
@@ -171,8 +171,9 @@ export default function ScatteredStack() {
             key={tool.name}
             className={`scattered-icon${following ? " following" : ""}${keepLight ? " icon-keep-light" : ""}`}
             style={{
-              left: `${x}%`,
-              top: `${y}%`,
+              // offset by the tile size so icons near 100% stay inside the box on small screens
+              left: `calc(${x}% - ${x / 100} * var(--tile))`,
+              top: `calc(${y}% - ${y / 100} * var(--tile))`,
               zIndex: following ? 20 : 1,
               animationDelay: `${i * 0.3}s`,
               transition: following

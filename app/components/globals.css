@@ -1256,6 +1256,7 @@ a.aboutv-github {
   padding: 60px 0 80px;
 }
 .scattered-stack {
+  --tile: 88px;
   position: relative;
   width: 100%;
   max-width: 1200px;
@@ -2009,6 +2010,9 @@ a.contactv-value:hover {
   display: flex;
   flex-direction: column;
 }
+.contactv-wide {
+  grid-column: 1 / -1;
+}
 .contactv-field label {
   font-size: 13px;
   font-weight: 600;
@@ -2045,7 +2049,7 @@ a.contactv-value:hover {
   grid-column: 1 / -1;
   font-size: 15px;
   font-weight: 700;
-  color: var(--btn-ink, #0d1322);
+  color: var(--bg);
   background: var(--text);
   border: none;
   border-radius: 8px;
@@ -2276,6 +2280,9 @@ a.contactv-value:hover {
   .nav-burger {
     display: flex;
   }
+  .nav-pill-toggle {
+    display: none;
+  }
   .float-chip-1 {
     left: -10px;
   }
@@ -2385,6 +2392,9 @@ section,
   }
 
   /* Smaller scattered icons so edge positions fit */
+  .scattered-stack {
+    --tile: 56px;
+  }
   .scattered-icon-inner {
     width: 56px;
     height: 56px;

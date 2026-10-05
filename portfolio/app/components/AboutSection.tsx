@@ -106,7 +106,7 @@ export default function AboutSection({ repoCount = 10 }: { repoCount?: number })
             <Reveal delay={100}>
               <div className="aboutv-card">
                 <div className="aboutv-id">
-                  <img src="/nomi-photo.jpg" alt="Nominjin Tsogtbayar" className="aboutv-avatar" />
+                  <img src="/nomi-avatar.webp" alt="Nominjin Tsogtbayar" className="aboutv-avatar" width={800} height={600} loading="lazy" />
                   <div>
                     <h3 className="aboutv-name">Nominjin Tsogtbayar</h3>
                     <div className="aboutv-meta">

@@ -50,13 +50,12 @@ export default function ContactSection() {
     const data = new FormData(e.currentTarget);
     const name = String(data.get("name") || "");
     const email = String(data.get("email") || "");
-    const phone = String(data.get("phone") || "");
     const subject = String(data.get("subject") || "Hello");
     const message = String(data.get("message") || "");
 
     const mailSubject = encodeURIComponent(`[Portfolio] ${subject}`);
     const mailBody = encodeURIComponent(
-      `From: ${name} <${email}>\nPhone: ${phone || "—"}\n\n${message}`
+      `From: ${name} <${email}>\n\n${message}`
     );
     window.location.href = `mailto:${EMAIL}?subject=${mailSubject}&body=${mailBody}`;
     setSent(true);
@@ -77,10 +76,6 @@ export default function ContactSection() {
               </a>
             </div>
 
-            <div className="contactv-line">
-              <span className="contactv-label">Phone:</span>
-              <span className="contactv-value">Available upon request</span>
-            </div>
 
             <div className="contactv-social-block">
               <span className="contactv-label">Follow me</span>
@@ -113,11 +108,7 @@ export default function ContactSection() {
               <label htmlFor="cv-email">Email address</label>
               <input id="cv-email" name="email" type="email" placeholder="Your email address" required />
             </div>
-            <div className="contactv-field">
-              <label htmlFor="cv-phone">Phone</label>
-              <input id="cv-phone" name="phone" type="tel" placeholder="Your phone number" />
-            </div>
-            <div className="contactv-field">
+            <div className="contactv-field contactv-wide">
               <label htmlFor="cv-subject">Subject</label>
               <input id="cv-subject" name="subject" type="text" placeholder="Subject" />
             </div>

@@ -161,9 +161,12 @@ export default async function Home() {
           <Reveal>
             <div className="hero-avatar-wrap">
               <img
-                src="/nomi-photo.jpg"
+                src="/nomi-avatar.webp"
                 alt="Nominjin Tsogtbayar"
                 className="hero-avatar-img"
+                width={800}
+                height={600}
+                fetchPriority="high"
               />
             </div>
           </Reveal>

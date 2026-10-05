@@ -103,7 +103,7 @@ function PersonalView() {
     <div className="work-personal">
       <div className="work-personal-card">
         <div className="work-personal-avatar">
-          <img src="/nomi-photo.jpg" alt="Nominjin" />
+          <img src="/nomi-avatar.webp" alt="Nominjin" width={800} height={600} loading="lazy" />
         </div>
         <div className="work-personal-info">
           <h3>Nominjin (NOMI)</h3>
