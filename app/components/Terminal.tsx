@@ -20,16 +20,6 @@ const seg = (text: string, cls?: string): Seg => ({ text, cls });
 const PROMPT =
   '<span class="term-prompt"><span class="host">nominjin@portfolio</span>:~$ </span>';
 
-/* ── banner ───────────────────────────────────────────────── */
-
-const BANNER = [
-  " _   _   ___   __  __  ___   _ ",
-  "| \\ | | / _ \\ |  \\/  |_ _| | |",
-  "|  \\| | | | | || |\\/| || |  | |",
-  "| |\\  | | |_| || |  | || |  |_|",
-  "|_| \\_| \\___/ |_|  |_|___| (_)",
-];
-
 /* ── boot sequence ────────────────────────────────────────── */
 
 const BOOT: Line[] = [
@@ -47,13 +37,13 @@ const BOOT: Line[] = [
 
 const COMMAND_NAMES = [
   "help", "whoami", "about", "focus", "skills", "projects", "contact",
-  "motto", "ls", "cat", "echo", "sudo", "history", "banner", "clear", "exit",
+  "ls", "cat", "echo", "sudo", "history", "clear", "exit",
 ];
 
-const CAT_FILES = ["motto.txt", "profile.json", "skills.json", "status.txt", "about.md"];
+const CAT_FILES = ["profile.json", "skills.json", "status.txt", "about.md"];
 
 const LS_FILES = [
-  "about.md", "focus/", "projects/", "skills.json", "motto.txt", "status.txt", "contact.md",
+  "about.md", "focus/", "projects/", "skills.json", "status.txt", "contact.md",
 ];
 
 const HELP: [string, string][] = [
@@ -64,18 +54,15 @@ const HELP: [string, string][] = [
   ["skills", "tech arsenal"],
   ["projects", "selected work"],
   ["contact", "how to reach me"],
-  ["motto", "the philosophy"],
   ["ls", "list ~/ files"],
-  ["cat <file>", "read motto.txt, profile.json, skills.json, status.txt"],
+  ["cat <file>", "read profile.json, skills.json, status.txt"],
   ["echo <text>", "print text"],
   ["sudo", "escalate (maybe)"],
   ["history", "command history"],
-  ["banner", "show the banner"],
   ["clear", "clear the screen"],
 ];
 
 const FILES: Record<string, Seg[]> = {
-  "motto.txt": [seg('Code w/ purpose, automate.', "warn")],
   "status.txt": [seg("open to internships & security gigs", "ok")],
   "profile.json": [
     seg("{ ", "dim"),
@@ -145,7 +132,7 @@ function runCommand(raw: string, history: string[]): Line[] {
         {
           kind: "out",
           segs: [
-            seg("  Tab: complete commands & files · ↑/↓: history · 'banner' for the logo", "dim"),
+            seg("  Tab: complete commands & files · ↑/↓: history", "dim"),
           ],
         },
       ];
@@ -218,9 +205,6 @@ function runCommand(raw: string, history: string[]): Line[] {
         { kind: "out", segs: [seg("inbox: always accepting packets 📡", "dim")] },
       ];
 
-    case "motto":
-      return [{ kind: "out", segs: [seg('"Code w/ purpose, automate."', "warn"), seg(" — nominjin", "dim")] }];
-
     case "ls": {
       const target = args.join(" ");
       if (target.includes("focus")) {
@@ -235,7 +219,7 @@ function runCommand(raw: string, history: string[]): Line[] {
         {
           kind: "out",
           segs: [
-            seg("about.md  focus/  projects/  skills.json  motto.txt  status.txt  contact.md", "acc"),
+            seg("about.md  focus/  projects/  skills.json  status.txt  contact.md", "acc"),
           ],
         },
       ];
@@ -271,14 +255,6 @@ function runCommand(raw: string, history: string[]): Line[] {
         segs: [seg(String(i + 1).padStart(3), "dim"), seg("  " + c, "")],
       }));
     }
-
-    case "banner":
-      return [
-        ...BANNER.map(
-          (row) => ({ kind: "out", segs: [seg(row, "acc")] }) as Line
-        ),
-        { kind: "out", segs: [seg("code w/ purpose, automate.", "dim")] },
-      ];
 
     case "exit":
       return [{ kind: "out", segs: [seg("don't leave yet — try 'help' 😄", "warn")] }];
