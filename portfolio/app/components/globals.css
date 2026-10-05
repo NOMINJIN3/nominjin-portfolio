@@ -1361,7 +1361,7 @@ a.aboutv-github {
 }
 /* All skill logos: one shared size knob (CSS `scale` stacks with the per-logo transforms below) */
 .scattered-stack {
-  --logo-scale: 1.25;
+  --logo-scale: 1.26;
 }
 .scattered-icon-inner > img,
 .scattered-icon-inner > svg {
