@@ -261,8 +261,8 @@ export default async function Home() {
             <a href="mailto:nominjin@gmail.com" className="footer-pill-link">
               Email.
             </a>
-            <a href="/llms.txt" className="footer-pill-link">
-              llms.txt
+            <a href="/nomi.txt" className="footer-pill-link">
+              nomi.txt
             </a>
           </div>
           <div className="footer-copy">
