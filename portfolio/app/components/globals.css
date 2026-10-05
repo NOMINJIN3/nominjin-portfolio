@@ -1850,7 +1850,7 @@ a.aboutv-github {
 }
 .project-thumb {
   position: relative;
-  height: 200px;
+  aspect-ratio: 16 / 10; /* tall enough to show full screenshots */
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1867,35 +1867,35 @@ a.aboutv-github {
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
-/* Screenshot thumbnails: a window peeking up from the bottom of the card */
+/* Screenshot thumbnails: the full image, framed inside the card */
 .thumb-shot {
   position: absolute;
-  left: 9%;
-  right: 9%;
-  top: 26px;
-  bottom: 0;
-  overflow: hidden;
-  border-radius: 10px 10px 0 0;
-  border: 1px solid var(--border);
-  border-bottom: none;
-  background: var(--surface-2);
-  box-shadow: 0 -2px 30px color-mix(in srgb, var(--text) 14%, transparent);
-  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
+  inset: 18px;
 }
 .thumb-shot img {
+  /* absolutely centered so max-height resolves against the frame → never cropped */
+  position: absolute;
+  inset: 0;
+  margin: auto;
   display: block;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  box-shadow: 0 10px 30px color-mix(in srgb, var(--text) 16%, transparent);
+  transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s ease;
 }
-.project-card:hover .thumb-shot {
-  transform: translateY(-8px);
-  box-shadow: 0 -6px 40px color-mix(in srgb, var(--text) 20%, transparent);
+.project-card:hover .thumb-shot img {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 16px 40px color-mix(in srgb, var(--text) 22%, transparent);
 }
 @media (prefers-reduced-motion: reduce) {
-  .thumb-shot, .project-card:hover .thumb-shot { transition: none; transform: none; }
+  .thumb-shot img, .project-card:hover .thumb-shot img { transition: none; transform: none; }
 }
 @media (max-width: 640px) {
-  .thumb-shot { left: 6%; right: 6%; top: 18px; }
+  .thumb-shot { inset: 12px; }
 }
 .thumb-glyph {
   position: relative;
