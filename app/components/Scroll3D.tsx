@@ -45,9 +45,11 @@ export default function Scroll3D({
         const tz = intensity * translateZ;
         const ry = (p - 0.5) * 3 * intensity; // subtle Y rotation
 
+        // perspective() inside the transform is enough for the tilt. Don't use
+        // transform-style: preserve-3d here: it puts the section's own box in the
+        // same 3D space as its children and swallows clicks on cards and tabs.
         el.style.transform =
           `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${tz}px)`;
-        el.style.transformStyle = "preserve-3d";
       });
     }
 

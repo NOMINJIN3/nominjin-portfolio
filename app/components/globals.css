@@ -653,7 +653,7 @@ section:not(.hero) {
 /* ── Scroll3D Effects ─────────────────────────────────── */
 .scroll-3d {
   will-change: transform;
-  transform-style: preserve-3d;
+  transform-style: flat; /* preserve-3d here blocked clicks inside the section */
 }
 
 .scroll-reveal-3d {
@@ -1785,6 +1785,9 @@ a.aboutv-github {
   gap: 18px;
 }
 .work-published-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
   padding: 28px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -1818,7 +1821,8 @@ a.aboutv-github {
   color: var(--cyan);
   transition: color 0.2s;
 }
-.work-published-link:hover {
+.work-published-link:hover,
+.work-published-card:hover .work-published-link {
   color: var(--text);
 }
 

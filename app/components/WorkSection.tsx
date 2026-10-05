@@ -21,7 +21,7 @@ const PROJECTS: Project[] = [
     title: "Profile Art Engine",
     tags: ["Python", "GitHub Actions", "SVG"],
     desc: "An automated GitHub profile artwork pipeline — monochrome ASCII portrait and a contribution heatmap that regenerates itself daily.",
-    link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
+    link: "https://github.com/NOMINJIN3/NOMINJIN3",
     linkLabel: "github",
     thumb: "heatmap",
     image: "/projects/profile-art-engine-light.webp",
@@ -220,27 +220,48 @@ function ProjectsView() {
   );
 }
 
+const PUBLISHED = [
+  {
+    icon: "📝",
+    title: "Portfolio Art Engine",
+    desc: "Automated GitHub profile artwork — monochrome ASCII portrait and contribution heatmap that regenerates daily via GitHub Actions.",
+    href: "https://github.com/NOMINJIN3/NOMINJIN3",
+    cta: "View Repo →",
+  },
+  {
+    icon: "🌐",
+    title: "nominjin3.github.io",
+    desc: "Interactive terminal-style landing page — type commands, explore the stack, meet the agent.",
+    href: "https://nominjin3.github.io",
+    cta: "Visit Site →",
+  },
+  {
+    icon: "🔒",
+    title: "HackTheBox Writeups",
+    desc: "Hands-on offensive security machines with full enumeration-to-root chains, custom payloads and responsible disclosure.",
+    href: "https://app.hackthebox.com",
+    cta: "HackTheBox →",
+  },
+];
+
 function PublishedView() {
   return (
     <div className="work-published">
-      <div className="work-published-card">
-        <div className="work-published-icon">📝</div>
-        <h3>Portfolio Art Engine</h3>
-        <p>Automated GitHub profile artwork — monochrome ASCII portrait and contribution heatmap that regenerates daily via GitHub Actions.</p>
-        <a href="https://github.com/NOMINJIN3/nominjin-profile-repo" target="_blank" rel="noreferrer" className="work-published-link">View Repo →</a>
-      </div>
-      <div className="work-published-card">
-        <div className="work-published-icon">🌐</div>
-        <h3>nominjin3.github.io</h3>
-        <p>Interactive terminal-style landing page — type commands, explore the stack, meet the agent.</p>
-        <a href="https://nominjin3.github.io" target="_blank" rel="noreferrer" className="work-published-link">Visit Site →</a>
-      </div>
-      <div className="work-published-card">
-        <div className="work-published-icon">🔒</div>
-        <h3>HackTheBox Writeups</h3>
-        <p>Hands-on offensive security machines with full enumeration-to-root chains, custom payloads and responsible disclosure.</p>
-        <a href="https://app.hackthebox.com" target="_blank" rel="noreferrer" className="work-published-link">HackTheBox →</a>
-      </div>
+      {PUBLISHED.map((c) => (
+        // whole card is the link, not just the small text at the bottom
+        <a
+          key={c.title}
+          className="work-published-card"
+          href={c.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="work-published-icon" aria-hidden="true">{c.icon}</div>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <span className="work-published-link">{c.cta}</span>
+        </a>
+      ))}
     </div>
   );
 }
