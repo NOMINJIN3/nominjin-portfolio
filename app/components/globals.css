@@ -1850,7 +1850,7 @@ a.aboutv-github {
 }
 .project-thumb {
   position: relative;
-  height: 300px;
+  height: 200px;
   display: grid;
   place-items: center;
   overflow: hidden;
@@ -1870,9 +1870,9 @@ a.aboutv-github {
 /* Screenshot thumbnails: a window peeking up from the bottom of the card */
 .thumb-shot {
   position: absolute;
-  left: 5%;
-  right: 5%;
-  top: 24px;
+  left: 9%;
+  right: 9%;
+  top: 26px;
   bottom: 0;
   overflow: hidden;
   border-radius: 10px 10px 0 0;
@@ -1895,8 +1895,7 @@ a.aboutv-github {
   .thumb-shot, .project-card:hover .thumb-shot { transition: none; transform: none; }
 }
 @media (max-width: 640px) {
-  .project-thumb { height: 230px; }
-  .thumb-shot { left: 5%; right: 5%; top: 18px; }
+  .thumb-shot { left: 6%; right: 6%; top: 18px; }
 }
 .thumb-glyph {
   position: relative;
