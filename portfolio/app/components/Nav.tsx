@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 const LINKS = [
   { href: "#skills", label: "Skills." },
   { href: "#projects", label: "Work." },
+  { href: "#contact", label: "Contact." },
   { href: "https://linkedin.com/in/nominjin", label: "LinkedIn." },
   { href: "https://github.com/NOMINJIN3", label: "Github." },
 ];
@@ -17,11 +18,12 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [expanded, setExpanded] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>(() =>
-    typeof document !== "undefined" && document.documentElement.dataset.theme === "dark"
-      ? "dark"
-      : "light"
-  );
+  // Start as "light" on both server and client (matches the site default) so hydration
+  // never mismatches; then sync to whatever the theme script in <head> actually applied.
+  const [theme, setTheme] = useState<Theme>("light");
+  useEffect(() => {
+    if (document.documentElement.dataset.theme === "dark") setTheme("dark");
+  }, []);
   const glowRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
 

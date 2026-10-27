@@ -1,24 +1,44 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { techTools } from "../data/tech";
 
-/* Official logos (devicon CDN) — tile bg only shows through transparent areas */
-const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }> = {
+/* Official devicon logos, served from /public/logos — tile bg only shows through transparent areas */
+export const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }> = {
   JavaScript: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
-    bg: "#f7df1e",
+    /* shield-style JS logo */
+    bg: "#ffffff",
+    icon: (
+      <svg viewBox="0 0 100 100" width="58" height="58" aria-hidden="true">
+        <path fill="#d4b830" d="M16.4 11.7h67.2L77.9 80 50 87.9 22.1 80z" />
+        <path fill="#f9db23" d="M50 17.9h27.6l-4.7 59.2L50 82.9z" />
+        <path fill="#eef1f2" d="M41.1 26.4h6.5v45L27.9 66.4v-8.1l13.2 2.8z" />
+        <path fill="#eef1f2" d="M53.1 26.4h21.2l-.4 7.9H59.6l-.3 12.1 13.6-1.4-1.9 21.4-18.1 5v-7.8l13.1-2.9v-7.1l-12.9 2.1z" />
+      </svg>
+    ),
   },
   TypeScript: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg",
-    bg: "#3178c6",
+    /* rounded-square TS logo */
+    bg: "#ffffff",
+    icon: (
+      <svg viewBox="0 0 100 100" width="46" height="46" aria-hidden="true">
+        <rect x="0" y="0" width="100" height="100" rx="7" fill="#3178c6" />
+        <path fill="#ffffff" d="M16 42.5h40.5v10.4H41.6V93H30.9V52.9H16z" />
+        <path
+          fill="none"
+          stroke="#ffffff"
+          strokeWidth="10.5"
+          d="M86.5 52.5C83.5 48.8 79.3 47.6 75.2 47.6 68.8 47.6 64.1 50.6 64.1 55.8 64.1 61.2 69.4 62.8 75.1 64.6 81.7 66.7 87.2 69.2 87.2 76.1 87.2 83.1 81.3 86.8 74.6 86.8 69.6 86.8 64.9 85 61.6 81.2"
+        />
+      </svg>
+    ),
   },
   Python: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    src: "/logos/python-original.svg",
     bg: "#ffffff",
   },
   Java: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    src: "/logos/java-original.svg",
     bg: "#ffffff",
   },
   "C Language": {
@@ -54,52 +74,52 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
     ),
   },
   "C++": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    src: "/logos/cplusplus-original.svg",
     bg: "#ffffff",
   },
   "Next.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    src: "/logos/nextjs-original.svg",
     bg: "#ffffff",
   },
   "React.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    src: "/logos/react-original.svg",
     bg: "#ffffff",
   },
   "Tailwind CSS": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    src: "/logos/tailwindcss-original.svg",
     bg: "#ffffff",
   },
   Docker: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    src: "/logos/docker-original.svg",
     bg: "#ffffff",
   },
   Git: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    src: "/logos/git-original.svg",
     bg: "#ffffff",
   },
   GitHub: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    src: "/logos/github-original.svg",
     bg: "#ffffff",
   },
   "Node.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    src: "/logos/nodejs-original.svg",
     bg: "#ffffff",
   },
   VSCode: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    src: "/logos/vscode-original.svg",
     bg: "#ffffff",
   },
   Linux: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+    src: "/logos/linux-original.svg",
     bg: "#ffffff",
   },
   HTML: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    src: "/logos/html5-original.svg",
     bg: "#ffffff",
   },
 };
 
-/* Scattered positions — icons around the center text, no overlap */
+/* Home positions (% of the free area) — icons ring the center text */
 const POSITIONS: { x: number; y: number }[] = [
   { x: 5,  y: 5  },  // top-left
   { x: 25, y: 3  },  // top-center-left
@@ -108,78 +128,231 @@ const POSITIONS: { x: number; y: number }[] = [
   { x: 92, y: 6  },  // top-right
   { x: 3,  y: 32 },  // mid-left
   { x: 22, y: 30 },  // mid-left-center
-  { x: 72, y: 32 },  // mid-right-center
+  { x: 76, y: 32 },  // mid-right-center
   { x: 90, y: 30 },  // mid-right
   { x: 5,  y: 58 },  // lower-left
   { x: 25, y: 56 },  // lower-left-center
-  { x: 72, y: 58 },  // lower-right-center
+  { x: 76, y: 58 },  // lower-right-center
   { x: 92, y: 56 },  // lower-right
   { x: 15, y: 80 },  // bottom-left
   { x: 80, y: 80 },  // bottom-right
   { x: 45, y: 82 },  // bottom-center
 ];
 
+/* ── motion tuning ─────────────────────────────────────────── */
+const STIFFNESS = 140;     // spring pull toward target (higher = snappier)
+const DAMPING = 14;        // friction (lower = more wobble)
+const REPEL_RADIUS = 190;  // px around the cursor that pushes icons away
+const REPEL_PUSH = 70;     // max px an icon is pushed aside
+const FOCUS_PULL = 0.28;   // how far the pointed-at icon leans toward the cursor
+const RIPPLE_SPEED = 1100; // px/s kick from a click / tap
+const DRIFT = 7;           // px of idle floating
+const ENTRY_STAGGER = 0.045; // s between icons on the burst-in
+
+type Body = {
+  hx: number; hy: number;      // home (top-left, px)
+  x: number; y: number;        // current position
+  vx: number; vy: number;      // velocity
+  s: number; vs: number;       // scale + its velocity
+  rot: number;                 // tilt (deg)
+  phase: number; wx: number; wy: number; // idle drift path
+  release: number;             // time (s) this icon leaves the center
+  focused: boolean;
+};
+
 export default function ScatteredStack() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scattered, setScattered] = useState(true);
-  const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
-  const [isHovering, setIsHovering] = useState(false);
+  const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!containerRef.current) return;
-    const rect = containerRef.current.getBoundingClientRect();
-    setMousePos({
-      x: ((e.clientX - rect.left) / rect.width) * 100,
-      y: ((e.clientY - rect.top) / rect.height) * 100,
-    });
-  };
+  useEffect(() => {
+    const box = containerRef.current;
+    if (!box) return;
+    const els = iconRefs.current.filter(Boolean) as HTMLDivElement[];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const handleClick = () => {
-    setScattered(true);
-    setIsHovering(false);
-  };
+    let W = 0, H = 0, tile = 88, scaleK = 1;
+    const bodies: Body[] = els.map((_, i) => ({
+      hx: 0, hy: 0, x: 0, y: 0, vx: 0, vy: 0, s: 0.35, vs: 0, rot: 0,
+      phase: i * 1.7, wx: 0.45 + ((i * 37) % 10) / 25, wy: 0.4 + ((i * 53) % 10) / 22,
+      release: Infinity, focused: false,
+    }));
 
-  const handleMouseEnter = () => {
-    setScattered(false);
-    setIsHovering(true);
-  };
+    const layout = () => {
+      const r = box.getBoundingClientRect();
+      W = r.width; H = r.height;
+      tile = els[0]?.offsetWidth || 88;
+      scaleK = Math.min(1, W / 900); // gentler forces on small screens
+      bodies.forEach((b, i) => {
+        const p = POSITIONS[i % POSITIONS.length];
+        b.hx = (p.x / 100) * (W - tile);
+        b.hy = (p.y / 100) * (H - tile);
+      });
+    };
+    layout();
+
+    // Icons are positioned at the center in CSS; we translate relative to that.
+    const paint = (b: Body, el: HTMLDivElement) => {
+      const ox = W / 2 - tile / 2, oy = H / 2 - tile / 2;
+      el.style.transform = `translate3d(${(b.x - ox).toFixed(1)}px, ${(b.y - oy).toFixed(1)}px, 0) rotate(${b.rot.toFixed(2)}deg) scale(${b.s.toFixed(3)})`;
+    };
+
+    // Reduced motion: just place everything at home, no animation.
+    if (reduceMotion) {
+      bodies.forEach((b, i) => { b.x = b.hx; b.y = b.hy; b.s = 1; paint(b, els[i]); });
+      const ro = new ResizeObserver(() => { layout(); bodies.forEach((b, i) => { b.x = b.hx; b.y = b.hy; paint(b, els[i]); }); });
+      ro.observe(box);
+      return () => ro.disconnect();
+    }
+
+    // Start everyone tucked behind the center text.
+    bodies.forEach((b, i) => { b.x = W / 2 - tile / 2; b.y = H / 2 - tile / 2; paint(b, els[i]); });
+
+    let pointer: { x: number; y: number } | null = null;
+    let tapFocus = { i: -1, until: 0 }; // touch has no hover: briefly focus the tapped icon
+    let t = 0, last = 0, raf = 0, visible = false, entered = false;
+
+    const step = (now: number) => {
+      raf = requestAnimationFrame(step);
+      const dt = Math.min((now - (last || now)) / 1000, 1 / 30);
+      last = now;
+      t += dt;
+
+      // which icon (if any) is under the pointer
+      let focusIdx = -1;
+      if (pointer) {
+        let best = tile * 0.75;
+        bodies.forEach((b, i) => {
+          const d = Math.hypot(pointer!.x - (b.hx + tile / 2), pointer!.y - (b.hy + tile / 2));
+          if (d < best) { best = d; focusIdx = i; }
+        });
+      }
+      if (focusIdx === -1 && t < tapFocus.until) focusIdx = tapFocus.i;
+
+      bodies.forEach((b, i) => {
+        const released = t >= b.release;
+        let tx = b.hx, ty = b.hy, ts = released ? 1 : 0.35;
+
+        if (released) {
+          // idle drift — each icon on its own slow loop
+          tx += Math.sin(t * b.wx + b.phase) * DRIFT * scaleK;
+          ty += Math.cos(t * b.wy + b.phase) * DRIFT * 0.8 * scaleK;
+
+          if (i === focusIdx) ts = 1.14;
+          if (pointer) {
+            const cx = b.hx + tile / 2, cy = b.hy + tile / 2;
+            const dx = cx - pointer.x, dy = cy - pointer.y;
+            const d = Math.hypot(dx, dy) || 1;
+            if (i === focusIdx) {
+              // magnetic: lean toward the cursor
+              tx -= dx * FOCUS_PULL;
+              ty -= dy * FOCUS_PULL;
+            } else if (d < REPEL_RADIUS) {
+              // neighbours part to make room
+              const f = Math.pow(1 - d / REPEL_RADIUS, 2) * REPEL_PUSH * scaleK;
+              tx += (dx / d) * f;
+              ty += (dy / d) * f;
+            }
+          }
+        } else {
+          tx = W / 2 - tile / 2; ty = H / 2 - tile / 2;
+        }
+
+        // damped springs
+        b.vx += (STIFFNESS * (tx - b.x) - DAMPING * b.vx) * dt;
+        b.vy += (STIFFNESS * (ty - b.y) - DAMPING * b.vy) * dt;
+        b.vs += (220 * (ts - b.s) - 18 * b.vs) * dt;
+        b.x += b.vx * dt; b.y += b.vy * dt; b.s += b.vs * dt;
+        // tilt in the direction of travel
+        b.rot += (Math.max(-12, Math.min(12, b.vx * 0.025)) - b.rot) * Math.min(1, dt * 10);
+
+        const isFocused = i === focusIdx;
+        if (isFocused !== b.focused) {
+          b.focused = isFocused;
+          els[i].classList.toggle("is-focused", isFocused);
+        }
+        paint(b, els[i]);
+      });
+    };
+
+    const start = () => { if (!raf) { last = 0; raf = requestAnimationFrame(step); } };
+    const stop = () => { cancelAnimationFrame(raf); raf = 0; };
+
+    // Only animate while the section is on screen and the tab is visible.
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !entered) {
+        entered = true;
+        bodies.forEach((b, i) => { b.release = t + 0.15 + i * ENTRY_STAGGER; });
+      }
+      if (visible && !document.hidden) start(); else stop();
+    }, { threshold: 0.2 });
+    io.observe(box);
+    const onVis = () => (visible && !document.hidden ? start() : stop());
+    document.addEventListener("visibilitychange", onVis);
+
+    const ro = new ResizeObserver(layout);
+    ro.observe(box);
+
+    const local = (e: PointerEvent) => {
+      const r = box.getBoundingClientRect();
+      return { x: e.clientX - r.left, y: e.clientY - r.top };
+    };
+    const onMove = (e: PointerEvent) => { pointer = local(e); };
+    const onLeave = () => { pointer = null; };
+    const onDown = (e: PointerEvent) => {
+      const p = local(e);
+      // ripple: kick every icon outward from the tap, stronger when closer
+      bodies.forEach((b) => {
+        const dx = b.x + tile / 2 - p.x, dy = b.y + tile / 2 - p.y;
+        const d = Math.hypot(dx, dy) || 1;
+        const k = Math.max(0, 1 - d / 650) * RIPPLE_SPEED * (0.6 + 0.4 * scaleK);
+        b.vx += (dx / d) * k; b.vy += (dy / d) * k; b.vs += 4;
+      });
+      if (e.pointerType !== "mouse") {
+        pointer = null; // don't leave a "ghost cursor" after a tap
+        let best = tile * 0.9, hit = -1;
+        bodies.forEach((b, i) => {
+          const d = Math.hypot(p.x - (b.x + tile / 2), p.y - (b.y + tile / 2));
+          if (d < best) { best = d; hit = i; }
+        });
+        if (hit >= 0) tapFocus = { i: hit, until: t + 1.4 };
+      }
+    };
+    box.addEventListener("pointermove", onMove);
+    box.addEventListener("pointerleave", onLeave);
+    box.addEventListener("pointercancel", onLeave);
+    box.addEventListener("pointerdown", onDown);
+
+    return () => {
+      stop(); io.disconnect(); ro.disconnect();
+      document.removeEventListener("visibilitychange", onVis);
+      box.removeEventListener("pointermove", onMove);
+      box.removeEventListener("pointerleave", onLeave);
+      box.removeEventListener("pointercancel", onLeave);
+      box.removeEventListener("pointerdown", onDown);
+    };
+  }, []);
 
   return (
-    <div
-      className="scattered-stack"
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={() => { setScattered(true); setIsHovering(false); }}
-      onClick={handleClick}
-      style={{ cursor: "pointer" }}
-    >
+    <div className="scattered-stack" ref={containerRef} role="list" aria-label="Tech stack">
       {techTools.map((tool, i) => {
         const icon = ICONS[tool.name];
-        const pos = POSITIONS[i % POSITIONS.length];
-        const homeX = pos.x;
-        const homeY = pos.y;
-        /* these logos are dark — keep them on a light tile in dark mode */
-        const keepLight = ["Next.js", "GitHub", "Linux"].includes(tool.name);
-
-        const following = !scattered && isHovering;
-        const x = following ? mousePos.x : homeX;
-        const y = following ? mousePos.y : homeY;
+        /* dark logos: in dark mode, recolor them so they show on the black tile */
+        const darkLogo =
+          tool.name === "Linux" ? " icon-outline-dark" :
+          ["Next.js", "GitHub"].includes(tool.name) ? " icon-invert-dark" : "";
+        /* these icon files have extra padding, so the logo looks small */
+        const boost = tool.name === "Docker" ? " icon-boost" : tool.name === "Linux" ? " icon-boost-sm" : "";
+        /* light mode: no tile behind any logo */
+        const bare = " icon-bare";
 
         return (
           <div
             key={tool.name}
-            className={`scattered-icon${following ? " following" : ""}${keepLight ? " icon-keep-light" : ""}`}
-            style={{
-              left: `${x}%`,
-              top: `${y}%`,
-              zIndex: following ? 20 : 1,
-              animationDelay: `${i * 0.3}s`,
-              transition: following
-                ? `left ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1), top ${0.15 + i * 0.08}s cubic-bezier(0.23, 1, 0.32, 1)`
-                : "left 0.7s cubic-bezier(0.34,1.56,0.64,1), top 0.7s cubic-bezier(0.34,1.56,0.64,1)",
-            }}
-            title={tool.name}
+            ref={(el) => { iconRefs.current[i] = el; }}
+            className={`scattered-icon${darkLogo}${boost}${bare}`}
+            role="listitem"
+            aria-label={tool.name}
           >
             <div
               className="scattered-icon-inner"
@@ -190,7 +363,7 @@ export default function ScatteredStack() {
               ) : icon?.src ? (
                 <img
                   src={icon.src}
-                  alt={tool.name}
+                  alt=""
                   width={48}
                   height={48}
                   loading="lazy"
@@ -202,6 +375,9 @@ export default function ScatteredStack() {
                 </span>
               )}
             </div>
+            <span className="scattered-icon-label" aria-hidden="true">
+              {tool.name.replace(" Language", "")}
+            </span>
           </div>
         );
       })}

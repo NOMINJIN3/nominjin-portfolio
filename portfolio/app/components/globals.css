@@ -600,8 +600,7 @@ section {
 
 /* ── 3D Parallax + Depth ──────────────────────────────── */
 .parallax-root {
-  transform-style: preserve-3d;
-  will-change: transform;
+  /* plain wrapper (no page-wide 3D layer; see ParallaxProvider.tsx) */
 }
 
 section {
@@ -653,7 +652,7 @@ section:not(.hero) {
 /* ── Scroll3D Effects ─────────────────────────────────── */
 .scroll-3d {
   will-change: transform;
-  transform-style: preserve-3d;
+  transform-style: flat; /* preserve-3d here blocked clicks inside the section */
 }
 
 .scroll-reveal-3d {
@@ -967,8 +966,12 @@ section:not(.hero) {
   align-items: center;
   gap: 8px;
 }
-.marquee-track span svg {
+.marquee-track span svg,
+.marquee-track span img {
   flex-shrink: 0;
+}
+[data-theme="dark"] .marquee-track span img.icon-invert-dark {
+  filter: invert(1);
 }
 .marquee-track span::after {
   content: "◆";
@@ -1256,24 +1259,30 @@ a.aboutv-github {
   padding: 60px 0 80px;
 }
 .scattered-stack {
+  --tile: 88px;
   position: relative;
   width: 100%;
   max-width: 1200px;
   height: 600px;
   margin: 0 auto;
   overflow: visible;
+  touch-action: pan-y; /* taps ripple the icons; vertical scrolling still works */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
+/* Icons start tucked behind the center text; JS springs them out with transforms */
 .scattered-icon {
   position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  animation: scattered-float 6s ease-in-out infinite alternate;
+  left: calc(50% - var(--tile) / 2);
+  top: calc(50% - var(--tile) / 2);
+  width: var(--tile);
+  transform: scale(0.35);
+  will-change: transform;
+  z-index: 1;
 }
-@keyframes scattered-float {
-  0%   { transform: translateY(0); }
-  100% { transform: translateY(-8px); }
+.scattered-icon.is-focused {
+  z-index: 20;
 }
 .scattered-icon-inner {
   width: 88px;
@@ -1286,15 +1295,29 @@ a.aboutv-github {
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.scattered-icon:hover .scattered-icon-inner {
-  transform: scale(1.15);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+.scattered-icon.is-focused .scattered-icon-inner {
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.28);
 }
 .scattered-icon-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 8px);
+  transform: translate(-50%, -4px);
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: var(--text);
+  color: var(--bg);
+  font-family: var(--font-mono);
   font-size: 11px;
-  font-weight: 500;
-  color: var(--text-dim);
+  font-weight: 600;
   white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+.scattered-icon.is-focused .scattered-icon-label {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 .scattered-center {
   position: absolute;
@@ -1321,6 +1344,7 @@ a.aboutv-github {
 }
 @media (max-width: 768px) {
   .scattered-stack {
+    --tile: 68px;
     height: 450px;
   }
   .scattered-icon-inner {
@@ -1338,12 +1362,41 @@ a.aboutv-github {
 [data-theme="dark"] .scattered-icon-inner {
   border-color: rgba(255, 255, 255, 0.08);
 }
-/* Dark mode: tiles go black; dark logos keep a light tile */
+/* All skill logos: one shared size knob (CSS `scale` stacks with the per-logo transforms below) */
+.scattered-stack {
+  --logo-scale: 1.26;
+}
+.scattered-icon-inner > img,
+.scattered-icon-inner > svg {
+  scale: var(--logo-scale);
+}
+/* Logos whose icon files have extra padding: scale up to match the others */
+.scattered-icon.icon-boost .scattered-icon-inner img {
+  transform: scale(1.4);
+}
+.scattered-icon.icon-boost-sm .scattered-icon-inner img {
+  transform: scale(1.1);
+}
+/* Light mode: no tile behind the logos (except JS / TS, which keep their colored tile) */
+:root:not([data-theme="dark"]) .scattered-icon.icon-bare .scattered-icon-inner {
+  background: transparent !important;
+  border-color: transparent;
+  box-shadow: none;
+}
+:root:not([data-theme="dark"]) .scattered-icon.icon-bare.is-focused .scattered-icon-inner {
+  box-shadow: none;
+}
+/* Dark mode: every tile is black; dark logos are recolored to stay visible */
 [data-theme="dark"] .scattered-icon-inner {
   background: #000000 !important;
 }
-[data-theme="dark"] .scattered-icon.icon-keep-light .scattered-icon-inner {
-  background: #ffffff !important;
+/* Next.js, GitHub: black-on-white marks → white-on-black */
+[data-theme="dark"] .scattered-icon.icon-invert-dark .scattered-icon-inner img {
+  filter: invert(1);
+}
+/* Linux: keep Tux's colors, add a light outline so his black body shows */
+[data-theme="dark"] .scattered-icon.icon-outline-dark .scattered-icon-inner img {
+  filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
 }
 .stack-section .section-label,
 .stack-section .section-sub {
@@ -1755,6 +1808,9 @@ a.aboutv-github {
   gap: 18px;
 }
 .work-published-card {
+  display: block;
+  color: inherit;
+  text-decoration: none;
   padding: 28px;
   border-radius: var(--radius);
   border: 1px solid var(--border);
@@ -1788,7 +1844,8 @@ a.aboutv-github {
   color: var(--cyan);
   transition: color 0.2s;
 }
-.work-published-link:hover {
+.work-published-link:hover,
+.work-published-card:hover .work-published-link {
   color: var(--text);
 }
 
@@ -1837,15 +1894,45 @@ a.aboutv-github {
 .project-thumb .thumb-bg {
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(420px 240px at 20% 0%, color-mix(in srgb, var(--cyan) 16%, transparent), transparent 60%),
-    radial-gradient(420px 260px at 90% 100%, color-mix(in srgb, var(--blue) 14%, transparent), transparent 60%),
-    var(--thumb-base);
+  background: var(--surface-2);
   transition: transform 0.6s ease;
 }
 .project-card:hover .thumb-bg {
   transform: scale(1.06);
 }
+/* Profile Art Engine heatmap: bigger and brighter */
+.thumb-heatmap {
+  position: relative;
+  width: min(66%, 420px);
+  height: auto;
+  filter: drop-shadow(0 6px 18px color-mix(in srgb, var(--green) 18%, transparent));
+}
+.thumb-heatmap .heat-empty { fill: #dbe3ee; }
+[data-theme="dark"] .thumb-heatmap .heat-empty { fill: #263248; }
+/* Screenshot thumbnails: the image fills the whole preview area */
+.thumb-shot {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.thumb-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.project-card:hover .thumb-shot img {
+  transform: scale(1.03);
+}
+@media (prefers-reduced-motion: reduce) {
+  .thumb-shot img, .project-card:hover .thumb-shot img { transition: none; transform: none; }
+}
+/* Theme-matched screenshots: light image by default, dark image in dark mode */
+.thumb-shot .thumb-img-dark { display: none; }
+[data-theme="dark"] .thumb-shot .thumb-img-light { display: none; }
+[data-theme="dark"] .thumb-shot .thumb-img-dark { display: block; }
 .thumb-glyph {
   position: relative;
   font-family: var(--font-mono);
@@ -2009,6 +2096,9 @@ a.contactv-value:hover {
   display: flex;
   flex-direction: column;
 }
+.contactv-wide {
+  grid-column: 1 / -1;
+}
 .contactv-field label {
   font-size: 13px;
   font-weight: 600;
@@ -2045,7 +2135,7 @@ a.contactv-value:hover {
   grid-column: 1 / -1;
   font-size: 15px;
   font-weight: 700;
-  color: var(--btn-ink, #0d1322);
+  color: var(--bg);
   background: var(--text);
   border: none;
   border-radius: 8px;
@@ -2276,6 +2366,9 @@ a.contactv-value:hover {
   .nav-burger {
     display: flex;
   }
+  .nav-pill-toggle {
+    display: none;
+  }
   .float-chip-1 {
     left: -10px;
   }
@@ -2385,6 +2478,10 @@ section,
   }
 
   /* Smaller scattered icons so edge positions fit */
+  .scattered-stack {
+    --tile: 56px;
+    --logo-scale: 1.15; /* tiles are smaller on phones */
+  }
   .scattered-icon-inner {
     width: 56px;
     height: 56px;
@@ -2442,3 +2539,227 @@ section,
     animation: none !important;
   }
 }
+
+/* ── Zoom hero ─────────────────────────────────────────────────
+   Pinned for the section's extra height; ZoomHero.tsx sets --p (0 → 1,
+   photo shrink) and --q (0 → 1, skill tiles fly out) while scrolling. */
+.zoom-hero {
+  --p: 0;
+  --q: 0;
+  --fw: 34%;   /* final card width */
+  --fh: 40%;   /* final card height */
+  position: relative;
+  height: 280svh;
+  padding: 0;
+  transform-style: flat;
+  perspective: none;
+}
+.zoom-hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* photo: full screen → centered card */
+.zoom-hero-media {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: calc(100% - var(--p) * (100% - var(--fw)));
+  height: calc(100% - var(--p) * (100% - var(--fh)));
+  transform: translate(-50%, -50%);
+  border-radius: calc(var(--p) * 22px);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, calc(var(--p) * 0.22));
+  will-change: width, height;
+}
+.zoom-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 35%;
+  display: block;
+  transform: scale(calc(1.08 - var(--p) * 0.08));
+}
+/* darken the bottom-left so the headline reads on top of the photo */
+.zoom-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 13, 0.62) 0%, rgba(5, 7, 13, 0.25) 45%, transparent 70%),
+    linear-gradient(0deg, rgba(5, 7, 13, 0.55) 0%, transparent 45%);
+  opacity: calc(1 - var(--p));
+  pointer-events: none;
+}
+
+/* headline over the photo, fades out as it shrinks */
+.zoom-hero-copy {
+  position: absolute;
+  z-index: 3;
+  left: clamp(20px, 5vw, 72px);
+  bottom: clamp(48px, 11svh, 120px);
+  max-width: min(620px, calc(100% - 40px));
+  color: #fff;
+  opacity: calc(1 - var(--p) * 3.2);
+  transform: translateY(calc(var(--p) * -60px));
+}
+.zoom-hero--shrunk .zoom-hero-copy { visibility: hidden; }
+.zoom-hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+}
+.zoom-hero-title .hero-title-accent,
+[data-theme="dark"] .zoom-hero-title .hero-title-accent {
+  color: #fcd34d;
+  min-width: 0;
+}
+.zoom-hero-desc {
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 470px;
+  margin-bottom: 30px;
+}
+.zoom-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.zoom-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.zoom-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+.zoom-btn-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+.zoom-btn-link:hover { color: #fff; }
+
+/* skill tiles: start behind the photo, fly out to their spots */
+.zoom-hero-skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.zoom-skill {
+  --t: clamp(0, (var(--q) - var(--d)) / (1 - var(--d)), 1);
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  opacity: var(--t);
+  transform:
+    translate(-50%, -50%)
+    translate(calc((50 - var(--x)) * 1vw * (1 - var(--t))), calc((50 - var(--y)) * 1svh * (1 - var(--t))))
+    scale(calc(0.55 + 0.45 * var(--t)));
+}
+.zoom-skill-logo {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--text-muted);
+  filter: drop-shadow(0 8px 16px var(--shadow-deep));
+}
+.zoom-skill-logo img,
+.zoom-skill-logo svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* logo only on screen; the name stays for screen readers */
+.zoom-skill-name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+[data-theme="dark"] .zoom-skill.icon-invert-dark .zoom-skill-logo img {
+  filter: invert(1);
+}
+/* Linux: keep Tux's colors, add a light outline so his black body shows */
+[data-theme="dark"] .zoom-skill.icon-outline-dark .zoom-skill-logo img {
+  filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
+}
+
+.zoom-hero-caption {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: calc(50% + var(--fh) / 2 + 22px);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  opacity: var(--q);
+}
+.zoom-hero-hint {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  opacity: calc(1 - var(--p) * 5);
+  animation: zoom-hint 2s ease-in-out infinite;
+}
+@keyframes zoom-hint {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
+}
+
+@media (max-width: 720px) {
+  .zoom-hero { --fw: 66%; --fh: 44%; height: 240svh; }
+  .zoom-skill--desktop { display: none; }
+  .zoom-skill {
+    left: calc(var(--mx) * 1%);
+    top: calc(var(--my) * 1%);
+    width: 44px;
+    height: 44px;
+    transform:
+      translate(-50%, -50%)
+      translate(calc((50 - var(--mx)) * 1vw * (1 - var(--t))), calc((50 - var(--my)) * 1svh * (1 - var(--t))))
+      scale(calc(0.55 + 0.45 * var(--t)));
+  }
+  .zoom-hero-caption { display: none; }
+}
+
+/* reduced motion: just the full-screen photo, no pinning */
+.zoom-hero--static { height: 100svh; }
+.zoom-hero--static .zoom-hero-skills,
+.zoom-hero--static .zoom-hero-caption,
+.zoom-hero--static .zoom-hero-hint { display: none; }

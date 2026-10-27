@@ -6,10 +6,19 @@ import Reveal from "./Reveal";
 /* ── Animated Counter ───────────────────────────────────── */
 function Counter({ target, suffix = "", duration = 1600 }: { target: number; suffix?: string; duration?: number }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [count, setCount] = useState(0);
+  // Start at the real number so server HTML, link previews and no-JS readers
+  // see the actual value; the count-up animation only runs on the client.
+  const [count, setCount] = useState(target);
   const started = useRef(false);
 
   useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion) return;
+    const r = el.getBoundingClientRect();
+    if (r.top < window.innerHeight && r.bottom > 0) return; // already on screen: keep the real number
+    setCount(0);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !started.current) {
@@ -27,7 +36,7 @@ function Counter({ target, suffix = "", duration = 1600 }: { target: number; suf
       },
       { threshold: 0.5 }
     );
-    if (ref.current) observer.observe(ref.current);
+    observer.observe(el);
     return () => observer.disconnect();
   }, [target, duration]);
 
@@ -80,7 +89,7 @@ const CURRENTLY = [
 ];
 
 /* ── Component ──────────────────────────────────────────── */
-export default function AboutSection() {
+export default function AboutSection({ repoCount = 10 }: { repoCount?: number }) {
   return (
     <section id="about">
       <div className="container">
@@ -97,7 +106,7 @@ export default function AboutSection() {
             <Reveal delay={100}>
               <div className="aboutv-card">
                 <div className="aboutv-id">
-                  <img src="/nomi-photo.jpg" alt="Nominjin Tsogtbayar" className="aboutv-avatar" />
+                  <img src="/nomi-avatar.webp" alt="Nominjin Tsogtbayar" className="aboutv-avatar" width={800} height={600} loading="lazy" />
                   <div>
                     <h3 className="aboutv-name">Nominjin Tsogtbayar</h3>
                     <div className="aboutv-meta">
@@ -210,7 +219,7 @@ export default function AboutSection() {
                   <span className="aboutv-arrow">↗</span>
                 </div>
                 <div className="aboutv-gh-num">
-                  <Counter target={10} />
+                  <Counter target={repoCount} />
                   <span>public repos</span>
                 </div>
                 <p className="aboutv-gh-desc">

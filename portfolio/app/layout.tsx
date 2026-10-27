@@ -27,7 +27,9 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Nominjin — Agentic Tools Developer & Security Researcher",
+  metadataBase: new URL("https://www.nominjin.io"),
+  alternates: { canonical: "/" },
+  title: "Nominjin Tsogtbayar",
   description:
     "Portfolio of Nominjin (NOMI) — Information Technology student at MUST-SICT, intern at erxes Mongolia. Building agentic tools, full-stack apps and breaking things ethically in cyber security.",
   keywords: [
@@ -41,12 +43,21 @@ export const metadata: Metadata = {
     "React",
     "Mongolia",
   ],
-  authors: [{ name: "Nominjin" }],
+  authors: [{ name: "Nominjin Tsogtbayar", url: "https://www.nominjin.io" }],
   openGraph: {
-    title: "Nominjin — Agentic Tools Developer & Security Researcher",
+    title: "Nominjin Tsogtbayar",
     description:
       "Code w/ purpose, automate. Agentic tools · full-stack · cyber security.",
     type: "website",
+    url: "https://www.nominjin.io",
+    siteName: "Nominjin",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nominjin Tsogtbayar",
+    description:
+      "Code w/ purpose, automate. Agentic tools · full-stack · cyber security.",
   },
 };
 
@@ -58,7 +69,8 @@ const THEME_INIT = `(function () {
   try {
     var stored = null;
     try { stored = localStorage.getItem("theme"); } catch (e) {}
-    var dark = stored ? stored === "dark" : window.matchMedia("(prefers-color-scheme: dark)").matches;
+    // light by default; only a visitor who picked dark with the toggle gets dark
+    var dark = stored === "dark";
     var el = document.documentElement;
     el.dataset.theme = dark ? "dark" : "light";
     var meta = document.querySelector('meta[name="theme-color"]');

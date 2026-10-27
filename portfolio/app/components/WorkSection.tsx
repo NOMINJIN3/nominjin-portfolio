@@ -3,14 +3,31 @@
 import { useState } from "react";
 import Terminal from "./Terminal";
 
-const PROJECTS = [
+type Project = {
+  title: string;
+  tags: string[];
+  desc: string;
+  link: string;
+  linkLabel: string;
+  thumb: string;
+  image?: string;
+  imageDark?: string;               // optional screenshot shown in dark mode
+  imagePosition?: string;           // which part of the image to show (CSS object-position)
+  imageAlt?: string;
+};
+
+const PROJECTS: Project[] = [
   {
     title: "Profile Art Engine",
     tags: ["Python", "GitHub Actions", "SVG"],
     desc: "An automated GitHub profile artwork pipeline — monochrome ASCII portrait and a contribution heatmap that regenerates itself daily.",
-    link: "https://github.com/NOMINJIN3/nominjin-profile-repo",
+    link: "https://github.com/NOMINJIN3",
     linkLabel: "github",
     thumb: "heatmap",
+    image: "/projects/profile-art-engine-light.webp",
+    imageDark: "/projects/profile-art-engine.webp",
+    imagePosition: "center bottom",
+    imageAlt: "3D isometric GitHub contribution graph with a language donut chart and an activity radar",
   },
   {
     title: "Live Terminal",
@@ -19,6 +36,8 @@ const PROJECTS = [
     link: "https://nominjin3.github.io",
     linkLabel: "live site",
     thumb: "terminal",
+    image: "/projects/live-terminal.webp",
+    imageAlt: "Live Terminal: terminal-style GitHub home with contribution stats and a whoami prompt",
   },
   {
     title: "Offensive Security Labs",
@@ -27,6 +46,8 @@ const PROJECTS = [
     link: "https://app.hackthebox.com",
     linkLabel: "hackthebox",
     thumb: "shell",
+    image: "/projects/offensive-security.webp",
+    imageAlt: "HackTheBox profile page showing level and season progress",
   },
   {
     title: "This Portfolio",
@@ -35,6 +56,9 @@ const PROJECTS = [
     link: "https://www.nominjin.io",
     linkLabel: "nominjin.io",
     thumb: "code",
+    image: "/projects/this-portfolio.webp",
+    imageDark: "/projects/this-portfolio-dark.webp",
+    imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
   },
 ];
 
@@ -44,12 +68,12 @@ function Thumb({ kind }: { kind: string }) {
   if (kind === "heatmap") {
     const cells = Array.from({ length: 70 }, (_, i) => i);
     return (
-      <svg viewBox="0 0 200 60" width="200" height="60" aria-hidden="true">
+      <svg className="thumb-heatmap" viewBox="0 0 202 76" width="202" height="76" aria-hidden="true">
         {cells.map((i) => {
           const intensity = ((i * 37) % 100) / 100;
           const green = intensity > 0.66;
           const blue = !green && intensity > 0.33;
-          const fill = green ? "#34d399" : blue ? "#22d3ee" : "#cbd5e1";
+          const fill = green ? "#34d399" : blue ? "#22d3ee" : undefined; // empty cells styled in CSS
           return (
             <rect
               key={i}
@@ -59,7 +83,8 @@ function Thumb({ kind }: { kind: string }) {
               height="10"
               rx="2.5"
               fill={fill}
-              opacity={0.35 + intensity * 0.65}
+              className={fill ? undefined : "heat-empty"}
+              opacity={fill ? 0.7 + intensity * 0.3 : 1}
             />
           );
         })}
@@ -103,7 +128,7 @@ function PersonalView() {
     <div className="work-personal">
       <div className="work-personal-card">
         <div className="work-personal-avatar">
-          <img src="/nomi-photo.jpg" alt="Nominjin" />
+          <img src="/nomi-avatar.webp" alt="Nominjin" width={800} height={600} loading="lazy" />
         </div>
         <div className="work-personal-info">
           <h3>Nominjin (NOMI)</h3>
@@ -145,7 +170,34 @@ function ProjectsView() {
         >
           <div className="project-thumb">
             <div className="thumb-bg" />
-            <Thumb kind={p.thumb} />
+            {p.image ? (
+              <div className="thumb-shot">
+                <img
+                  className={p.imageDark ? "thumb-img-light" : undefined}
+                  src={p.image}
+                  style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
+                  alt={p.imageAlt ?? p.title}
+                  width={1120}
+                  height={700}
+                  loading="lazy"
+                  decoding="async"
+                />
+                {p.imageDark && (
+                  <img
+                    className="thumb-img-dark"
+                    src={p.imageDark}
+                    style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
+                    alt={p.imageAlt ?? p.title}
+                    width={1120}
+                    height={700}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                )}
+              </div>
+            ) : (
+              <Thumb kind={p.thumb} />
+            )}
           </div>
           <div className="project-body">
             <div className="project-tags">
@@ -168,27 +220,48 @@ function ProjectsView() {
   );
 }
 
+const PUBLISHED = [
+  {
+    icon: "📝",
+    title: "Portfolio Art Engine",
+    desc: "Automated GitHub profile artwork — monochrome ASCII portrait and contribution heatmap that regenerates daily via GitHub Actions.",
+    href: "https://github.com/NOMINJIN3",
+    cta: "View on GitHub →",
+  },
+  {
+    icon: "🌐",
+    title: "nominjin3.github.io",
+    desc: "Interactive terminal-style landing page — type commands, explore the stack, meet the agent.",
+    href: "https://nominjin3.github.io",
+    cta: "Visit Site →",
+  },
+  {
+    icon: "🔒",
+    title: "HackTheBox Writeups",
+    desc: "Hands-on offensive security machines with full enumeration-to-root chains, custom payloads and responsible disclosure.",
+    href: "https://app.hackthebox.com",
+    cta: "HackTheBox →",
+  },
+];
+
 function PublishedView() {
   return (
     <div className="work-published">
-      <div className="work-published-card">
-        <div className="work-published-icon">📝</div>
-        <h3>Portfolio Art Engine</h3>
-        <p>Automated GitHub profile artwork — monochrome ASCII portrait and contribution heatmap that regenerates daily via GitHub Actions.</p>
-        <a href="https://github.com/NOMINJIN3/nominjin-profile-repo" target="_blank" rel="noreferrer" className="work-published-link">View Repo →</a>
-      </div>
-      <div className="work-published-card">
-        <div className="work-published-icon">🌐</div>
-        <h3>nominjin3.github.io</h3>
-        <p>Interactive terminal-style landing page — type commands, explore the stack, meet the agent.</p>
-        <a href="https://nominjin3.github.io" target="_blank" rel="noreferrer" className="work-published-link">Visit Site →</a>
-      </div>
-      <div className="work-published-card">
-        <div className="work-published-icon">🔒</div>
-        <h3>HackTheBox Writeups</h3>
-        <p>Hands-on offensive security machines with full enumeration-to-root chains, custom payloads and responsible disclosure.</p>
-        <a href="https://app.hackthebox.com" target="_blank" rel="noreferrer" className="work-published-link">HackTheBox →</a>
-      </div>
+      {PUBLISHED.map((c) => (
+        // whole card is the link, not just the small text at the bottom
+        <a
+          key={c.title}
+          className="work-published-card"
+          href={c.href}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <div className="work-published-icon" aria-hidden="true">{c.icon}</div>
+          <h3>{c.title}</h3>
+          <p>{c.desc}</p>
+          <span className="work-published-link">{c.cta}</span>
+        </a>
+      ))}
     </div>
   );
 }
