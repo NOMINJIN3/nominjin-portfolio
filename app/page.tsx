@@ -1,7 +1,7 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
 import ScatteredStack from "./components/ScatteredStack";
-import RotatingText from "./components/RotatingText";
+import ZoomHero from "./components/ZoomHero";
 import WorkSection from "./components/WorkSection";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
@@ -73,61 +73,8 @@ export default async function Home() {
       <Nav />
       <ParallaxProvider>
 
-      {/* HERO */}
-      <section className="hero" id="home">
-        <div className="hero-sky" aria-hidden="true" />
-        <div className="container hero-inner">
-          <Reveal>
-            <div className="hero-avatar-wrap">
-              <img
-                src="/nomi-avatar.webp"
-                alt="Nominjin Tsogtbayar"
-                className="hero-avatar-img"
-                width={800}
-                height={600}
-                fetchPriority="high"
-              />
-            </div>
-          </Reveal>
-
-          <Reveal delay={80}>
-            <h1 className="hero-title">
-              <RotatingText />
-              <br />
-              <span className="hero-title-main">Developer.</span>
-            </h1>
-          </Reveal>
-
-          <Reveal delay={160}>
-            <p className="hero-desc-center">
-              Nominjin builds LLM-powered agents with LangChain, ships full-stack apps
-              with React &amp; Next.js, and breaks things ethically on HackTheBox —{" "}
-              <span className="motto">&quot;Code w/ purpose, automate.&quot;</span>
-            </p>
-          </Reveal>
-
-          <Reveal delay={240}>
-            <div className="hero-cta-center">
-              <a href="#contact" className="btn-hero-connect">
-                Connect
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-                  <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-                </svg>
-              </a>
-              <a href="#projects" className="btn-hero-work">
-                See Work
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <line x1="5" y1="12" x2="19" y2="12" />
-                  <polyline points="12 5 19 12 12 19" />
-                </svg>
-              </a>
-            </div>
-          </Reveal>
-
-
-        </div>
-      </section>
+      {/* HERO — photo shrinks into a card on scroll, skills fly out around it */}
+      <ZoomHero />
 
       {/* SKILL */}
       <Scroll3D rotation={4} translateZ={40} speed={0.02}>

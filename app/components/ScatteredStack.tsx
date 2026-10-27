@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 import { techTools } from "../data/tech";
 
-/* Official logos (devicon CDN) — tile bg only shows through transparent areas */
-const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }> = {
+/* Official devicon logos, served from /public/logos — tile bg only shows through transparent areas */
+export const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }> = {
   JavaScript: {
     /* shield-style JS logo */
     bg: "#ffffff",
@@ -34,11 +34,11 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
     ),
   },
   Python: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+    src: "/logos/python-original.svg",
     bg: "#ffffff",
   },
   Java: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+    src: "/logos/java-original.svg",
     bg: "#ffffff",
   },
   "C Language": {
@@ -74,47 +74,47 @@ const ICONS: Record<string, { src?: string; icon?: React.ReactNode; bg: string }
     ),
   },
   "C++": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg",
+    src: "/logos/cplusplus-original.svg",
     bg: "#ffffff",
   },
   "Next.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg",
+    src: "/logos/nextjs-original.svg",
     bg: "#ffffff",
   },
   "React.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+    src: "/logos/react-original.svg",
     bg: "#ffffff",
   },
   "Tailwind CSS": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+    src: "/logos/tailwindcss-original.svg",
     bg: "#ffffff",
   },
   Docker: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
+    src: "/logos/docker-original.svg",
     bg: "#ffffff",
   },
   Git: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+    src: "/logos/git-original.svg",
     bg: "#ffffff",
   },
   GitHub: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+    src: "/logos/github-original.svg",
     bg: "#ffffff",
   },
   "Node.js": {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+    src: "/logos/nodejs-original.svg",
     bg: "#ffffff",
   },
   VSCode: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg",
+    src: "/logos/vscode-original.svg",
     bg: "#ffffff",
   },
   Linux: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg",
+    src: "/logos/linux-original.svg",
     bg: "#ffffff",
   },
   HTML: {
-    src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+    src: "/logos/html5-original.svg",
     bg: "#ffffff",
   },
 };
