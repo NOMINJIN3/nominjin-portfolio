@@ -966,8 +966,12 @@ section:not(.hero) {
   align-items: center;
   gap: 8px;
 }
-.marquee-track span svg {
+.marquee-track span svg,
+.marquee-track span img {
   flex-shrink: 0;
+}
+[data-theme="dark"] .marquee-track span img.icon-invert-dark {
+  filter: invert(1);
 }
 .marquee-track span::after {
   content: "◆";
