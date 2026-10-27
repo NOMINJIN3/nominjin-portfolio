@@ -24,10 +24,12 @@ export default function Scroll3D({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    let raf: number;
+    let raf = 0;
 
     function onScroll() {
+      cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         const rect = el.getBoundingClientRect();
         const vh = window.innerHeight;

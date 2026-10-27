@@ -10,7 +10,9 @@ export default function RotatingText() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const fadeOut = window.setInterval(() => {
+      if (document.hidden) return;
       setVisible(false);
       setTimeout(() => {
         setIdx((i) => (i + 1) % WORDS.length);
@@ -21,7 +23,7 @@ export default function RotatingText() {
   }, []);
 
   return (
-    <span className={`hero-title-accent rotating-text ${visible ? "show" : "hide"}`}>
+    <span aria-live="polite" className={`hero-title-accent rotating-text ${visible ? "show" : "hide"}`}>
       {WORDS[idx]}
     </span>
   );
