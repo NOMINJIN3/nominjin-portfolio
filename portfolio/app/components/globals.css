@@ -2539,3 +2539,229 @@ section,
     animation: none !important;
   }
 }
+
+/* ── Zoom hero ─────────────────────────────────────────────────
+   Pinned for the section's extra height; ZoomHero.tsx sets --p (0 → 1,
+   photo shrink) and --q (0 → 1, skill tiles fly out) while scrolling. */
+.zoom-hero {
+  --p: 0;
+  --q: 0;
+  --fw: 30%;   /* final card width */
+  --fh: 34%;   /* final card height */
+  position: relative;
+  height: 280svh;
+  padding: 0;
+  transform-style: flat;
+  perspective: none;
+}
+.zoom-hero-sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  overflow: hidden;
+}
+
+/* photo: full screen → centered card */
+.zoom-hero-media {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 50%;
+  width: calc(100% - var(--p) * (100% - var(--fw)));
+  height: calc(100% - var(--p) * (100% - var(--fh)));
+  transform: translate(-50%, -50%);
+  border-radius: calc(var(--p) * 22px);
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, calc(var(--p) * 0.22));
+  will-change: width, height;
+}
+.zoom-hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 24%;
+  display: block;
+  transform: scale(calc(1.08 - var(--p) * 0.08));
+}
+/* darken the bottom-left so the headline reads on top of the photo */
+.zoom-hero-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(5, 7, 13, 0.62) 0%, rgba(5, 7, 13, 0.25) 45%, transparent 70%),
+    linear-gradient(0deg, rgba(5, 7, 13, 0.55) 0%, transparent 45%);
+  opacity: calc(1 - var(--p));
+  pointer-events: none;
+}
+
+/* headline over the photo, fades out as it shrinks */
+.zoom-hero-copy {
+  position: absolute;
+  z-index: 3;
+  left: clamp(20px, 5vw, 72px);
+  bottom: clamp(48px, 11svh, 120px);
+  max-width: min(620px, calc(100% - 40px));
+  color: #fff;
+  opacity: calc(1 - var(--p) * 3.2);
+  transform: translateY(calc(var(--p) * -60px));
+}
+.zoom-hero--shrunk .zoom-hero-copy { visibility: hidden; }
+.zoom-hero-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  margin-bottom: 22px;
+  text-shadow: 0 2px 24px rgba(0, 0, 0, 0.25);
+}
+.zoom-hero-title .hero-title-accent,
+[data-theme="dark"] .zoom-hero-title .hero-title-accent {
+  color: #fcd34d;
+  min-width: 0;
+}
+.zoom-hero-desc {
+  font-size: clamp(15px, 1.25vw, 18px);
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.86);
+  max-width: 470px;
+  margin-bottom: 30px;
+}
+.zoom-hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+.zoom-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  padding: 15px 34px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+  font-size: 15px;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+}
+.zoom-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+}
+.zoom-btn-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  transition: color 0.2s ease;
+}
+.zoom-btn-link:hover { color: #fff; }
+
+/* skill tiles: start behind the photo, fly out to their spots */
+.zoom-hero-skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.zoom-skill {
+  --t: clamp(0, (var(--q) - var(--d)) / (1 - var(--d)), 1);
+  position: absolute;
+  left: calc(var(--x) * 1%);
+  top: calc(var(--y) * 1%);
+  width: 104px;
+  height: 104px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 22px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: 0 18px 40px var(--shadow-deep);
+  opacity: var(--t);
+  transform:
+    translate(-50%, -50%)
+    translate(calc((50 - var(--x)) * 1vw * (1 - var(--t))), calc((50 - var(--y)) * 1svh * (1 - var(--t))))
+    scale(calc(0.55 + 0.45 * var(--t)));
+}
+.zoom-skill-logo {
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+.zoom-skill-logo img,
+.zoom-skill-logo svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.zoom-skill-name {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+[data-theme="dark"] .zoom-skill.icon-invert-dark .zoom-skill-logo img {
+  filter: invert(1);
+}
+
+.zoom-hero-caption {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  top: calc(50% + var(--fh) / 2 + 22px);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--text-muted);
+  opacity: var(--q);
+}
+.zoom-hero-hint {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  bottom: 22px;
+  transform: translateX(-50%);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+  opacity: calc(1 - var(--p) * 5);
+  animation: zoom-hint 2s ease-in-out infinite;
+}
+@keyframes zoom-hint {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
+}
+
+@media (max-width: 720px) {
+  .zoom-hero { --fw: 84%; --fh: 36%; height: 240svh; }
+  .zoom-skill--desktop { display: none; }
+  .zoom-skill {
+    left: calc(var(--mx) * 1%);
+    top: calc(var(--my) * 1%);
+    width: 62px;
+    height: 62px;
+    border-radius: 16px;
+    transform:
+      translate(-50%, -50%)
+      translate(calc((50 - var(--mx)) * 1vw * (1 - var(--t))), calc((50 - var(--my)) * 1svh * (1 - var(--t))))
+      scale(calc(0.55 + 0.45 * var(--t)));
+  }
+  .zoom-skill-logo { width: 32px; height: 32px; }
+  .zoom-skill-name { display: none; }
+  .zoom-hero-caption { display: none; }
+}
+
+/* reduced motion: just the full-screen photo, no pinning */
+.zoom-hero--static { height: 100svh; }
+.zoom-hero--static .zoom-hero-skills,
+.zoom-hero--static .zoom-hero-caption,
+.zoom-hero--static .zoom-hero-hint { display: none; }
