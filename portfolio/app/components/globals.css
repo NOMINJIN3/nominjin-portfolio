@@ -2546,8 +2546,8 @@ section,
 .zoom-hero {
   --p: 0;
   --q: 0;
-  --fw: 30%;   /* final card width */
-  --fh: 34%;   /* final card height */
+  --fw: 22%;   /* final card width (portrait photo) */
+  --fh: 52%;   /* final card height */
   position: relative;
   height: 280svh;
   padding: 0;
@@ -2579,7 +2579,7 @@ section,
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: 50% 24%;
+  object-position: 50% 22%;
   display: block;
   transform: scale(calc(1.08 - var(--p) * 0.08));
 }
@@ -2742,7 +2742,7 @@ section,
 }
 
 @media (max-width: 720px) {
-  .zoom-hero { --fw: 84%; --fh: 36%; height: 240svh; }
+  .zoom-hero { --fw: 66%; --fh: 44%; height: 240svh; }
   .zoom-skill--desktop { display: none; }
   .zoom-skill {
     left: calc(var(--mx) * 1%);

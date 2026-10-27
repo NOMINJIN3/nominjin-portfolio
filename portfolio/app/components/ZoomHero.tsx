@@ -111,10 +111,10 @@ export default function ZoomHero() {
 
         <div className="zoom-hero-media">
           <img
-            src="/nomi-photo.jpg"
+            src="/nomi-hero.webp"
             alt="Nominjin Tsogtbayar"
-            width={1269}
-            height={952}
+            width={1044}
+            height={1507}
             fetchPriority="high"
           />
         </div>
