@@ -91,14 +91,15 @@ export default function ZoomHero() {
             const cls =
               "zoom-skill" +
               (spot.mx === undefined ? " zoom-skill--desktop" : "") +
-              (INVERT_DARK.includes(tool.name) ? " icon-invert-dark" : "");
+              (INVERT_DARK.includes(tool.name) ? " icon-invert-dark" : "") +
+              (tool.name === "Linux" ? " icon-outline-dark" : "");
             return (
               <li key={tool.name} className={cls} style={style}>
                 <span className="zoom-skill-logo" aria-hidden="true">
                   {icon?.icon ? (
                     icon.icon
                   ) : icon?.src ? (
-                    <img src={icon.src} alt="" width={40} height={40} loading="lazy" draggable={false} />
+                    <img src={icon.src} alt="" width={56} height={56} loading="lazy" draggable={false} />
                   ) : (
                     tool.name.slice(0, 2)
                   )}
