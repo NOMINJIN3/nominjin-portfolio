@@ -113,8 +113,8 @@ export default function ZoomHero() {
           <img
             src="/nomi-hero.webp"
             alt="Nominjin Tsogtbayar"
-            width={1044}
-            height={1507}
+            width={1920}
+            height={960}
             fetchPriority="high"
           />
         </div>
