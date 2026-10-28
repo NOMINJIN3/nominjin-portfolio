@@ -112,9 +112,8 @@ export default async function Home() {
               tool.name === "Linux" ? "icon-outline-dark" :
               ["Next.js", "GitHub"].includes(tool.name) ? "icon-invert-dark" : undefined;
             return (
-              <span key={i} className={dark}>
-                {icon.icon ?? <img src={icon.src} alt="" width={20} height={20} loading="lazy" draggable={false} />}
-                {tool.name.replace(" Language", "")}
+              <span key={i} className={dark} title={tool.name.replace(" Language", "")}>
+                {icon.icon ?? <img src={icon.src} alt="" width={40} height={40} loading="lazy" draggable={false} />}
               </span>
             );
           })}
