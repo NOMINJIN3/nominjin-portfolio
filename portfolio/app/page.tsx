@@ -114,7 +114,6 @@ export default function Home() {
               <p className="footer-eyebrow">Have an idea? Let&apos;s talk.</p>
               <a href="mailto:ts.nominjin2006@gmail.com" className="footer-mail">
                 ts.nominjin2006@gmail.com
-                <span aria-hidden="true">↗</span>
               </a>
               <a href="tel:+97680734073" className="footer-phone">
                 +976 80734073
