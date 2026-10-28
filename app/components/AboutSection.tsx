@@ -18,7 +18,7 @@ const ROWS = [
     k: "Study",
     title: "BSc Information Technology",
     sub: "MUST · SICT · 3rd year",
-    body: "School of Information and Communication Technology, Mongolian University of Science and Technology.",
+    body: "Third-year IT studies at the Mongolian University of Science and Technology, in its SICT school of information and communication technology.",
   },
   {
     k: "Day",
