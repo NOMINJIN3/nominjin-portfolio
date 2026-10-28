@@ -941,9 +941,12 @@ section:not(.hero) {
 /* ── Marquee: logo-only strip in a rounded card ────────────────── */
 .marquee {
   position: relative;
-  margin: 24px 0;
-  padding: 22px 0;
-  border-radius: 22px;
+  /* stretch past the content width on both sides */
+  width: min(1480px, calc(100vw - 32px));
+  margin: 32px 0 32px 50%;
+  transform: translateX(-50%);
+  padding: 38px 0;
+  border-radius: 28px;
   border: 1px solid var(--border);
   background: var(--surface);
   box-shadow: 0 10px 30px var(--shadow-deep);
@@ -957,7 +960,7 @@ section:not(.hero) {
   z-index: 1;
   top: 0;
   bottom: 0;
-  width: 72px;
+  width: 110px;
   pointer-events: none;
 }
 .marquee::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
@@ -973,13 +976,13 @@ section:not(.hero) {
 .marquee-track span {
   display: inline-grid;
   place-items: center;
-  padding: 0 26px;
+  padding: 0 36px;
   color: var(--text-dim);
 }
 .marquee-track span svg,
 .marquee-track span img {
-  width: 34px;
-  height: 34px;
+  width: 52px;
+  height: 52px;
   flex-shrink: 0;
   transition: transform 0.25s ease;
 }
@@ -995,10 +998,11 @@ section:not(.hero) {
   filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
 }
 @media (max-width: 640px) {
-  .marquee { padding: 16px 0; border-radius: 18px; }
-  .marquee-track span { padding: 0 18px; }
+  .marquee { padding: 24px 0; border-radius: 20px; }
+  .marquee::before, .marquee::after { width: 56px; }
+  .marquee-track span { padding: 0 22px; }
   .marquee-track span svg,
-  .marquee-track span img { width: 28px; height: 28px; }
+  .marquee-track span img { width: 38px; height: 38px; }
 }
 @keyframes scrollx {
   from { transform: translateX(0); }
