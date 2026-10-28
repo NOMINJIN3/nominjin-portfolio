@@ -522,7 +522,7 @@ section {
   color: var(--text-dim);
   transition: transform 0.2s ease, color 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
-/* language switch (MN / EN), left of the theme button; same glass look */
+/* language switch (MN / EN), left of the theme button: plain text, no pill */
 .lang-toggle {
   position: fixed;
   top: 20px;
@@ -533,24 +533,22 @@ section {
   gap: 8px;
   height: 46px;
   padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  background: color-mix(in srgb, var(--surface) 72%, transparent);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  border: 0;
+  background: transparent;
   font-family: var(--font-display);
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.04em;
   color: var(--text-muted);
-  transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .lang-toggle span { opacity: 0.55; transition: opacity 0.2s ease, color 0.2s ease; }
 .lang-toggle span.on { opacity: 1; color: var(--text); }
-.lang-toggle:hover {
-  transform: translateY(-1px);
-  border-color: var(--text-muted);
-  box-shadow: 0 8px 24px var(--shadow-deep);
+.lang-toggle:hover span { opacity: 1; }
+/* over the hero photo: white text with a soft shadow so it reads on any part of the image */
+.nav.at-top .lang-toggle,
+.nav.at-top .lang-toggle span.on {
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.45);
 }
 
 /* bilingual text: <L> renders both languages; show only the chosen one */
