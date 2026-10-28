@@ -131,6 +131,7 @@ export default function Nav() {
           title={lang === "mn" ? "English" : "Монгол"}
         >
           <span className={lang === "mn" ? "on" : undefined}>MN</span>
+          <i aria-hidden="true">/</i>
           <span className={lang === "en" ? "on" : undefined}>EN</span>
         </button>
 
