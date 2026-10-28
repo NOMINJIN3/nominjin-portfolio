@@ -81,6 +81,10 @@ const THEME_INIT = `(function () {
     lang = lang === "mn" ? "mn" : "en";
     el.dataset.lang = lang;
     el.lang = lang;
+    // opening "Nominjin" screen: once per session, never with reduced motion
+    var seen = null;
+    try { seen = sessionStorage.getItem("intro"); } catch (e) {}
+    if (seen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) el.dataset.intro = "done";
   } catch (e) {}
 })();`;
 

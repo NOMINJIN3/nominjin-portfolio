@@ -1,4 +1,5 @@
 import Nav from "./components/Nav";
+import Intro from "./components/Intro";
 import Reveal from "./components/Reveal";
 import L, { type Text } from "./components/L";
 import ZoomHero from "./components/ZoomHero";
@@ -66,6 +67,7 @@ export default function Home() {
       />
       <div className="bg-stage" aria-hidden="true" />
       <div className="bg-grid" aria-hidden="true" />
+      <Intro />
       <Nav />
       <ParallaxProvider>
 

@@ -343,6 +343,59 @@ section {
   box-shadow: 0 10px 30px color-mix(in srgb, var(--cyan) 14%, transparent);
 }
 
+/* ── Intro: "Nominjin" in many scripts, then the screen slides up ── */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--text);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+/* curved bottom edge that trails the slide-up */
+.intro::after {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  top: 100%;
+  height: 18vh;
+  border-radius: 0 0 50% 50%;
+  background: var(--bg);
+  transition: height 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+.intro--leave { transform: translateY(-100%); }
+.intro--leave::after { height: 0; }
+html[data-intro="done"] .intro { display: none; }
+.intro-word {
+  display: flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: clamp(2.6rem, 7vw, 5.4rem);
+  line-height: 1.1;
+  white-space: nowrap;
+  animation: intro-in 0.5s ease both;
+}
+.intro-dot {
+  width: 0.16em;
+  height: 0.16em;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.intro-display { font-family: var(--font-display); font-weight: 700; letter-spacing: -0.03em; }
+.intro-serif { font-family: var(--font-serif); font-weight: 600; }
+.intro-italic { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+.intro-sans { font-family: var(--font-sans); font-weight: 600; }
+.intro-light { font-family: var(--font-sans); font-weight: 300; }
+.intro-mono { font-family: var(--font-mono); font-weight: 500; letter-spacing: 0.08em; font-size: clamp(2rem, 5.4vw, 4.2rem); }
+@keyframes intro-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
 /* ── Nav ───────────────────────────────────────────────────── */
 .nav {
   position: fixed;
