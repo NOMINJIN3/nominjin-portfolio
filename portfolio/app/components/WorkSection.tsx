@@ -266,7 +266,7 @@ function TerminalView() {
 /* ── component ─────────────────────────────────────────────── */
 
 export default function WorkSection() {
-  const [activeTab, setActiveTab] = useState<Tab>("Projects");
+  const [activeTab, setActiveTab] = useState<Tab>("Personal");
 
   return (
     <>
