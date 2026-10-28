@@ -104,21 +104,20 @@ export default async function Home() {
       </div>
 
       {/* MARQUEE */}
-      <div className="container">
-        <div className="marquee" aria-hidden="true">
-          <div className="marquee-track">
-            {[...MARQUEE, ...MARQUEE].map((tool, i) => {
-              const icon = ICONS[tool.name];
-              const dark =
-                tool.name === "Linux" ? "icon-outline-dark" :
-                ["Next.js", "GitHub"].includes(tool.name) ? "icon-invert-dark" : undefined;
-              return (
-                <span key={i} title={tool.name.replace(" Language", "")} className={dark}>
-                  {icon.icon ?? <img src={icon.src} alt="" width={34} height={34} loading="lazy" draggable={false} />}
-                </span>
-              );
-            })}
-          </div>
+      <div className="marquee" aria-hidden="true">
+        <div className="marquee-track">
+          {[...MARQUEE, ...MARQUEE].map((tool, i) => {
+            const icon = ICONS[tool.name];
+            const dark =
+              tool.name === "Linux" ? "icon-outline-dark" :
+              ["Next.js", "GitHub"].includes(tool.name) ? "icon-invert-dark" : undefined;
+            return (
+              <span key={i} className={dark}>
+                {icon.icon ?? <img src={icon.src} alt="" width={20} height={20} loading="lazy" draggable={false} />}
+                {tool.name.replace(" Language", "")}
+              </span>
+            );
+          })}
         </div>
       </div>
 
