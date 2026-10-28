@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 import RotatingText from "./RotatingText";
-import { ICONS } from "./ScatteredStack";
+import { ICONS } from "../data/icons";
 import { techTools } from "../data/tech";
 
 /* Where each skill tile ends up, as % of the viewport (tile center).
@@ -28,10 +28,10 @@ const SPOTS: { x: number; y: number; mx?: number; my?: number }[] = [
 
 const SKILLS = techTools.slice(0, SPOTS.length);
 
-/* dark logos that need recoloring in dark mode (same set as the skills section) */
+/* dark logos that need recoloring in dark mode */
 const INVERT_DARK = ["Next.js", "GitHub"];
 
-/* skill physics — same feel as the Skills section (ScatteredStack.tsx) */
+/* skill physics: spring pop-out, idle drift, cursor magnet/repel, click ripple */
 const STIFFNESS = 140;      // spring pull toward target (higher = snappier)
 const DAMPING = 13;         // friction (lower = more wobble on the pop)
 const REPEL_RADIUS = 170;   // px around the cursor that pushes logos away
@@ -40,7 +40,7 @@ const FOCUS_PULL = 0.28;    // how far the pointed-at logo leans toward the curs
 const RIPPLE_SPEED = 1000;  // px/s kick from a click / tap
 const DRIFT = 7;            // px of idle floating
 const ENTRY_DELAY = 0.15;    // s before the first logo pops out
-const ENTRY_STAGGER = 0.045; // s between logos, same burst-in as the Skills section
+const ENTRY_STAGGER = 0.045; // s between logos popping out
 const ENTRY_AT = 0.15;       // scroll progress (q) that starts the burst
 const RESET_AT = 0.05;       // scrolling back below this tucks them all away again
 
@@ -229,6 +229,8 @@ export default function ZoomHero() {
 
   return (
     <section className="zoom-hero" id="home" ref={ref}>
+      {/* nav "Skills." target: the end of the pinned scroll, where the skills are out */}
+      <span id="skills" className="zoom-hero-skills-anchor" aria-hidden="true" />
       <div className="zoom-hero-sticky" ref={stageRef}>
         <ul className="zoom-hero-skills" aria-label="Skills">
           {SKILLS.map((tool, i) => {

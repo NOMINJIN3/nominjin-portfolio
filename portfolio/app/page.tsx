@@ -1,12 +1,10 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
-import ScatteredStack from "./components/ScatteredStack";
 import ZoomHero from "./components/ZoomHero";
 import WorkSection from "./components/WorkSection";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
-import Scroll3D from "./components/Scroll3D";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -75,15 +73,6 @@ export default async function Home() {
 
       {/* HERO — photo shrinks into a card on scroll, skills fly out around it */}
       <ZoomHero />
-
-      {/* SKILL */}
-      <Scroll3D rotation={4} translateZ={40} speed={0.02}>
-        <section id="skills" className="stack-section">
-          <Reveal>
-            <ScatteredStack />
-          </Reveal>
-        </section>
-      </Scroll3D>
 
       {/* PROJECTS — no 3D tilt here: Chrome drew hairline tile seams across the
           terminal when this section was transformed in 3D */}
