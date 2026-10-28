@@ -1333,6 +1333,8 @@ section:not(.hero) {
   color: var(--blue);
 }
 .abt-lede {
+  text-align: justify;
+  hyphens: auto;
   font-size: 17px;
   line-height: 1.75;
   color: var(--text-dim);
@@ -1425,6 +1427,8 @@ section:not(.hero) {
   color: var(--text-muted);
 }
 .abt-rows p {
+  text-align: justify;
+  hyphens: auto;
   margin-top: 10px;
   font-size: 14.5px;
   line-height: 1.6;
