@@ -6,8 +6,6 @@ const LINKS = [
   { href: "#skills", label: "Skills." },
   { href: "#projects", label: "Work." },
   { href: "#contact", label: "Contact." },
-  { href: "https://linkedin.com/in/nominjin", label: "LinkedIn." },
-  { href: "https://github.com/NOMINJIN3", label: "Github." },
 ];
 
 type Theme = "light" | "dark";
