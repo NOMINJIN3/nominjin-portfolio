@@ -2023,13 +2023,16 @@ section,
 
 /* photo: full screen → centered card */
 .zoom-hero-media {
+  /* --bleed pushes the full-screen photo 1px past every edge (fading to 0 as it
+     shrinks); positioned from the edges, not translate(-50%), so its sides never
+     land on a half pixel and leave a light seam along the top or left edge */
+  --bleed: calc((1 - var(--p)) * 1px);
   position: absolute;
   z-index: 2;
-  left: 50%;
-  top: 50%;
-  width: calc(100% - var(--p) * (100% - var(--fw)));
-  height: calc(100% - var(--p) * (100% - var(--fh)));
-  transform: translate(-50%, -50%);
+  left: calc(var(--p) * (100% - var(--fw)) / 2 - var(--bleed));
+  top: calc(var(--p) * (100% - var(--fh)) / 2 - var(--bleed));
+  width: calc(100% - var(--p) * (100% - var(--fw)) + 2 * var(--bleed));
+  height: calc(100% - var(--p) * (100% - var(--fh)) + 2 * var(--bleed));
   border-radius: calc(var(--p) * 22px);
   overflow: hidden;
   box-shadow: 0 30px 80px rgba(15, 23, 42, calc(var(--p) * 0.22));
