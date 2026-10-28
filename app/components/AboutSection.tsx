@@ -11,7 +11,7 @@ const ROWS = [
   {
     k: "Intern",
     title: "Software Engineering Intern",
-    sub: "erxes Mongolia · 2026 — present",
+    sub: "erxes Mongolia",
     body: "Full-stack and automation work on a source-available Experience OS: shipping features, fixing bugs and automating workflows.",
   },
   {
@@ -35,7 +35,7 @@ const ROWS = [
 ];
 
 /* ── Component ──────────────────────────────────────────── */
-export default function AboutSection({ repoCount = 10 }: { repoCount?: number }) {
+export default function AboutSection() {
   return (
     <section id="about" className="abt">
       <div className="container">
@@ -83,23 +83,6 @@ export default function AboutSection({ repoCount = 10 }: { repoCount?: number })
             </Reveal>
           ))}
         </div>
-
-        <Reveal delay={160}>
-          <div className="abt-band">
-            <blockquote className="abt-quote">
-              “The kind of leverage that lets one developer move at the pace of an entire team.”
-            </blockquote>
-            <div className="abt-links">
-              <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer">
-                GitHub · {repoCount} repos ↗
-              </a>
-              <a href="https://linkedin.com/in/nominjin" target="_blank" rel="noreferrer">
-                LinkedIn ↗
-              </a>
-              <a href="/nomi.txt">nomi.txt ↗</a>
-            </div>
-          </div>
-        </Reveal>
       </div>
     </section>
   );
