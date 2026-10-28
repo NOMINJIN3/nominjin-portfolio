@@ -14,22 +14,6 @@ const MARQUEE = techTools.filter((t) => ICONS[t.name]);
 
 /* ── page ──────────────────────────────────────────────────── */
 
-/* Live public repo count, refreshed daily at build/revalidate time.
-   Falls back to a sane number if the GitHub API is rate-limited or down. */
-async function getRepoCount(): Promise<number> {
-  try {
-    const res = await fetch("https://api.github.com/users/NOMINJIN3", {
-      headers: { Accept: "application/vnd.github+json" },
-      next: { revalidate: 86400 },
-    });
-    if (!res.ok) return 10;
-    const data = (await res.json()) as { public_repos?: number };
-    return typeof data.public_repos === "number" && data.public_repos > 0 ? data.public_repos : 10;
-  } catch {
-    return 10;
-  }
-}
-
 const FOOTER_COLS = [
   {
     title: "Navigate",
@@ -72,8 +56,7 @@ const PERSON_JSON_LD = {
   knowsAbout: ["LLM agents", "LangChain", "Next.js", "React", "TypeScript", "Python", "Cyber security"],
 };
 
-export default async function Home() {
-  const repoCount = await getRepoCount();
+export default function Home() {
   return (
     <>
       <script
@@ -121,7 +104,7 @@ export default async function Home() {
       </div>
 
       {/* ABOUT */}
-      <AboutSection repoCount={repoCount} />
+      <AboutSection />
 
       {/* FOOTER — also the #contact target (hero "Connect", nav "Contact.") */}
       <footer className="footer" id="contact">
