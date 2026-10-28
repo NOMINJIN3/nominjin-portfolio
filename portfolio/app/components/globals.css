@@ -1860,6 +1860,19 @@ a.aboutv-github {
 .footer-mail:hover {
   background-size: 100% 2px;
 }
+.footer-phone {
+  display: block;
+  width: fit-content;
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: clamp(1rem, 1.6vw, 1.25rem);
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  transition: color 0.2s ease;
+}
+.footer-phone:hover {
+  color: var(--text);
+}
 .footer-mail:hover span {
   transform: translate(3px, -3px);
 }

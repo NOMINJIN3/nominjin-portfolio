@@ -137,6 +137,9 @@ export default async function Home() {
                 ts.nominjin2006@gmail.com
                 <span aria-hidden="true">↗</span>
               </a>
+              <a href="tel:+97680734073" className="footer-phone">
+                +976 80734073
+              </a>
             </div>
 
             <nav className="footer-cols" aria-label="Footer">
