@@ -241,65 +241,8 @@ function ProjectsView() {
   );
 }
 
-export type Repo = {
-  name: string;
-  description: string | null;
-  url: string;
-  homepage: string | null;
-  language: string | null;
-  stars: number;
-  pushedAt: string;
-};
-
-const LANG_COLORS: Record<string, string> = {
-  TypeScript: "#3178c6",
-  JavaScript: "#f1e05a",
-  Python: "#3572a5",
-  HTML: "#e34c26",
-  CSS: "#563d7c",
-  Java: "#b07219",
-  C: "#555555",
-  "C++": "#f34b7d",
-  Shell: "#89e051",
-  Go: "#00add8",
-  Rust: "#dea584",
-};
-
-const updated = (iso: string) =>
-  new Date(iso).toLocaleDateString("en-US", { month: "short", year: "numeric" });
-
-/* Public GitHub repos, fetched daily on the server (page.tsx) */
-function ReposView({ repos }: { repos: Repo[] }) {
-  return (
-    <div className="repo-grid">
-      {repos.map((r) => (
-        <a key={r.name} className="repo-card" href={r.url} target="_blank" rel="noreferrer">
-          <div className="repo-card-head">
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-              <path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z" />
-            </svg>
-            <h3>{r.name}</h3>
-            <span className="arrow" aria-hidden="true">↗</span>
-          </div>
-          <p>{r.description ?? "No description yet."}</p>
-          <div className="repo-card-meta">
-            {r.language && (
-              <span>
-                <i style={{ background: LANG_COLORS[r.language] ?? "var(--text-muted)" }} />
-                {r.language}
-              </span>
-            )}
-            {r.stars > 0 && <span>★ {r.stars}</span>}
-            <span>Updated {updated(r.pushedAt)}</span>
-          </div>
-        </a>
-      ))}
-      <a className="repo-card repo-card-all" href="https://github.com/NOMINJIN3?tab=repositories" target="_blank" rel="noreferrer">
-        <h3>All repositories ↗</h3>
-        <p>Browse everything on github.com/NOMINJIN3</p>
-      </a>
-    </div>
-  );
+function ProjectsEmptyView() {
+  return <p className="work-empty">No projects published yet.</p>;
 }
 
 function TerminalView() {
@@ -322,7 +265,7 @@ function TerminalView() {
 
 /* ── component ─────────────────────────────────────────────── */
 
-export default function WorkSection({ repos }: { repos: Repo[] }) {
+export default function WorkSection() {
   const [activeTab, setActiveTab] = useState<Tab>("Projects");
 
   return (
@@ -340,7 +283,7 @@ export default function WorkSection({ repos }: { repos: Repo[] }) {
       </div>
 
       <div className="work-content">
-        {activeTab === "Projects" && <ReposView repos={repos} />}
+        {activeTab === "Projects" && <ProjectsEmptyView />}
         {activeTab === "Personal" && <ProjectsView />}
         {activeTab === "Terminal" && <TerminalView />}
       </div>
