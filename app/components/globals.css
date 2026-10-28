@@ -1408,6 +1408,8 @@ section:not(.hero) {
   color: var(--text-muted);
 }
 .abt-rows h3 {
+  /* every title takes two lines, so subtitles and text line up across the columns */
+  min-height: 2.4em;
   margin-top: 14px;
   font-family: var(--font-serif, Georgia, serif);
   font-size: 1.4rem;
@@ -1436,6 +1438,7 @@ section:not(.hero) {
   .abt-facts { grid-template-columns: 1fr; }
   .abt-facts > div + div { padding-left: 0; border-left: 0; border-top: 1px solid var(--border-strong); }
   .abt-rows { grid-template-columns: 1fr; }
+  .abt-rows h3 { min-height: 0; }
 }
 
 /* ── Projects tab: empty state ─────────────────────────────── */
