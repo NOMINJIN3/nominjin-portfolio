@@ -1793,12 +1793,15 @@ a.aboutv-github {
   border-bottom: 1px solid var(--border);
   background: var(--surface);
 }
+/* macOS window buttons: close, minimize, zoom */
 .stack-card-bar span {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  background: var(--border-strong);
+  background: #ff5f57;
 }
+.stack-card-bar span:nth-child(2) { background: #febc2e; }
+.stack-card-bar span:nth-child(3) { background: #28c840; }
 .stack-card-browser .thumb-shot {
   position: relative;
   flex: 1;
