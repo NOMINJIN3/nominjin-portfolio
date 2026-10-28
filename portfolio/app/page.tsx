@@ -1,7 +1,7 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
 import ZoomHero from "./components/ZoomHero";
-import WorkSection from "./components/WorkSection";
+import WorkSection, { type Repo } from "./components/WorkSection";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
 import ContactSection from "./components/ContactSection";
@@ -43,6 +43,39 @@ async function getRepoCount(): Promise<number> {
   }
 }
 
+/* Public GitHub repos for the Projects tab, newest activity first, refreshed daily.
+   Forks, archived repos and the profile README repo are left out. Empty on error,
+   and the tab then just links to GitHub. */
+async function getRepos(): Promise<Repo[]> {
+  try {
+    const res = await fetch("https://api.github.com/users/NOMINJIN3/repos?sort=pushed&per_page=100", {
+      headers: { Accept: "application/vnd.github+json" },
+      next: { revalidate: 86400 },
+    });
+    if (!res.ok) return [];
+    const data = (await res.json()) as {
+      name: string; description: string | null; html_url: string; homepage: string | null;
+      language: string | null; stargazers_count: number; pushed_at: string;
+      fork: boolean; archived: boolean;
+    }[];
+    if (!Array.isArray(data)) return [];
+    return data
+      .filter((r) => !r.fork && !r.archived && r.name.toLowerCase() !== "nominjin3")
+      .slice(0, 9)
+      .map((r) => ({
+        name: r.name,
+        description: r.description,
+        url: r.html_url,
+        homepage: r.homepage || null,
+        language: r.language,
+        stars: r.stargazers_count,
+        pushedAt: r.pushed_at,
+      }));
+  } catch {
+    return [];
+  }
+}
+
 const PERSON_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -59,7 +92,7 @@ const PERSON_JSON_LD = {
 };
 
 export default async function Home() {
-  const repoCount = await getRepoCount();
+  const [repoCount, repos] = await Promise.all([getRepoCount(), getRepos()]);
   return (
     <>
       <script
@@ -83,7 +116,7 @@ export default async function Home() {
               <h2 className="work-title">Find My Work</h2>
             </Reveal>
             <Reveal delay={80}>
-              <WorkSection />
+              <WorkSection repos={repos} />
             </Reveal>
           </div>
         </section>
