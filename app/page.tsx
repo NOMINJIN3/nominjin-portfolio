@@ -116,11 +116,13 @@ export default async function Home() {
       </div>
 
       {/* MARQUEE */}
-      <div className="marquee" aria-hidden="true">
-        <div className="marquee-track">
-          {[...MARQUEE, ...MARQUEE].map((item, i) => (
-            <span key={i}>{item.icon}{item.name}</span>
-          ))}
+      <div className="container">
+        <div className="marquee" aria-hidden="true">
+          <div className="marquee-track">
+            {[...MARQUEE, ...MARQUEE].map((item, i) => (
+              <span key={i} title={item.name}>{item.icon}</span>
+            ))}
+          </div>
         </div>
       </div>
 
