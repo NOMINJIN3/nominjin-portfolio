@@ -938,71 +938,55 @@ section:not(.hero) {
   50% { opacity: 0; }
 }
 
-/* ── Marquee: logo-only strip in a rounded card ────────────────── */
+/* ── Marquee ───────────────────────────────────────────────── */
 .marquee {
   position: relative;
-  /* stretch past the content width on both sides */
-  width: min(1480px, calc(100vw - 32px));
-  margin: 32px 0 32px 50%;
-  transform: translateX(-50%);
-  padding: 38px 0;
-  border-radius: 28px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  box-shadow: 0 10px 30px var(--shadow-deep);
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--marquee-bg);
   overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
-/* fade the logos out at both ends, inside the card */
-.marquee::before,
-.marquee::after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  top: 0;
-  bottom: 0;
-  width: 110px;
-  pointer-events: none;
-}
-.marquee::before { left: 0; background: linear-gradient(90deg, var(--surface), transparent); }
-.marquee::after { right: 0; background: linear-gradient(270deg, var(--surface), transparent); }
 .marquee-track {
   display: flex;
+  gap: 0;
   width: max-content;
-  animation: scrollx 34s linear infinite;
+  animation: scrollx 30s linear infinite;
 }
 .marquee:hover .marquee-track {
   animation-play-state: paused;
 }
 .marquee-track span {
-  display: inline-grid;
-  place-items: center;
-  padding: 0 36px;
+  font-family: var(--font-mono);
+  font-size: 15px;
   color: var(--text-dim);
+  padding: 0 26px;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
+/* skill icons at strip size (inline SVGs carry their own width) */
 .marquee-track span svg,
 .marquee-track span img {
-  width: 52px;
-  height: 52px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
-  transition: transform 0.25s ease;
 }
-.marquee-track span:hover svg,
-.marquee-track span:hover img {
-  transform: scale(1.12);
-}
-/* dark mode: same treatment as the hero skills */
 [data-theme="dark"] .marquee-track span.icon-invert-dark img {
   filter: invert(1);
 }
 [data-theme="dark"] .marquee-track span.icon-outline-dark img {
   filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
 }
-@media (max-width: 640px) {
-  .marquee { padding: 24px 0; border-radius: 20px; }
-  .marquee::before, .marquee::after { width: 56px; }
-  .marquee-track span { padding: 0 22px; }
-  .marquee-track span svg,
-  .marquee-track span img { width: 38px; height: 38px; }
+.marquee-track span::after {
+  content: "◆";
+  font-size: 9px;
+  color: var(--cyan);
+  opacity: 0.8;
+  margin-left: 12px;
 }
 @keyframes scrollx {
   from { transform: translateX(0); }
