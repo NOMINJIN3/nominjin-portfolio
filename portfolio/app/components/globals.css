@@ -2664,20 +2664,17 @@ section,
   inset: 0;
   z-index: 1;
 }
+/* ZoomHero.tsx springs each logo from behind the photo to its spot via transform */
 .zoom-skill {
-  --t: clamp(0, (var(--q) - var(--d)) / (1 - var(--d)), 1);
   position: absolute;
   left: calc(var(--x) * 1%);
   top: calc(var(--y) * 1%);
   width: 64px;
   height: 64px;
+  margin: -32px 0 0 -32px;
   display: grid;
   place-items: center;
-  opacity: var(--t);
-  transform:
-    translate(-50%, -50%)
-    translate(calc((50 - var(--x)) * 1vw * (1 - var(--t))), calc((50 - var(--y)) * 1svh * (1 - var(--t))))
-    scale(calc(0.55 + 0.45 * var(--t)));
+  will-change: transform;
 }
 .zoom-skill-logo {
   width: 100%;
@@ -2750,10 +2747,7 @@ section,
     top: calc(var(--my) * 1%);
     width: 44px;
     height: 44px;
-    transform:
-      translate(-50%, -50%)
-      translate(calc((50 - var(--mx)) * 1vw * (1 - var(--t))), calc((50 - var(--my)) * 1svh * (1 - var(--t))))
-      scale(calc(0.55 + 0.45 * var(--t)));
+    margin: -22px 0 0 -22px;
   }
   .zoom-hero-caption { display: none; }
 }
