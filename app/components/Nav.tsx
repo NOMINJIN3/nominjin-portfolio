@@ -151,8 +151,8 @@ export default function Nav() {
                   {l.label}
                 </a>
               ))}
-              <a href="#contact" className="nav-pill-cta" tabIndex={scrolled ? -1 : undefined}>
-                Connect
+              <a href="#projects" className="nav-pill-cta" tabIndex={scrolled ? -1 : undefined}>
+                Portfolio
               </a>
             </nav>
           </div>
