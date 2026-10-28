@@ -120,7 +120,7 @@ function Thumb({ kind }: { kind: string }) {
 
 /* ── tab content ───────────────────────────────────────────── */
 
-const TABS = ["Personal", "Projects", "Published", "Terminal"] as const;
+const TABS = ["Projects", "Personal", "Terminal"] as const;
 type Tab = (typeof TABS)[number];
 
 function PersonalView() {
@@ -276,52 +276,6 @@ function ProjectsView() {
   );
 }
 
-const PUBLISHED = [
-  {
-    icon: "📝",
-    title: "Portfolio Art Engine",
-    desc: "Automated GitHub profile artwork — monochrome ASCII portrait and contribution heatmap that regenerates daily via GitHub Actions.",
-    href: "https://github.com/NOMINJIN3",
-    cta: "View on GitHub →",
-  },
-  {
-    icon: "🌐",
-    title: "nominjin3.github.io",
-    desc: "Interactive terminal-style landing page — type commands, explore the stack, meet the agent.",
-    href: "https://nominjin3.github.io",
-    cta: "Visit Site →",
-  },
-  {
-    icon: "🔒",
-    title: "HackTheBox Writeups",
-    desc: "Hands-on offensive security machines with full enumeration-to-root chains, custom payloads and responsible disclosure.",
-    href: "https://app.hackthebox.com",
-    cta: "HackTheBox →",
-  },
-];
-
-function PublishedView() {
-  return (
-    <div className="work-published">
-      {PUBLISHED.map((c) => (
-        // whole card is the link, not just the small text at the bottom
-        <a
-          key={c.title}
-          className="work-published-card"
-          href={c.href}
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="work-published-icon" aria-hidden="true">{c.icon}</div>
-          <h3>{c.title}</h3>
-          <p>{c.desc}</p>
-          <span className="work-published-link">{c.cta}</span>
-        </a>
-      ))}
-    </div>
-  );
-}
-
 function TerminalView() {
   return (
     <div className="work-terminal">
@@ -360,9 +314,8 @@ export default function WorkSection() {
       </div>
 
       <div className="work-content">
-        {activeTab === "Personal" && <PersonalView />}
         {activeTab === "Projects" && <ProjectsView />}
-        {activeTab === "Published" && <PublishedView />}
+        {activeTab === "Personal" && <PersonalView />}
         {activeTab === "Terminal" && <TerminalView />}
       </div>
     </>
