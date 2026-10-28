@@ -2,11 +2,13 @@
 
 import { useEffect, useRef, useState } from "react";
 import Terminal from "./Terminal";
+import L, { type Text } from "./L";
 
 type Project = {
-  title: string;
+  title: string;                    // English title (also the key and alt fallback)
+  titleMn?: string;                 // Mongolian title, when it differs
   tags: string[];
-  desc: string;
+  desc: Text;
   link: string;
   linkLabel: string;
   thumb: string;
@@ -20,7 +22,10 @@ const PROJECTS: Project[] = [
   {
     title: "Profile Art Engine",
     tags: ["Python", "GitHub Actions", "SVG"],
-    desc: "An automated GitHub profile artwork pipeline — monochrome ASCII portrait and a contribution heatmap that regenerates itself daily.",
+    desc: {
+      en: "An automated GitHub profile artwork pipeline — monochrome ASCII portrait and a contribution heatmap that regenerates itself daily.",
+      mn: "GitHub профайлын зургийг автоматаар бүтээдэг систем: монохром ASCII хөрөг болон өдөр бүр өөрөө шинэчлэгддэг contribution heatmap.",
+    },
     link: "https://github.com/NOMINJIN3",
     linkLabel: "github",
     thumb: "heatmap",
@@ -31,8 +36,12 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Live Terminal",
+    titleMn: "Шууд терминал",
     tags: ["Web", "Interactive"],
-    desc: "An interactive terminal-style home on the web — type help, explore the stack, and meet the agent.",
+    desc: {
+      en: "An interactive terminal-style home on the web — type help, explore the stack, and meet the agent.",
+      mn: "Терминал маягийн интерактив вэб нүүр: help гэж бичээд, ашигладаг технологиудтай танилцаж, агенттай уулзаарай.",
+    },
     link: "https://nominjin3.github.io",
     linkLabel: "live site",
     thumb: "terminal",
@@ -41,8 +50,12 @@ const PROJECTS: Project[] = [
   },
   {
     title: "Offensive Security Labs",
+    titleMn: "Довтолгооны аюулгүй байдлын лаборатори",
     tags: ["HackTheBox", "Recon", "Privesc"],
-    desc: "Hands-on machines (Nexus, Krayin) with PEASS-ng, SecLists and custom payloads — full enumeration-to-root chains.",
+    desc: {
+      en: "Hands-on machines (Nexus, Krayin) with PEASS-ng, SecLists and custom payloads — full enumeration-to-root chains.",
+      mn: "PEASS-ng, SecLists болон өөрийн payload ашиглан Nexus, Krayin машинууд дээр бодит дадлага: мэдээлэл цуглуулахаас root эрх авах хүртэлх бүрэн гинж.",
+    },
     link: "https://app.hackthebox.com",
     linkLabel: "hackthebox",
     thumb: "shell",
@@ -51,8 +64,12 @@ const PROJECTS: Project[] = [
   },
   {
     title: "This Portfolio",
+    titleMn: "Энэ портфолио",
     tags: ["Next.js", "React", "TypeScript"],
-    desc: "A light, terminal-inspired portfolio — custom CSS design system, zero UI libraries, orbital tech stack and all.",
+    desc: {
+      en: "A light, terminal-inspired portfolio — custom CSS design system, zero UI libraries, orbital tech stack and all.",
+      mn: "Терминалаас санаа авсан хөнгөн портфолио: өөрийн CSS дизайн систем, UI сангүйгээр бүтээсэн.",
+    },
     link: "https://www.nominjin.io",
     linkLabel: "nominjin.io",
     thumb: "code",
@@ -121,6 +138,7 @@ function Thumb({ kind }: { kind: string }) {
 
 const TABS = ["Projects", "Personal", "Terminal"] as const;
 type Tab = (typeof TABS)[number];
+const TAB_MN: Record<Tab, string> = { Projects: "Төслүүд", Personal: "Хувийн", Terminal: "Терминал" };
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
 
@@ -184,10 +202,10 @@ function ProjectsView() {
               <span>{p.linkLabel}</span>
             </div>
             <h3>
-              {p.title}
+              {p.titleMn ? <L en={p.title} mn={p.titleMn} /> : p.title}
               <span className="arrow" aria-hidden="true">↗</span>
             </h3>
-            <p>{p.desc}</p>
+            <p><L {...p.desc} /></p>
             <div className="stack-card-tags">
               {p.tags.map((t) => (
                 <span key={t}>{t}</span>
@@ -242,7 +260,11 @@ function ProjectsView() {
 }
 
 function ProjectsEmptyView() {
-  return <p className="work-empty">No projects published yet.</p>;
+  return (
+    <p className="work-empty">
+      <L en="No projects published yet." mn="Нийтэлсэн төсөл одоогоор алга." />
+    </p>
+  );
 }
 
 function TerminalView() {
@@ -277,7 +299,7 @@ export default function WorkSection() {
             className={`work-tab ${activeTab === tab ? "active" : ""}`}
             onClick={() => setActiveTab(tab)}
           >
-            {tab}
+            <L en={tab} mn={TAB_MN[tab]} />
           </button>
         ))}
       </div>

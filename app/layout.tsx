@@ -75,6 +75,12 @@ const THEME_INIT = `(function () {
     el.dataset.theme = dark ? "dark" : "light";
     var meta = document.querySelector('meta[name="theme-color"]');
     if (meta) meta.setAttribute("content", dark ? "#05070d" : "#f7f9fc");
+    // language: English by default; MN if the visitor picked it with the MN/EN button
+    var lang = null;
+    try { lang = localStorage.getItem("lang"); } catch (e) {}
+    lang = lang === "mn" ? "mn" : "en";
+    el.dataset.lang = lang;
+    el.lang = lang;
   } catch (e) {}
 })();`;
 
