@@ -1652,54 +1652,6 @@ a.aboutv-github {
   background: color-mix(in srgb, var(--cyan) 8%, transparent);
 }
 
-/* Published view */
-.work-published {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
-}
-.work-published-card {
-  display: block;
-  color: inherit;
-  text-decoration: none;
-  padding: 28px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-}
-.work-published-card:hover {
-  transform: translateY(-4px);
-  border-color: color-mix(in srgb, var(--cyan) 40%, transparent);
-  box-shadow: 0 16px 40px var(--shadow-hover);
-}
-.work-published-icon {
-  font-size: 24px;
-  margin-bottom: 12px;
-}
-.work-published-card h3 {
-  font-family: var(--font-display);
-  font-size: 15.5px;
-  font-weight: 700;
-  margin-bottom: 7px;
-}
-.work-published-card p {
-  font-size: 12.5px;
-  color: var(--text-muted);
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-.work-published-link {
-  font-size: 12.5px;
-  font-weight: 600;
-  color: var(--cyan);
-  transition: color 0.2s;
-}
-.work-published-link:hover,
-.work-published-card:hover .work-published-link {
-  color: var(--text);
-}
-
 /* ── Projects: stacked cards ───────────────────────────────
    Each card is sticky below the nav; WorkSection.tsx sets --cover (0 → 1)
    as the next card slides over it, so it shrinks back and greys out. */
