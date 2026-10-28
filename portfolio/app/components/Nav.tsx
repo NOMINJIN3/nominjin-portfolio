@@ -80,7 +80,9 @@ export default function Nav() {
     <>
       <div className="cursor-glow" ref={glowRef} aria-hidden="true" />
 
-      <header className={`nav ${scrolled ? "scrolled" : ""}`}>
+      {/* at the top of the page (over the hero photo) the pill starts large and open,
+          then shrinks to the compact "☰ Nominjin." pill once you scroll */}
+      <header className={`nav ${scrolled ? "scrolled" : "at-top"}`}>
         <button
           className="theme-toggle"
           onClick={toggleTheme}
@@ -109,7 +111,7 @@ export default function Nav() {
 
         <div className="nav-pill-wrapper">
           <div
-            className={`nav-pill ${expanded ? "expanded" : ""}`}
+            className={`nav-pill ${expanded || !scrolled ? "expanded" : ""}`}
             ref={pillRef}
             onMouseEnter={() => setExpanded(true)}
             onMouseLeave={() => setExpanded(false)}
@@ -149,6 +151,9 @@ export default function Nav() {
                   {l.label}
                 </a>
               ))}
+              <a href="#contact" className="nav-pill-cta" tabIndex={scrolled ? -1 : undefined}>
+                Connect
+              </a>
             </nav>
           </div>
 
