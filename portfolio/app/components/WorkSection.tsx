@@ -57,8 +57,7 @@ const PROJECTS: Project[] = [
     linkLabel: "nominjin.io",
     thumb: "code",
     image: "/projects/this-portfolio.webp",
-    imageDark: "/projects/this-portfolio-dark.webp",
-    imageAlt: "nominjin.io hero section with photo and the Agentic Tools Developer headline",
+    imageAlt: "nominjin.io hero: full-screen photo, Context Engineering Developer headline and the large glass nav",
   },
 ];
 
