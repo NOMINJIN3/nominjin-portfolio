@@ -530,7 +530,7 @@ section {
   z-index: 101;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   height: 46px;
   padding: 0 16px;
   border: 0;
@@ -543,6 +543,7 @@ section {
 }
 .lang-toggle span { opacity: 0.55; transition: opacity 0.2s ease, color 0.2s ease; }
 .lang-toggle span.on { opacity: 1; color: var(--text); }
+.lang-toggle i { font-style: normal; font-weight: 400; opacity: 0.55; }
 .lang-toggle:hover span { opacity: 1; }
 /* over the hero photo: white text with a soft shadow so it reads on any part of the image */
 .nav.at-top .lang-toggle,
