@@ -9,7 +9,7 @@ const FACTS = [
 
 const ROWS = [
   {
-    k: "Now",
+    k: "Intern",
     title: "Software Engineering Intern",
     sub: "erxes Mongolia · 2026 — present",
     body: "Full-stack and automation work on a source-available Experience OS: shipping features, fixing bugs and automating workflows.",
@@ -21,7 +21,7 @@ const ROWS = [
     body: "School of Information and Communication Technology, Mongolian University of Science and Technology.",
   },
   {
-    k: "Nights",
+    k: "Day",
     title: "Offensive security",
     sub: "HackTheBox",
     body: "Enumeration, privilege escalation and custom payloads, from first scan to root.",
