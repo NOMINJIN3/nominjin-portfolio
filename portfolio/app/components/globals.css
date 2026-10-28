@@ -1570,88 +1570,6 @@ a.aboutv-github {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Personal view */
-.work-personal-card {
-  display: flex;
-  gap: 32px;
-  align-items: center;
-  padding: 36px;
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  background: var(--card-bg);
-  max-width: 680px;
-  margin-inline: auto;
-  transform-style: preserve-3d;
-  perspective: 800px;
-  transition: transform 0.3s ease;
-}
-.work-personal-card:hover {
-  transform: translateZ(6px);
-}
-.work-personal-avatar {
-  flex-shrink: 0;
-  width: 190px;
-  height: 190px;
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  box-shadow:
-    0 14px 32px rgba(2, 8, 20, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
-}
-.work-personal-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 20%;
-}
-@media (max-width: 640px) {
-  .work-personal-avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 22px;
-  }
-}
-.work-personal-info h3 {
-  font-family: var(--font-display);
-  font-size: 18px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-.work-personal-role {
-  font-size: 12.5px;
-  color: var(--cyan);
-  font-weight: 500;
-  margin-bottom: 9px;
-}
-.work-personal-bio {
-  font-size: 13px;
-  color: var(--text-dim);
-  line-height: 1.6;
-  margin-bottom: 14px;
-}
-.work-personal-links {
-  display: flex;
-  gap: 10px;
-}
-.work-personal-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 12px;
-  border-radius: 999px;
-  border: 1px solid var(--border-strong);
-  font-size: 12px;
-  font-weight: 500;
-  color: var(--text-dim);
-  transition: color 0.2s, border-color 0.2s, background 0.2s;
-}
-.work-personal-link:hover {
-  color: var(--text);
-  border-color: var(--cyan);
-  background: color-mix(in srgb, var(--cyan) 8%, transparent);
-}
-
 /* ── Projects: stacked cards ───────────────────────────────
    Each card is sticky below the nav; WorkSection.tsx sets --cover (0 → 1)
    as the next card slides over it, so it shrinks back and greys out. */
@@ -1937,13 +1855,6 @@ a.aboutv-github {
     padding: 18px;
     min-height: 210px;
   }
-  .work-personal-card {
-    flex-direction: column;
-    text-align: center;
-  }
-  .work-personal-links {
-    justify-content: center;
-  }
 }
 
 /* ── Mobile hardening ─────────────────────────────────────── */
@@ -1982,11 +1893,6 @@ section,
     font-size: 13px;
   }
 
-  /* Personal card centers fully */
-  .work-personal-avatar {
-    margin: 0 auto;
-  }
-
   /* Tighter page gutters on phones */
   .container {
     width: min(1160px, 100% - 32px);
@@ -2002,9 +1908,7 @@ section,
     padding: 11px 20px;
     font-size: 14px;
   }
-  .work-personal-card {
-    padding: 24px 18px;
-  }
+
   .aboutv-id {
     flex-direction: column;
     text-align: center;
