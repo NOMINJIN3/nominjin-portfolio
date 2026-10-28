@@ -286,8 +286,7 @@ export default function ZoomHero() {
             Developer.
           </h1>
           <p className="zoom-hero-desc">
-            Nominjin builds LLM-powered agents with LangChain, ships full-stack apps
-            with React &amp; Next.js, and breaks things ethically on HackTheBox.
+            My only competitor is the level I am capable of reaching.
           </p>
           <div className="zoom-hero-cta">
             <a href="#contact" className="zoom-btn-primary">Connect</a>
