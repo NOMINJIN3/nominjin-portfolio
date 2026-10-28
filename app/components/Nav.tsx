@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import L from "./L";
 
 const LINKS = [
-  { href: "#skills", label: "Skills." },
-  { href: "#projects", label: "Work." },
-  { href: "#contact", label: "Contact." },
+  { href: "#skills", label: <L en="Skills." mn="Ур чадвар." /> },
+  { href: "#projects", label: <L en="Work." mn="Ажил." /> },
+  { href: "#contact", label: <L en="Contact." mn="Холбоо барих." /> },
 ];
 
 type Theme = "light" | "dark";
+type Lang = "en" | "mn";
 
 const THEME_COLORS = { light: "#f7f9fc", dark: "#05070d" };
 
@@ -22,6 +24,21 @@ export default function Nav() {
   useEffect(() => {
     if (document.documentElement.dataset.theme === "dark") setTheme("dark");
   }, []);
+  // same pattern for the language: start "en", then sync to what the <head> script applied
+  const [lang, setLang] = useState<Lang>("en");
+  useEffect(() => {
+    if (document.documentElement.dataset.lang === "mn") setLang("mn");
+  }, []);
+  const toggleLang = () => {
+    setLang((prev) => {
+      const next: Lang = prev === "mn" ? "en" : "mn";
+      const el = document.documentElement;
+      el.dataset.lang = next;
+      el.lang = next;
+      try { localStorage.setItem("lang", next); } catch {}
+      return next;
+    });
+  };
   const glowRef = useRef<HTMLDivElement>(null);
   const pillRef = useRef<HTMLDivElement>(null);
 
@@ -107,6 +124,16 @@ export default function Nav() {
           )}
         </button>
 
+        <button
+          className="lang-toggle"
+          onClick={toggleLang}
+          aria-label={lang === "mn" ? "Switch to English" : "Монгол хэл рүү шилжих"}
+          title={lang === "mn" ? "English" : "Монгол"}
+        >
+          <span className={lang === "mn" ? "on" : undefined}>MN</span>
+          <span className={lang === "en" ? "on" : undefined}>EN</span>
+        </button>
+
         <div className="nav-pill-wrapper">
           <div
             className={`nav-pill ${expanded || !scrolled ? "expanded" : ""}`}
@@ -150,7 +177,7 @@ export default function Nav() {
                 </a>
               ))}
               <a href="#projects" className="nav-pill-cta" tabIndex={scrolled ? -1 : undefined}>
-                Portfolio
+                <L en="Portfolio" mn="Портфолио" />
               </a>
             </nav>
           </div>

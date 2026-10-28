@@ -1,5 +1,6 @@
 import Nav from "./components/Nav";
 import Reveal from "./components/Reveal";
+import L, { type Text } from "./components/L";
 import ZoomHero from "./components/ZoomHero";
 import { ICONS } from "./data/icons";
 import { techTools } from "./data/tech";
@@ -14,29 +15,29 @@ const MARQUEE = techTools.filter((t) => ICONS[t.name]);
 
 /* ── page ──────────────────────────────────────────────────── */
 
-const FOOTER_COLS = [
+const FOOTER_COLS: { title: Text; links: { label: Text; href: string }[] }[] = [
   {
-    title: "Navigate",
+    title: { en: "Navigate", mn: "Цэс" },
     links: [
-      { label: "Skills", href: "#skills" },
-      { label: "Work", href: "#projects" },
-      { label: "Contact", href: "#contact" },
+      { label: { en: "Skills", mn: "Ур чадвар" }, href: "#skills" },
+      { label: { en: "Work", mn: "Ажил" }, href: "#projects" },
+      { label: { en: "Contact", mn: "Холбоо барих" }, href: "#contact" },
     ],
   },
   {
-    title: "Connect",
+    title: { en: "Connect", mn: "Холбогдох" },
     links: [
-      { label: "GitHub", href: "https://github.com/NOMINJIN3" },
-      { label: "LinkedIn", href: "https://linkedin.com/in/nominjin" },
-      { label: "X", href: "https://x.com/nomin1433" },
-      { label: "Instagram", href: "https://www.instagram.com/nomin3_jin" },
+      { label: { en: "GitHub", mn: "GitHub" }, href: "https://github.com/NOMINJIN3" },
+      { label: { en: "LinkedIn", mn: "LinkedIn" }, href: "https://linkedin.com/in/nominjin" },
+      { label: { en: "X", mn: "X" }, href: "https://x.com/nomin1433" },
+      { label: { en: "Instagram", mn: "Instagram" }, href: "https://www.instagram.com/nomin3_jin" },
     ],
   },
   {
-    title: "More",
+    title: { en: "More", mn: "Бусад" },
     links: [
-      { label: "Live terminal", href: "https://nominjin3.github.io" },
-      { label: "nomi.txt", href: "/nomi.txt" },
+      { label: { en: "Live terminal", mn: "Шууд терминал" }, href: "https://nominjin3.github.io" },
+      { label: { en: "nomi.txt", mn: "nomi.txt" }, href: "/nomi.txt" },
     ],
   },
 ];
@@ -77,7 +78,7 @@ export default function Home() {
         <section id="projects">
           <div className="container">
             <Reveal>
-              <h2 className="work-title">Find My Work</h2>
+              <h2 className="work-title"><L en="Find My Work" mn="Миний бүтээлүүд" /></h2>
             </Reveal>
             <Reveal delay={80}>
               <WorkSection />
@@ -111,7 +112,9 @@ export default function Home() {
         <div className="container">
           <div className="footer-top">
             <div className="footer-cta">
-              <p className="footer-eyebrow">Have an idea? Let&apos;s talk.</p>
+              <p className="footer-eyebrow">
+                <L en="Have an idea? Let’s talk." mn="Санаа байна уу? Ярилцъя." />
+              </p>
               <a href="mailto:ts.nominjin2006@gmail.com" className="footer-mail">
                 ts.nominjin2006@gmail.com
               </a>
@@ -122,17 +125,17 @@ export default function Home() {
 
             <nav className="footer-cols" aria-label="Footer">
               {FOOTER_COLS.map((col) => (
-                <div key={col.title} className="footer-col">
-                  <h3>{col.title}</h3>
+                <div key={col.links[0].href} className="footer-col">
+                  <h3><L {...col.title} /></h3>
                   <ul>
                     {col.links.map((l) => (
-                      <li key={l.label}>
+                      <li key={l.href}>
                         <a
                           href={l.href}
                           target={l.href.startsWith("http") ? "_blank" : undefined}
                           rel={l.href.startsWith("http") ? "noreferrer" : undefined}
                         >
-                          {l.label}
+                          <L {...l.label} />
                         </a>
                       </li>
                     ))}
@@ -146,11 +149,12 @@ export default function Home() {
             <span className="footer-legal">
               <span>© {new Date().getFullYear()} Nominjin Tsogtbayar</span>
               <span>
-                Built in Ulaanbaatar <span className="heart" aria-hidden="true">♥</span>
+                <L en="Built in Ulaanbaatar" mn="Улаанбаатарт бүтээв" />{" "}
+                <span className="heart" aria-hidden="true">♥</span>
               </span>
             </span>
             <a href="#home" className="footer-top-link">
-              Back to top <span aria-hidden="true">↑</span>
+              <L en="Back to top" mn="Дээш буцах" /> <span aria-hidden="true">↑</span>
             </a>
           </div>
 

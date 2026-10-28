@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type CSSProperties } from "react";
 import RotatingText from "./RotatingText";
+import L from "./L";
 import { ICONS } from "../data/icons";
 import { techTools } from "../data/tech";
 
@@ -283,21 +284,24 @@ export default function ZoomHero() {
           <h1 className="zoom-hero-title">
             <RotatingText />
             <br />
-            Developer.
+            <L en="Developer." mn="хөгжүүлэгч." />
           </h1>
           <p className="zoom-hero-desc">
-            My only competitor is the level I am capable of reaching.
+            <L
+              en="My only competitor is the level I am capable of reaching."
+              mn="Миний цорын ганц өрсөлдөгч бол миний хүрч чадах түвшин."
+            />
           </p>
           <div className="zoom-hero-cta">
-            <a href="#contact" className="zoom-btn-primary">Connect</a>
-            <a href="#projects" className="zoom-btn-link">See work →</a>
+            <a href="#contact" className="zoom-btn-primary"><L en="Connect" mn="Холбогдох" /></a>
+            <a href="#projects" className="zoom-btn-link"><L en="See work" mn="Ажлыг үзэх" /> →</a>
           </div>
         </div>
 
         <p className="zoom-hero-caption" aria-hidden="true">
-          Always building, always growing.
+          <L en="Always building, always growing." mn="Үргэлж бүтээж, үргэлж өсөж байна." />
         </p>
-        <span className="zoom-hero-hint" aria-hidden="true">Scroll</span>
+        <span className="zoom-hero-hint" aria-hidden="true"><L en="Scroll" mn="Гүйлгэх" /></span>
       </div>
     </section>
   );

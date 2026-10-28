@@ -1,8 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import L, { type Text } from "./L";
 
-const WORDS = ["Agentic Tools", "Cyber Security", "Context Engineering"];
+const WORDS: Text[] = [
+  { en: "Agentic Tools", mn: "Агент хэрэгслийн" },
+  { en: "Cyber Security", mn: "Кибер аюулгүй байдлын" },
+  { en: "Context Engineering", mn: "Контекст инженерчлэлийн" },
+];
 const INTERVAL = 3000;
 
 export default function RotatingText() {
@@ -24,7 +29,7 @@ export default function RotatingText() {
 
   return (
     <span aria-live="polite" className={`hero-title-accent rotating-text ${visible ? "show" : "hide"}`}>
-      {WORDS[idx]}
+      <L {...WORDS[idx]} />
     </span>
   );
 }
