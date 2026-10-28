@@ -43,6 +43,33 @@ async function getRepoCount(): Promise<number> {
   }
 }
 
+const FOOTER_COLS = [
+  {
+    title: "Navigate",
+    links: [
+      { label: "Skills", href: "#skills" },
+      { label: "Work", href: "#projects" },
+      { label: "Contact", href: "#contact" },
+    ],
+  },
+  {
+    title: "Connect",
+    links: [
+      { label: "GitHub", href: "https://github.com/NOMINJIN3" },
+      { label: "LinkedIn", href: "https://linkedin.com/in/nominjin" },
+      { label: "X", href: "https://x.com/nomin1433" },
+      { label: "Instagram", href: "https://www.instagram.com/nomin3_jin" },
+    ],
+  },
+  {
+    title: "More",
+    links: [
+      { label: "Live terminal", href: "https://nominjin3.github.io" },
+      { label: "nomi.txt", href: "/nomi.txt" },
+    ],
+  },
+];
+
 const PERSON_JSON_LD = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -106,24 +133,51 @@ export default async function Home() {
 
       {/* FOOTER */}
       <footer className="footer">
-        <div className="container footer-inner">
-          <div className="footer-pill">
-            <a href="https://linkedin.com/in/nominjin" target="_blank" rel="noreferrer" className="footer-pill-link">
-              LinkedIn.
-            </a>
-            <a href="https://github.com/NOMINJIN3" target="_blank" rel="noreferrer" className="footer-pill-link">
-              GitHub.
-            </a>
-            <a href="mailto:ts.nominjin2006@gmail.com" className="footer-pill-link">
-              Email.
-            </a>
-            <a href="/nomi.txt" className="footer-pill-link">
-              nomi.txt
+        <div className="container">
+          <div className="footer-top">
+            <div className="footer-cta">
+              <p className="footer-eyebrow">Have an idea? Let&apos;s talk.</p>
+              <a href="mailto:ts.nominjin2006@gmail.com" className="footer-mail">
+                ts.nominjin2006@gmail.com
+                <span aria-hidden="true">↗</span>
+              </a>
+            </div>
+
+            <nav className="footer-cols" aria-label="Footer">
+              {FOOTER_COLS.map((col) => (
+                <div key={col.title} className="footer-col">
+                  <h3>{col.title}</h3>
+                  <ul>
+                    {col.links.map((l) => (
+                      <li key={l.label}>
+                        <a
+                          href={l.href}
+                          target={l.href.startsWith("http") ? "_blank" : undefined}
+                          rel={l.href.startsWith("http") ? "noreferrer" : undefined}
+                        >
+                          {l.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </nav>
+          </div>
+
+          <div className="footer-bottom">
+            <span className="footer-legal">
+              <span>© {new Date().getFullYear()} Nominjin Tsogtbayar</span>
+              <span>
+                Built in Ulaanbaatar <span className="heart" aria-hidden="true">♥</span>
+              </span>
+            </span>
+            <a href="#home" className="footer-top-link">
+              Back to top <span aria-hidden="true">↑</span>
             </a>
           </div>
-          <div className="footer-copy">
-            <span>© {new Date().getFullYear()} Nominjin Tsogtbayar <span className="heart">♥</span> Built in Ulaanbaatar</span>
-          </div>
+
+          <p className="footer-wordmark" aria-hidden="true">Nominjin.</p>
         </div>
       </footer>
       </ParallaxProvider>
