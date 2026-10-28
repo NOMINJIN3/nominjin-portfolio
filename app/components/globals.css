@@ -962,7 +962,7 @@ section:not(.hero) {
   font-family: var(--font-mono);
   font-size: 15px;
   color: var(--text-dim);
-  padding: 0 26px;
+  padding: 0 30px;
   white-space: nowrap;
   display: inline-flex;
   align-items: center;
@@ -971,8 +971,8 @@ section:not(.hero) {
 /* skill icons at strip size (inline SVGs carry their own width) */
 .marquee-track span svg,
 .marquee-track span img {
-  width: 20px;
-  height: 20px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
 }
 [data-theme="dark"] .marquee-track span.icon-invert-dark img {
@@ -986,7 +986,7 @@ section:not(.hero) {
   font-size: 9px;
   color: var(--cyan);
   opacity: 0.8;
-  margin-left: 12px;
+  margin-left: 30px;
 }
 @keyframes scrollx {
   from { transform: translateX(0); }
