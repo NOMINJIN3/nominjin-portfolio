@@ -39,7 +39,10 @@ const REPEL_PUSH = 60;      // max px a logo is pushed aside
 const FOCUS_PULL = 0.28;    // how far the pointed-at logo leans toward the cursor
 const RIPPLE_SPEED = 1000;  // px/s kick from a click / tap
 const DRIFT = 7;            // px of idle floating
-const RELEASE_STEP = 0.035; // scroll progress (q) between logos popping out
+const ENTRY_DELAY = 0.15;    // s before the first logo pops out
+const ENTRY_STAGGER = 0.045; // s between logos, same burst-in as the Skills section
+const ENTRY_AT = 0.15;       // scroll progress (q) that starts the burst
+const RESET_AT = 0.05;       // scrolling back below this tucks them all away again
 
 type Body = {
   hx: number; hy: number;  // home (center of its spot), container px
@@ -48,6 +51,7 @@ type Body = {
   s: number; vs: number;   // scale
   rot: number;
   phase: number; wx: number; wy: number;
+  release: number;         // time (s) this logo pops out; Infinity = tucked away
 };
 
 const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
@@ -98,6 +102,7 @@ export default function ZoomHero() {
     const bodies: Body[] = els.map((_, i) => ({
       hx: 0, hy: 0, x: 0, y: 0, vx: 0, vy: 0, s: 0.4, vs: 0, rot: 0,
       phase: i * 1.7, wx: 0.45 + ((i * 37) % 10) / 25, wy: 0.4 + ((i * 53) % 10) / 22,
+      release: Infinity,
     }));
     const layout = () => {
       W = stage.clientWidth; H = stage.clientHeight;
@@ -112,13 +117,26 @@ export default function ZoomHero() {
     bodies.forEach((b) => { b.x = W / 2 - b.hx; b.y = H / 2 - b.hy; });
 
     let pointer: { x: number; y: number } | null = null;
-    let t = 0, last = 0, loop = 0, visible = false;
+    let t = 0, last = 0, loop = 0, visible = false, entered = false;
     const step = (now: number) => {
       loop = requestAnimationFrame(step);
       const dt = Math.min((now - (last || now)) / 1000, 1 / 30);
       last = now;
       t += dt;
       const k = Math.min(1, W / 900); // gentler forces on small screens
+
+      // once the photo has shrunk enough, pop the logos out one after another
+      // on a timer (not tied to scroll speed); scrolling back tucks them away
+      if (!entered && q > ENTRY_AT) {
+        entered = true;
+        let n = 0;
+        bodies.forEach((b, i) => {
+          if (els[i]?.offsetWidth) b.release = t + ENTRY_DELAY + n++ * ENTRY_STAGGER;
+        });
+      } else if (entered && q < RESET_AT) {
+        entered = false;
+        bodies.forEach((b) => { b.release = Infinity; });
+      }
 
       // logo under the pointer, if any
       let focus = -1;
@@ -134,8 +152,7 @@ export default function ZoomHero() {
       bodies.forEach((b, i) => {
         const li = els[i];
         if (!li || !li.offsetWidth) return; // hidden on this screen size
-        // scrolling forward pops logos out one by one; scrolling back tucks them in
-        const out = q > 0.02 + i * RELEASE_STEP;
+        const out = t >= b.release;
         let tx = W / 2 - b.hx, ty = H / 2 - b.hy, ts = 0.4;
         if (out) {
           tx = Math.sin(t * b.wx + b.phase) * DRIFT * k;
