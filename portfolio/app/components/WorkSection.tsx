@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Terminal from "./Terminal";
 
 type Project = {
@@ -157,35 +157,91 @@ function PersonalView() {
   );
 }
 
+const clamp01 = (v: number) => Math.max(0, Math.min(1, v));
+
+/**
+ * Stacked cards: each project pins below the nav, the next one slides up over
+ * it, and the covered card shrinks back, lifts a little and greys out.
+ * --cover (0 → 1) is how far the next card has covered this one.
+ */
 function ProjectsView() {
+  const listRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const list = listRef.current;
+    if (!list) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const cards = Array.from(list.children) as HTMLElement[];
+    let pins: number[] = [];
+    const measure = () => {
+      pins = cards.map((c) => parseFloat(getComputedStyle(c).top) || 0);
+    };
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      cards.forEach((card, i) => {
+        const top = card.getBoundingClientRect().top;
+        const next = cards[i + 1];
+        const cover = next
+          ? clamp01((pins[i] + card.offsetHeight - next.getBoundingClientRect().top) / card.offsetHeight)
+          : 0;
+        card.style.setProperty("--cover", cover.toFixed(3));
+        // the pinned card nobody is covering yet gets the highlight
+        card.classList.toggle("is-front", cover < 0.02 && top <= pins[i] + 1);
+      });
+    };
+    const onScroll = () => { if (!raf) raf = requestAnimationFrame(update); };
+    const onResize = () => { measure(); onScroll(); };
+    measure();
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
   return (
-    <div className="projects-grid">
-      {PROJECTS.map((p) => (
+    <div className="stack-list" ref={listRef}>
+      {PROJECTS.map((p, i) => (
         <a
           key={p.title}
-          className="project-card"
+          className="stack-card"
           href={p.link}
           target="_blank"
           rel="noreferrer"
         >
-          <div className="project-thumb">
-            <div className="thumb-bg" />
-            {p.image ? (
-              <div className="thumb-shot">
-                <img
-                  className={p.imageDark ? "thumb-img-light" : undefined}
-                  src={p.image}
-                  style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
-                  alt={p.imageAlt ?? p.title}
-                  width={1120}
-                  height={700}
-                  loading="lazy"
-                  decoding="async"
-                />
-                {p.imageDark && (
+          <div className="stack-card-info">
+            <div className="stack-card-meta">
+              <span className="stack-card-num">{String(i + 1).padStart(2, "0")}</span>
+              <span>{p.linkLabel}</span>
+            </div>
+            <h3>
+              {p.title}
+              <span className="arrow" aria-hidden="true">↗</span>
+            </h3>
+            <p>{p.desc}</p>
+            <div className="stack-card-tags">
+              {p.tags.map((t) => (
+                <span key={t}>{t}</span>
+              ))}
+            </div>
+          </div>
+
+          <div className="stack-card-visual">
+            <div className="stack-card-browser">
+              <div className="stack-card-bar" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+              {p.image ? (
+                <div className="thumb-shot">
                   <img
-                    className="thumb-img-dark"
-                    src={p.imageDark}
+                    className={p.imageDark ? "thumb-img-light" : undefined}
+                    src={p.image}
                     style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
                     alt={p.imageAlt ?? p.title}
                     width={1120}
@@ -193,26 +249,26 @@ function ProjectsView() {
                     loading="lazy"
                     decoding="async"
                   />
-                )}
-              </div>
-            ) : (
-              <Thumb kind={p.thumb} />
-            )}
-          </div>
-          <div className="project-body">
-            <div className="project-tags">
-              {p.tags.map((t) => (
-                <span key={t}>{t}</span>
-              ))}
+                  {p.imageDark && (
+                    <img
+                      className="thumb-img-dark"
+                      src={p.imageDark}
+                      style={p.imagePosition ? { objectPosition: p.imagePosition } : undefined}
+                      alt={p.imageAlt ?? p.title}
+                      width={1120}
+                      height={700}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  )}
+                </div>
+              ) : (
+                <div className="stack-card-glyph">
+                  <Thumb kind={p.thumb} />
+                </div>
+              )}
             </div>
-            <h3>
-              {p.title}
-              <span className="arrow">→</span>
-            </h3>
-            <p>{p.desc}</p>
-            <div className="project-links">
-              <span className="mono">{p.linkLabel}</span>
-            </div>
+            <span className="stack-card-caption">{new URL(p.link).host.replace(/^www\./, "")}</span>
           </div>
         </a>
       ))}
