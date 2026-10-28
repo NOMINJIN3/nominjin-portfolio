@@ -378,7 +378,9 @@ section {
   border: 1px solid var(--border-strong);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), padding 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+  transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1), height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    padding 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.3s ease;
   overflow: hidden;
   white-space: nowrap;
 }
@@ -453,6 +455,49 @@ section {
   max-width: 500px;
   opacity: 1;
   margin-left: 4px;
+}
+
+/* CTA inside the pill — only in the large, at-the-top state */
+.nav-pill-cta {
+  display: none;
+}
+
+/* large state: top of the page, over the hero photo */
+.nav.at-top .nav-pill {
+  height: 60px;
+  padding: 0 8px 0 26px;
+  background: rgba(15, 23, 42, 0.28);
+  border-color: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+.nav.at-top .nav-pill-toggle { display: none; }
+.nav.at-top .nav-pill-name { color: #fff; }
+.nav.at-top .nav-pill-links::before { background: rgba(255, 255, 255, 0.22); }
+.nav.at-top .nav-pill-links a { color: rgba(255, 255, 255, 0.8); padding: 8px 12px; }
+.nav.at-top .nav-pill-links a:hover { color: #fff; background: rgba(255, 255, 255, 0.12); }
+.nav.at-top .nav-pill.expanded .nav-pill-links { max-width: 680px; }
+.nav.at-top .nav-pill-links .nav-pill-cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  margin-left: 10px;
+  padding: 0 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+}
+/* mobile: the separate menu button matches the dark-glass pill */
+.nav.at-top .nav-burger {
+  background: rgba(15, 23, 42, 0.28);
+  border-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+.nav.at-top .nav-pill-links .nav-pill-cta:hover {
+  background: #fff;
+  color: #0f172a;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
 }
 
 /* right-side icons */
