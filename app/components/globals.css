@@ -987,9 +987,12 @@ section:not(.hero) {
 .marquee-track span:hover img {
   transform: scale(1.12);
 }
-/* dark logos turn light; hue-rotate keeps colored ones (Django green) on-brand */
-[data-theme="dark"] .marquee-track span img.icon-invert-dark {
-  filter: invert(1) hue-rotate(180deg);
+/* dark mode: same treatment as the hero skills */
+[data-theme="dark"] .marquee-track span.icon-invert-dark img {
+  filter: invert(1);
+}
+[data-theme="dark"] .marquee-track span.icon-outline-dark img {
+  filter: drop-shadow(0 0 0.6px #ffffff) drop-shadow(0 0 0.6px #ffffff);
 }
 @media (max-width: 640px) {
   .marquee { padding: 16px 0; border-radius: 18px; }
