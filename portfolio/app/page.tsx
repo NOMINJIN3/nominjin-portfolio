@@ -4,7 +4,6 @@ import ZoomHero from "./components/ZoomHero";
 import WorkSection from "./components/WorkSection";
 import ParallaxProvider from "./components/ParallaxProvider";
 import AboutSection from "./components/AboutSection";
-import ContactSection from "./components/ContactSection";
 
 /* ── data ──────────────────────────────────────────────────── */
 
@@ -128,11 +127,8 @@ export default async function Home() {
       {/* ABOUT */}
       <AboutSection repoCount={repoCount} />
 
-      {/* CONTACT — target of the hero "Connect" button */}
-      <ContactSection />
-
-      {/* FOOTER */}
-      <footer className="footer">
+      {/* FOOTER — also the #contact target (hero "Connect", nav "Contact.") */}
+      <footer className="footer" id="contact">
         <div className="container">
           <div className="footer-top">
             <div className="footer-cta">
